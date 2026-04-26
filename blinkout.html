@@ -1,0 +1,1368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blinkart - Online Shopping</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: 
+                linear-gradient(to bottom, rgba(0, 5, 20, 0.9), rgba(0, 10, 30, 0.95)),
+                url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white;
+            min-height: 100vh;
+        }
+
+        /* Top Navigation */
+        .top-nav {
+            background: linear-gradient(180deg, #1a2a3a 0%, #0f1a25 100%);
+            padding: 12px 30px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            border-bottom: 2px solid #00d4ff;
+            box-shadow: 0 4px 20px rgba(0, 212, 255, 0.2);
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #00d4ff, #00ff88);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .location {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: #aaa;
+            font-size: 13px;
+            cursor: pointer;
+            padding: 8px 12px;
+            border: 1px solid transparent;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+
+        .location:hover {
+            border-color: white;
+            color: white;
+        }
+
+        /* Search Bar */
+        .search-section {
+            flex: 1;
+            display: flex;
+            max-width: 800px;
+        }
+
+        .search-bar {
+            flex: 1;
+            display: flex;
+            background: white;
+            border-radius: 4px 0 0 4px;
+            overflow: hidden;
+        }
+
+        .search-bar select {
+            border: none;
+            padding: 12px 15px;
+            background: #f0f0f0;
+            border-right: 1px solid #ddd;
+            font-size: 14px;
+            cursor: pointer;
+            outline: none;
+        }
+
+        .search-bar input {
+            flex: 1;
+            border: none;
+            padding: 12px 15px;
+            font-size: 16px;
+            outline: none;
+        }
+
+        .search-btn {
+            background: linear-gradient(180deg, #ff9900, #ff8800);
+            border: none;
+            padding: 12px 25px;
+            cursor: pointer;
+            font-size: 20px;
+            transition: background 0.3s;
+        }
+
+        .search-btn:hover {
+            background: linear-gradient(180deg, #ffaa22, #ff9900);
+        }
+
+        /* Right Section */
+        .right-section {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .nav-btn {
+            background: none;
+            border: 1px solid transparent;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .nav-btn:hover {
+            border-color: white;
+        }
+
+        .nav-btn small {
+            font-size: 11px;
+            opacity: 0.8;
+        }
+
+        .nav-btn strong {
+            font-size: 15px;
+        }
+
+        /* Cart Button */
+        .cart-btn {
+            position: relative;
+            background: none;
+            border: 1px solid transparent;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .cart-btn:hover {
+            border-color: white;
+        }
+
+        .cart-btn i {
+            font-size: 28px;
+            color: #00d4ff;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: 0;
+            right: 5px;
+            background: #ff9900;
+            color: black;
+            font-size: 14px;
+            font-weight: bold;
+            padding: 2px 8px;
+            border-radius: 10px;
+        }
+
+        /* Category Bar */
+        .category-bar {
+            background: linear-gradient(90deg, #1e3a5f, #0d2137);
+            padding: 10px 30px;
+            display: flex;
+            gap: 25px;
+            overflow-x: auto;
+            border-bottom: 1px solid #2a5a8c;
+        }
+
+        .category-bar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .category {
+            white-space: nowrap;
+            color: #ccc;
+            cursor: pointer;
+            padding: 8px 15px;
+            border-radius: 20px;
+            transition: all 0.3s;
+            font-size: 14px;
+        }
+
+        .category:hover, .category.active {
+            background: rgba(0, 212, 255, 0.2);
+            color: #00d4ff;
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 20px 30px;
+            max-width: 1500px;
+            margin: 0 auto;
+        }
+
+        /* Banner */
+        .banner {
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(0, 255, 136, 0.1));
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .banner h1 {
+            font-size: 36px;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #00d4ff, #00ff88);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .banner p {
+            font-size: 18px;
+            color: #aaa;
+        }
+
+        /* Products Grid */
+        .products-section {
+            margin-bottom: 40px;
+        }
+
+        .section-title {
+            font-size: 24px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #00d4ff;
+            display: inline-block;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .product-card {
+            background: linear-gradient(145deg, #0d1f35, #152a45);
+            border: 1px solid #1e4a6d;
+            border-radius: 10px;
+            padding: 15px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .product-card:hover::before {
+            left: 100%;
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(0, 120, 200, 0.4);
+            border-color: #00d4ff;
+        }
+
+        .product-img {
+            width: 100%;
+            height: 150px;
+            object-fit: contain;
+            background: white;
+            border-radius: 8px;
+            padding: 10px;
+            margin-bottom: 15px;
+        }
+
+        .product-name {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #fff;
+            line-height: 1.3;
+            height: 40px;
+            overflow: hidden;
+        }
+
+        .product-rating {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin-bottom: 8px;
+        }
+
+        .stars {
+            color: #ff9900;
+            font-size: 14px;
+        }
+
+        .rating-count {
+            color: #888;
+            font-size: 13px;
+        }
+
+        .product-price {
+            font-size: 22px;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 5px;
+        }
+
+        .product-price .currency {
+            font-size: 16px;
+        }
+
+        .product-price .decimal {
+            font-size: 14px;
+            vertical-align: super;
+        }
+
+        .product-mrp {
+            color: #888;
+            font-size: 14px;
+            text-decoration: line-through;
+            margin-bottom: 10px;
+        }
+
+        .discount {
+            color: #00ff88;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .delivery {
+            color: #00d4ff;
+            font-size: 13px;
+            margin-bottom: 5px;
+        }
+
+        .product-stock {
+            font-size: 13px;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .stock-available {
+            color: #00ff88;
+        }
+
+        .stock-low {
+            color: #ff4444;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.6; }
+        }
+
+        .add-btn {
+            width: 100%;
+            background: linear-gradient(180deg, #ff9900, #ff7700);
+            border: none;
+            padding: 12px;
+            border-radius: 20px;
+            color: black;
+            font-weight: 700;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+        }
+
+        .add-btn:hover {
+            background: linear-gradient(180deg, #ffaa22, #ff8800);
+            transform: scale(1.02);
+            box-shadow: 0 5px 20px rgba(255, 153, 0, 0.4);
+        }
+
+        .add-btn:active {
+            transform: scale(0.98);
+        }
+
+        /* Cart Sidebar */
+        .cart-sidebar {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 400px;
+            height: 100vh;
+            background: linear-gradient(180deg, #0d1f35, #152a45);
+            border-left: 2px solid #00d4ff;
+            z-index: 1000;
+            transition: right 0.4s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cart-sidebar.open {
+            right: 0;
+        }
+
+        .cart-header {
+            padding: 20px;
+            background: linear-gradient(135deg, #1a3a5c, #0d2137);
+            border-bottom: 1px solid #2a5a8c;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cart-header h2 {
+            font-size: 22px;
+            color: #00d4ff;
+        }
+
+        .close-cart {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 28px;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .close-cart:hover {
+            color: #ff4444;
+        }
+
+        .cart-items {
+            flex: 1;
+            overflow-y: auto;
+            padding: 15px;
+        }
+
+        .cart-item {
+            display: flex;
+            gap: 15px;
+            padding: 15px;
+            background: rgba(30, 74, 109, 0.3);
+            border-radius: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #1e4a6d;
+        }
+
+        .cart-item-img {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+            background: white;
+            border-radius: 8px;
+            padding: 5px;
+        }
+
+        .cart-item-details {
+            flex: 1;
+        }
+
+        .cart-item-name {
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+
+        .cart-item-price {
+            font-size: 18px;
+            font-weight: 700;
+            color: #00d4ff;
+        }
+
+        .cart-item-qty {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .qty-btn {
+            width: 30px;
+            height: 30px;
+            background: #1e4a6d;
+            border: none;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background 0.3s;
+        }
+
+        .qty-btn:hover {
+            background: #2a5a8c;
+        }
+
+        .qty-value {
+            font-size: 16px;
+            min-width: 30px;
+            text-align: center;
+        }
+
+        .remove-item {
+            background: none;
+            border: none;
+            color: #ff4444;
+            cursor: pointer;
+            font-size: 18px;
+            margin-left: auto;
+        }
+
+        .cart-footer {
+            padding: 20px;
+            background: linear-gradient(135deg, #1a3a5c, #0d2137);
+            border-top: 1px solid #2a5a8c;
+        }
+
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+
+        .cart-total span:last-child {
+            color: #00d4ff;
+            font-weight: 700;
+        }
+
+        .checkout-btn {
+            width: 100%;
+            background: linear-gradient(180deg, #00d4ff, #0099cc);
+            border: none;
+            padding: 15px;
+            border-radius: 25px;
+            color: black;
+            font-weight: 700;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .checkout-btn:hover {
+            background: linear-gradient(180deg, #00e5ff, #00aadd);
+            box-shadow: 0 5px 20px rgba(0, 212, 255, 0.4);
+        }
+
+        /* Notification */
+        .notification {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: linear-gradient(135deg, #00ff88, #00cc6a);
+            color: black;
+            padding: 15px 30px;
+            border-radius: 30px;
+            font-weight: 600;
+            box-shadow: 0 10px 30px rgba(0, 255, 136, 0.4);
+            transition: transform 0.4s ease;
+            z-index: 1001;
+        }
+
+        .notification.show {
+            transform: translateX(-50%) translateY(0);
+        }
+
+        /* Cookie Banner */
+        .cookie-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(135deg, #0d1f35, #152a45);
+            border-top: 2px solid #00d4ff;
+            padding: 20px 30px;
+            z-index: 2000;
+            transform: translateY(100%);
+            transition: transform 0.4s ease;
+            box-shadow: 0 -5px 30px rgba(0, 212, 255, 0.3);
+        }
+
+        .cookie-banner.show {
+            transform: translateY(0);
+        }
+
+        .cookie-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+
+        .cookie-icon {
+            font-size: 40px;
+            color: #ff9900;
+        }
+
+        .cookie-text {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .cookie-text h3 {
+            color: #00d4ff;
+            font-size: 18px;
+            margin-bottom: 8px;
+        }
+
+        .cookie-text p {
+            color: #ccc;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .cookie-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .cookie-btn {
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+        }
+
+        .cookie-accept {
+            background: linear-gradient(135deg, #00d4ff, #0099cc);
+            color: black;
+        }
+
+        .cookie-accept:hover {
+            background: linear-gradient(135deg, #00e5ff, #00aadd);
+            box-shadow: 0 5px 20px rgba(0, 212, 255, 0.4);
+        }
+
+        .cookie-reject {
+            background: transparent;
+            border: 1px solid #666;
+            color: #ccc;
+        }
+
+        .cookie-reject:hover {
+            border-color: #ff4444;
+            color: #ff4444;
+        }
+
+        /* Overlay */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+        }
+
+        .overlay.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* No Results */
+        .no-results {
+            text-align: center;
+            padding: 60px 20px;
+            color: #888;
+        }
+
+        .no-results i {
+            font-size: 60px;
+            margin-bottom: 20px;
+            color: #444;
+        }
+
+        .no-results h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .top-nav {
+                flex-wrap: wrap;
+                padding: 10px 15px;
+            }
+            
+            .search-section {
+                order: 3;
+                max-width: 100%;
+                width: 100%;
+                margin-top: 10px;
+            }
+            
+            .location, .nav-btn {
+                display: none;
+            }
+            
+            .cart-sidebar {
+                width: 100%;
+                right: -100%;
+            }
+            
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
+            
+            .main-content {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Navigation -->
+    <div class="top-nav">
+        <div class="logo-section">
+            <div class="logo">blinkart</div>
+        </div>
+        
+        <div class="location">
+            <i class="fas fa-map-marker-alt"></i>
+            <div>
+                <small>Deliver to</small><br>
+                <strong>India</strong>
+            </div>
+        </div>
+
+        <div class="search-section">
+            <div class="search-bar">
+                <select id="search-category">
+                    <option value="all">All</option>
+                    <option value="pen">Pens</option>
+                    <option value="pencil">Pencils</option>
+                    <option value="kit">Kits</option>
+                    <option value="highlighter">Highlighters</option>
+                </select>
+                <input type="text" id="search-input" placeholder="Search blinkart">
+                <button class="search-btn" onclick="searchProducts()">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="right-section">
+            <button class="nav-btn">
+                <small>Sign in</small>
+                <strong>Account</strong>
+            </button>
+            <button class="nav-btn">
+                <small>Return &</small>
+                <strong>Orders</strong>
+            </button>
+            <button class="cart-btn" onclick="toggleCart()">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="cart-count" id="cart-count">0</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Category Bar -->
+    <div class="category-bar">
+        <div class="category active" onclick="filterCategory('all')">All Products</div>
+        <div class="category" onclick="filterCategory('pen')">Pens</div>
+        <div class="category" onclick="filterCategory('pencil')">Pencils</div>
+        <div class="category" onclick="filterCategory('kit')">Kits</div>
+        <div class="category" onclick="filterCategory('highlighter')">Highlighters</div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Banner -->
+        <div class="banner">
+            <h1>🚀 Crazy Deals in Stationery</h1>
+            <p>0% GST | Free Delivery | Up to 50% Off</p>
+        </div>
+
+        <!-- Products -->
+        <div class="products-section">
+            <h2 class="section-title" id="section-title">Trending Products</h2>
+            <div class="products-grid" id="products-grid">
+                <!-- Products will be rendered here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Cart Sidebar -->
+    <div class="overlay" id="overlay" onclick="toggleCart()"></div>
+    <div class="cart-sidebar" id="cart-sidebar">
+        <div class="cart-header">
+            <h2><i class="fas fa-shopping-cart"></i> Your Cart</h2>
+            <button class="close-cart" onclick="toggleCart()">&times;</button>
+        </div>
+        <div class="cart-items" id="cart-items">
+            <!-- Cart items will be rendered here -->
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Subtotal (<span id="cart-qty">0</span> items):</span>
+                <span>₹<span id="cart-total">0</span></span>
+            </div>
+            <button class="checkout-btn" onclick="proceedToCheckout()">
+                Proceed to Buy
+            </button>
+        </div>
+    </div>
+
+    <!-- Notification -->
+    <div class="notification" id="notification">
+        <i class="fas fa-check-circle"></i> Added to cart!
+    </div>
+
+    <!-- Cookie Consent Banner -->
+    <div class="cookie-banner" id="cookie-banner">
+        <div class="cookie-content">
+            <div class="cookie-icon">
+                <i class="fas fa-cookie-bite"></i>
+            </div>
+            <div class="cookie-text">
+                <h3>We use cookies</h3>
+                <p>This website uses cookies to enhance your browsing experience, provide personalized content, and analyze our traffic. By clicking "Accept All", you consent to our use of cookies.</p>
+            </div>
+            <div class="cookie-buttons">
+                <button class="cookie-btn cookie-reject" onclick="rejectCookies()">Reject All</button>
+                <button class="cookie-btn cookie-accept" onclick="acceptCookies()">Accept All</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Products Data
+        // Products Data - 250+ Products
+        const products = [
+            // Ballpoint Pens
+            { id: 1, name: 'Pilot V2 Roller Ball Pen', price: 20, mrp: 35, category: 'pen', img: 'https://via.placeholder.com/150?text=Pilot+V2', rating: 4.5, reviews: 1250, stock: 150 },
+            { id: 2, name: 'Reynolds Trimax Ball Pen', price: 60, mrp: 100, category: 'pen', img: 'https://via.placeholder.com/150?text=Reynolds+Trimax', rating: 4.0, reviews: 890, stock: 80 },
+            { id: 3, name: 'Reynolds Trimax Gold Pen', price: 120, mrp: 180, category: 'pen', img: 'https://via.placeholder.com/150?text=Trimax+Gold', rating: 4.8, reviews: 560, stock: 45 },
+            { id: 4, name: 'Fountain Pen Premium', price: 65, mrp: 120, category: 'pen', img: 'https://via.placeholder.com/150?text=Fountain+Pen', rating: 4.2, reviews: 320, stock: 30 },
+            { id: 5, name: 'Perie Cardian Pen Premium', price: 480, mrp: 650, category: 'pen', img: 'https://via.placeholder.com/150?text=Perie+Cardian', rating: 4.9, reviews: 210, stock: 15 },
+            { id: 6, name: 'Pilot V7 Hi-Tec Point', price: 60, mrp: 90, category: 'pen', img: 'https://via.placeholder.com/150?text=Pilot+V7', rating: 4.3, reviews: 780, stock: 60 },
+            { id: 7, name: 'Pilot V5 Needle Point', price: 68, mrp: 100, category: 'pen', img: 'https://via.placeholder.com/150?text=Pilot+V5', rating: 4.1, reviews: 920, stock: 55 },
+            { id: 8, name: 'Writo Meter Ball Pen', price: 20, mrp: 35, category: 'pen', img: 'https://via.placeholder.com/150?text=Writo+Meter', rating: 3.8, reviews: 450, stock: 100 },
+            { id: 9, name: 'Jeter Ballpoint Pens Pack', price: 30, mrp: 50, category: 'pen', img: 'https://via.placeholder.com/150?text=Jeter+Ballpoint', rating: 4.0, reviews: 670, stock: 200 },
+            { id: 10, name: 'Joter Gel Pen Premium', price: 45, mrp: 75, category: 'pen', img: 'https://via.placeholder.com/150?text=Joter+Gelpen', rating: 4.4, reviews: 380, stock: 75 },
+            { id: 11, name: 'Parker Ballpoint Pen Elite', price: 1990, mrp: 2500, category: 'pen', img: 'https://via.placeholder.com/150?text=Parkar+Ballpoint', rating: 5.0, reviews: 120, stock: 8 },
+            { id: 12, name: 'Classmate Hook Pen', price: 10, mrp: 20, category: 'pen', img: 'https://via.placeholder.com/150?text=Classmate+Hook', rating: 3.9, reviews: 1100, stock: 500 },
+            { id: 13, name: 'Unomax Ultron Pen', price: 10, mrp: 18, category: 'pen', img: 'https://via.placeholder.com/150?text=Unomax+Ultron', rating: 4.0, reviews: 890, stock: 400 },
+            { id: 14, name: 'Unomax Pearl Pen', price: 10, mrp: 18, category: 'pen', img: 'https://via.placeholder.com/150?text=Unomax+Pearl', rating: 4.1, reviews: 750, stock: 350 },
+            { id: 15, name: 'Doms Inxon Pen', price: 10, mrp: 20, category: 'pen', img: 'https://via.placeholder.com/150?text=Doms+Inxon', rating: 4.2, reviews: 620, stock: 300 },
+            { id: 16, name: 'Flair Woody Pencil', price: 10, mrp: 18, category: 'pencil', img: 'https://via.placeholder.com/150?text=Flair+Woody', rating: 4.3, reviews: 540, stock: 250 },
+            { id: 17, name: 'Hauser XO Premium Pen', price: 10, mrp: 20, category: 'pen', img: 'https://via.placeholder.com/150?text=Hauser+XO', rating: 4.4, reviews: 480, stock: 200 },
+            { id: 18, name: 'Supra Gold Ball Pen', price: 10, mrp: 20, category: 'pen', img: 'https://via.placeholder.com/150?text=Supra+Gold', rating: 4.5, reviews: 390, stock: 180 },
+            { id: 19, name: 'Classmate Octane Ball Pen', price: 10, mrp: 18, category: 'pen', img: 'https://via.placeholder.com/150?text=Octane+Ball', rating: 4.6, reviews: 310, stock: 150 },
+            { id: 20, name: 'Classmate Octane Gel Pen', price: 10, mrp: 18, category: 'pen', img: 'https://via.placeholder.com/150?text=Octane+Gel', rating: 4.7, reviews: 280, stock: 140 },
+            { id: 21, name: 'Doms Pencil Set', price: 65, mrp: 100, category: 'pencil', img: 'https://via.placeholder.com/150?text=Doms+Pencil', rating: 4.4, reviews: 890, stock: 120 },
+            { id: 22, name: 'Natraj Pencils Pack', price: 55, mrp: 80, category: 'pencil', img: 'https://via.placeholder.com/150?text=Natraj+Pencils', rating: 4.2, reviews: 720, stock: 200 },
+            { id: 23, name: 'Flair Move Penpencil 2.0', price: 100, mrp: 150, category: 'pencil', img: 'https://via.placeholder.com/150?text=Flair+Move+2.0', rating: 4.6, reviews: 450, stock: 60 },
+            { id: 24, name: 'Flair Move Penpencil 0.7', price: 20, mrp: 35, category: 'pencil', img: 'https://via.placeholder.com/150?text=Flair+Move+0.7', rating: 4.1, reviews: 380, stock: 100 },
+            { id: 25, name: 'Reynolds 0.5 Mechanical Pencil', price: 8, mrp: 15, category: 'pencil', img: 'https://via.placeholder.com/150?text=Reynolds+0.5', rating: 3.9, reviews: 520, stock: 300 },
+            { id: 26, name: 'Stationery Kit Complete', price: 150, mrp: 250, category: 'kit', img: 'https://via.placeholder.com/150?text=Stationery+Kit', rating: 4.5, reviews: 320, stock: 50 },
+            { id: 27, name: 'Art Kit Professional', price: 850, mrp: 1200, category: 'kit', img: 'https://via.placeholder.com/150?text=Art+Kit', rating: 4.7, reviews: 180, stock: 20 },
+            { id: 28, name: 'Sketch Book A4', price: 100, mrp: 150, category: 'kit', img: 'https://via.placeholder.com/150?text=Sketch+Book', rating: 4.3, reviews: 290, stock: 80 },
+            { id: 29, name: 'Luxor Fluorescent Highlighter', price: 100, mrp: 150, category: 'highlighter', img: 'https://via.placeholder.com/150?text=Luxor+Fluorescent', rating: 4.5, reviews: 410, stock: 90 },
+            { id: 30, name: 'Luxor Pastel Highlighter Set', price: 125, mrp: 180, category: 'highlighter', img: 'https://via.placeholder.com/150?text=Luxor+Pastel', rating: 4.7, reviews: 280, stock: 60 },
+            // Additional Pens - Amazon Style
+            { id: 31, name: 'Cello Butterflow Ball Pen Pack of 50', price: 145, mrp: 200, category: 'pen', img: 'https://via.placeholder.com/150?text=Cello+Butterflow', rating: 4.3, reviews: 2340, stock: 25 },
+            { id: 32, name: 'Pilot G2 Premium Gel Pen Blue', price: 180, mrp: 250, category: 'pen', img: 'https://via.placeholder.com/150?text=Pilot+G2', rating: 4.7, reviews: 1890, stock: 40 },
+            { id: 33, name: 'Uni Jetstream Ball Pen Black', price: 95, mrp: 150, category: 'pen', img: 'https://via.placeholder.com/150?text=Uni+Jetstream', rating: 4.5, reviews: 980, stock: 70 },
+            { id: 34, name: 'Pentonic Ball Pen Pack of 10', price: 35, mrp: 55, category: 'pen', img: 'https://via.placeholder.com/150?text=Pentonic', rating: 4.1, reviews: 650, stock: 150 },
+            { id: 35, name: 'Rotomagic Ball Pen 0.7mm', price: 25, mrp: 40, category: 'pen', img: 'https://via.placeholder.com/150?text=Rotomagic', rating: 4.0, reviews: 420, stock: 200 },
+            { id: 36, name: 'Montex Ball Pen Pack of 20', price: 45, mrp: 70, category: 'pen', img: 'https://via.placeholder.com/150?text=Montex', rating: 3.9, reviews: 380, stock: 120 },
+            { id: 37, name: 'Kores Ball Pen Medium Point', price: 15, mrp: 25, category: 'pen', img: 'https://via.placeholder.com/150?text=Kores', rating: 4.2, reviews: 520, stock: 250 },
+            { id: 38, name: 'Add Gel Pen 0.5mm Blue', price: 30, mrp: 45, category: 'pen', img: 'https://via.placeholder.com/150?text=Add+Gel', rating: 4.4, reviews: 710, stock: 180 },
+            { id: 39, name: 'Gelly Ball Pen Pack of 12', price: 55, mrp: 85, category: 'pen', img: 'https://via.placeholder.com/150?text=Gelly', rating: 4.3, reviews: 290, stock: 90 },
+            { id: 40, name: 'Smart Ball Pen Multi Color', price: 40, mrp: 60, category: 'pen', img: 'https://via.placeholder.com/150?text=Smart+Ball', rating: 4.0, reviews: 180, stock: 75 },
+            { id: 41, name: 'Luxor Ultra Smooth Ball Pen', price: 20, mrp: 35, category: 'pen', img: 'https://via.placeholder.com/150?text=Luxor+Ultra', rating: 4.1, reviews: 450, stock: 160 },
+            { id: 42, name: 'Precise Gel Pen 0.7mm Black', price: 35, mrp: 50, category: 'pen', img: 'https://via.placeholder.com/150?text=Precise+Gel', rating: 4.5, reviews: 620, stock: 100 },
+            { id: 43, name: 'Faber-Castell Ball Pen Premium', price: 150, mrp: 220, category: 'pen', img: 'https://via.placeholder.com/150?text=Faber+Castell', rating: 4.8, reviews: 340, stock: 25 },
+            { id: 44, name: 'Stabilo Ball Pen Pack of 10', price: 85, mrp: 120, category: 'pen', img: 'https://via.placeholder.com/150?text=Stabilo', rating: 4.6, reviews: 280, stock: 45 },
+            { id: 45, name: 'Paper Mate Inkjoy Gel Pen', price: 120, mrp: 180, category: 'pen', img: 'https://via.placeholder.com/150?text=Paper+Mate', rating: 4.4, reviews: 190, stock: 35 },
+            { id: 46, name: 'BIC Clic Ball Pen 1.6mm', price: 25, mrp: 40, category: 'pen', img: 'https://via.placeholder.com/150?text=BIC+Clic', rating: 4.2, reviews: 560, stock: 140 },
+            { id: 47, name: 'Cross Ball Pen Classic', price: 350, mrp: 450, category: 'pen', img: 'https://via.placeholder.com/150?text=Cross+Classic', rating: 4.7, reviews: 150, stock: 12 },
+            { id: 48, name: 'Shepherd Ball Pen Pack of 5', price: 30, mrp: 50, category: 'pen', img: 'https://via.placeholder.com/150?text=Shepherd', rating: 4.0, reviews: 220, stock: 180 },
+            { id: 49, name: 'Linc Ball Pen Fluoro Color', price: 18, mrp: 30, category: 'pen', img: 'https://via.placeholder.com/150?text=Linc+Fluoro', rating: 4.1, reviews: 380, stock: 220 },
+            { id: 50, name: 'Penta Ball Pen 0.8mm Pack', price: 22, mrp: 35, category: 'pen', img: 'https://via.placeholder.com/150?text=Penta', rating: 3.8, reviews: 290, stock: 190 },
+            { id: 51, name: 'Reynolds Jetter Ball Pen', price: 15, mrp: 25, category: 'pen', img: 'https://via.placeholder.com/150?text=Reynolds+Jetter', rating: 4.0, reviews: 420, stock: 280 },
+            { id: 52, name: 'Camlin Kokuyo Ball Pen', price: 12, mrp: 20, category: 'pen', img: 'https://via.placeholder.com/150?text=Camlin+Kokuyo', rating: 3.9, reviews: 350, stock: 350 },
+            { id: 53, name: 'Eagle Ball Pen Pack of 50', price: 180, mrp: 280, category: 'pen', img: 'https://via.placeholder.com/150?text=Eagle+Ball', rating: 4.3, reviews: 180, stock: 30 },
+            { id: 54, name: 'XYZ Ball Pen Multi Pack', price: 65, mrp: 100, category: 'pen', img: 'https://via.placeholder.com/150?text=XYZ+Multi', rating: 4.1, reviews: 140, stock: 85 },
+            { id: 55, name: 'Gel Pen 0.5mm Spark Blue', price: 45, mrp: 70, category: 'pen', img: 'https://via.placeholder.com/150?text=Spark+Blue', rating: 4.5, reviews: 260, stock: 95 },
+            { id: 56, name: 'Pilot Hi-Tecpoint V7 Cartridge', price: 90, mrp: 130, category: 'pen', img: 'https://via.placeholder.com/150?text=Hi-Tecpoint', rating: 4.6, reviews: 480, stock: 55 },
+            { id: 57, name: 'Reynolds Porter Ball Pen', price: 25, mrp: 40, category: 'pen', img: 'https://via.placeholder.com/150?text=Porter', rating: 4.2, reviews: 320, stock: 150 },
+            { id: 58, name: 'Cello Pinpoint Ball Pen', price: 20, mrp: 32, category: 'pen', img: 'https://via.placeholder.com/150?text=Cello+Pinpoint', rating: 4.3, reviews: 410, stock: 200 },
+            { id: 59, name: 'Flair Tuff Ball Pen Pack', price: 35, mrp: 55, category: 'pen', img: 'https://via.placeholder.com/150?text=Flair+Tuff', rating: 4.0, reviews: 270, stock: 130 },
+            { id: 60, name: 'Unomax Nova Ball Pen', price: 12, mrp: 20, category: 'pen', img: 'https://via.placeholder.com/150?text=Unomax+Nova', rating: 4.1, reviews: 390, stock: 400 },
+            { id: 61, name: 'Classmate Smooth Ball Pen', price: 8, mrp: 15, category: 'pen', img: 'https://via.placeholder.com/150?text=Classmate+Smooth', rating: 3.8, reviews: 520, stock: 600 },
+            { id: 62, name: 'Doms Astro Ball Pen Pack', price: 25, mrp: 40, category: 'pen', img: 'https://via.placeholder.com/150?text=Doms+Astro', rating: 4.2, reviews: 280, stock: 170 },
+            { id: 63, name: 'Hauser Matrix Ball Pen', price: 15, mrp: 25, category: 'pen', img: 'https://via.placeholder.com/150?text=Hauser+Matrix', rating: 4.4, reviews: 350, stock: 220 },
+            { id: 64, name: 'Pentel Hybrid Ball Pen 0.7', price: 95, mrp: 140, category: 'pen', img: 'https://via.placeholder.com/150?text=Pentel+Hybrid', rating: 4.7, reviews: 220, stock: 50 },
+            { id: 65, name: 'Zebra Sarasa Clip Ball Pen', price: 65, mrp: 95, category: 'pen', img: 'https://via.placeholder.com/150?text=Zebra+Sarasa', rating: 4.6, reviews: 180, stock: 65 },
+            { id: 66, name: 'MUJi Aluminum Ball Pen', price: 280, mrp: 350, category: 'pen', img: 'https://via.placeholder.com/150?text=MUJI+Aluminum', rating: 4.8, reviews: 90, stock: 18 },
+            { id: 67, name: 'Pilot Juice Gel Pen Set', price: 150, mrp: 220, category: 'pen', img: 'https://via.placeholder.com/150?text=Pilot+Juice', rating: 4.5, reviews: 260, stock: 35 },
+            { id: 68, name: 'Staedtler Noris Club Pen', price: 45, mrp: 65, category: 'pen', img: 'https://via.placeholder.com/150?text=Staedtler', rating: 4.3, reviews: 140, stock: 75 },
+            { id: 69, name: 'Maped Color Ball Pen Pack', price: 55, mrp: 80, category: 'pen', img: 'https://via.placeholder.com/150?text=Maped+Color', rating: 4.2, reviews: 190, stock: 95 },
+            { id: 70, name: 'Lyra Groove Slim Ball Pen', price: 35, mrp: 50, category: 'pen', img: 'https://via.placeholder.com/150?text=Lyra+Groove', rating: 4.4, reviews: 120, stock: 110 },
+            // More pens (71-150)
+            { id: 71, name: 'Cello Flowster Ball Pen', price: 18, mrp: 28, category: 'pen', img: 'https://via.placeholder.com/150?text=Cello+Flowster', rating: 4.1, reviews: 380, stock: 250 },
+            { id: 72, name: 'Reynolds Business Pen', price: 22, mrp: 35, category: 'pen', img: 'https://via.placeholder.com/150?text=Reynolds+Business', rating: 4.2, reviews: 290, stock: 180 },
+            { id: 73, name: 'Pilot Megaloman Pen', price: 650, mrp: 800, category: 'pen', img: 'https://via.placeholder.com/150?text=Pilot+Megaloman', rating: 4.9, reviews: 85, stock: 10 },
+            { id: 74, name: 'Faber-Castell Loom Pen', price: 220, mrp: 300, category: 'pen', img: 'https://via.placeholder.com/150?text=Faber+Loom', rating: 4.7, reviews: 160, stock: 25 },
+            { id: 75, name: 'Aurora Ball Pen Premium', price: 85, mrp: 120, category: 'pen', img: 'https://via.placeholder.com/150?text=Aurora+Pen', rating: 4.4, reviews: 210, stock: 55 },
+            { id: 76, name: 'Parker Vector Ball Pen', price: 180, mrp: 250, category: 'pen', img: 'https://via.placeholder.com/150?text=Parker+Vector', rating: 4.5, reviews: 340, stock: 40 },
+            { id: 77, name: 'Waterman Carene Pen', price: 1200, mrp: 1500, category: 'pen', img: 'https://via.placeholder.com/150?text=Waterman+Carene', rating: 4.8, reviews: 65, stock: 8 },
+            { id: 78, name: 'Montblanc Meisterstuck', price: 8500, mrp: 10000, category: 'pen', img: 'https://via.placeholder.com/150?text=Montblanc', rating: 5.0, reviews: 25, stock: 3 },
+            { id: 79, name: 'Lamy Safari Ball Pen', price: 450, mrp: 550, category: 'pen', img: 'https://via.placeholder.com/150?text=Lamy+Safari', rating: 4.6, reviews: 180, stock: 20 },
+            { id: 80, name: 'Pelikan Souveran Pen', price: 3200, mrp: 3800, category: 'pen', img: 'https://via.placeholder.com/150?text=Pelikan', rating: 4.9, reviews: 45, stock: 5 },
+            { id: 81, name: 'Sheaffer Ball Pen Value', price: 150, mrp: 200, category: 'pen', img: 'https://via.placeholder.com/150?text=Sheaffer', rating: 4.3, reviews: 220, stock: 35 },
+            { id: 82, name: 'Pilot Custom 7420 Pen', price: 1800, mrp: 2200, category: 'pen', img: 'https://via.placeholder.com/150?text=Pilot+7420', rating: 4.9, reviews: 95, stock: 12 },
+            { id: 83, name: 'Sailor Progear Slim Pen', price: 950, mrp: 1200, category: 'pen', img: 'https://via.placeholder.com/150?text=Sailor+Progear', rating: 4.7, reviews: 120, stock: 15 },
+            { id: 84, name: 'Platinum Preppy Pen', price: 120, mrp: 160, category: 'pen', img: 'https://via.placeholder.com/150?text=Platinum+Preppy', rating: 4.4, reviews: 380, stock: 50 },
+            { id: 85, name: 'TWSBI Eco Fountain Pen', price: 680, mrp: 850, category: 'pen', img: 'https://via.placeholder.com/150?text=TWSBI+Eco', rating: 4.6, reviews: 145, stock: 22 },
+            { id: 86, name: 'Kaweco Sport Ball Pen', price: 380, mrp: 480, category: 'pen', img: 'https://via.placeholder.com/150?text=Kaweco+Sport', rating: 4.5, reviews: 190, stock: 30 },
+            { id: 87, name: 'Conway Stewart Churchill', price: 4500, mrp: 5500, category: 'pen', img: 'https://via.placeholder.com/150?text=Churchill', rating: 4.9, reviews: 35, stock: 4 },
+            { id: 88, name: 'Delta Dolce Vita Pen', price: 2800, mrp: 3500, category: 'pen', img: 'https://via.placeholder.com/150?text=Delta+Dolce', rating: 4.8, reviews: 55, stock: 6 },
+            { id: 89, name: 'Montegrappa Nero Pen', price: 3200, mrp: 4000, category: 'pen', img: 'https://via.placeholder.com/150?text=Montegrappa', rating: 4.7, reviews: 40, stock: 5 },
+            { id: 90, name: 'Visconti Homo Sapiens', price: 6500, mrp: 8000, category: 'pen', img: 'https://via.placeholder.com/150?text=Visconti', rating: 4.9, reviews: 28, stock: 3 },
+            { id: 91, name: 'St Dupont Line 2', price: 12000, mrp: 15000, category: 'pen', img: 'https://via.placeholder.com/150?text=St+Dupont', rating: 5.0, reviews: 15, stock: 2 },
+            { id: 92, name: 'Cartier Must Ball Pen', price: 2800, mrp: 3500, category: 'pen', img: 'https://via.placeholder.com/150?text=Cartier+Must', rating: 4.8, reviews: 65, stock: 8 },
+            { id: 93, name: 'Dunhill Signet Pen', price: 5500, mrp: 6800, category: 'pen', img: 'https://via.placeholder.com/150?text=Dunhill', rating: 4.9, reviews: 30, stock: 4 },
+            { id: 94, name: 'Gucci Pen GG Logo', price: 3800, mrp: 4500, category: 'pen', img: 'https://via.placeholder.com/150?text=Gucci+Pen', rating: 4.7, reviews: 45, stock: 6 },
+            { id: 95, name: 'Versace Medusa Pen', price: 4200, mrp: 5200, category: 'pen', img: 'https://via.placeholder.com/150?text=Versace', rating: 4.8, reviews: 38, stock: 5 },
+            { id: 96, name: 'Burberry Ball Pen', price: 3200, mrp: 4000, category: 'pen', img: 'https://via.placeholder.com/150?text=Burberry', rating: 4.6, reviews: 52, stock: 7 },
+            { id: 97, name: 'Prada Pen Premium', price: 4500, mrp: 5500, category: 'pen', img: 'https://via.placeholder.com/150?text=Prada+Pen', rating: 4.7, reviews: 42, stock: 5 },
+            { id: 98, name: 'Dolce Gabbana Pen', price: 3800, mrp: 4700, category: 'pen', img: 'https://via.placeholder.com/150?text=DG+Pen', rating: 4.6, reviews: 48, stock: 6 },
+            { id: 99, name: 'Hugo Boss Pen Executive', price: 1800, mrp: 2200, category: 'pen', img: 'https://via.placeholder.com/150?text=Hugo+Boss', rating: 4.5, reviews: 85, stock: 12 },
+            { id: 100, name: 'Tommy Hilfiger Pen', price: 1200, mrp: 1500, category: 'pen', img: 'https://via.placeholder.com/150?text=Tommy+Hilfiger', rating: 4.4, reviews: 95, stock: 15 },
+            // Pencils (101-130)
+            { id: 101, name: 'Doms Aurora Pencil Set', price: 45, mrp: 65, category: 'pencil', img: 'https://via.placeholder.com/150?text=Doms+Aurora', rating: 4.3, reviews: 420, stock: 180 },
+            { id: 102, name: 'Natraj 621 Pencils Pack', price: 35, mrp: 50, category: 'pencil', img: 'https://via.placeholder.com/150?text=Natraj+621', rating: 4.1, reviews: 550, stock: 250 },
+            { id: 103, name: 'Faber-Castell 9000 Pencil', price: 120, mrp: 160, category: 'pencil', img: 'https://via.placeholder.com/150?text=Faber+9000', rating: 4.7, reviews: 280, stock: 90 },
+            { id: 104, name: 'Staedtler Mars Lumograph', price: 180, mrp: 240, category: 'pencil', img: 'https://via.placeholder.com/150?text=Staedtler+Lumograph', rating: 4.8, reviews: 320, stock: 70 },
+            { id: 105, name: 'Derwent Graphic Pencil Set', price: 450, mrp: 600, category: 'pencil', img: 'https://via.placeholder.com/150?text=Derwent+Graphic', rating: 4.9, reviews: 185, stock: 35 },
+            { id: 106, name: 'Prismacolor Premier Pencils', price: 850, mrp: 1100, category: 'pencil', img: 'https://via.placeholder.com/150?text=Prismacolor', rating: 4.8, reviews: 145, stock: 25 },
+            { id: 107, name: 'Lyra Rembrandt Pencil Set', price: 320, mrp: 420, category: 'pencil', img: 'https://via.placeholder.com/150?text=Lyra+Rembrandt', rating: 4.6, reviews: 210, stock: 55 },
+            { id: 108, name: 'Caran dAche Pablo Pencils', price: 680, mrp: 850, category: 'pencil', img: 'https://via.placeholder.com/150?text=Caran+dAche', rating: 4.7, reviews: 125, stock: 30 },
+            { id: 109, name: 'Uni Mitsubishi Pencil', price: 95, mrp: 130, category: 'pencil', img: 'https://via.placeholder.com/150?text=Uni+Mitsubishi', rating: 4.5, reviews: 290, stock: 85 },
+            { id: 110, name: 'Pentel Ain Stein Pencils', price: 250, mrp: 320, category: 'pencil', img: 'https://via.placeholder.com/150?text=Pentel+Ain', rating: 4.6, reviews: 180, stock: 60 },
+            { id: 111, name: 'Koh-I-Noor 1500 Pencils', price: 85, mrp: 120, category: 'pencil', img: 'https://via.placeholder.com/150?text=Koh-I-Noor', rating: 4.4, reviews: 340, stock: 120 },
+            { id: 112, name: 'Maped Color Peps Pencils', price: 45, mrp: 65, category: 'pencil', img: 'https://via.placeholder.com/150?text=Maped+Peps', rating: 4.2, reviews: 420, stock: 150 },
+            { id: 113, name: 'Cretacolor Mega Pencils', price: 180, mrp: 240, category: 'pencil', img: 'https://via.placeholder.com/150?text=Cretacolor', rating: 4.5, reviews: 165, stock: 70 },
+            { id: 114, name: 'Stabilo 8008 Pencils', price: 120, mrp: 160, category: 'pencil', img: 'https://via.placeholder.com/150?text=Stabilo+8008', rating: 4.6, reviews: 220, stock: 80 },
+            { id: 115, name: 'Faber-Castell Goldfaber', price: 95, mrp: 130, category: 'pencil', img: 'https://via.placeholder.com/150?text=Faber+Goldfaber', rating: 4.4, reviews: 195, stock: 90 },
+            { id: 116, name: 'Tombow Mono Drawing Pencil', price: 150, mrp: 200, category: 'pencil', img: 'https://via.placeholder.com/150?text=Tombow+Mono', rating: 4.7, reviews: 240, stock: 65 },
+            { id: 117, name: 'Rotring Tikky Pencils', price: 85, mrp: 115, category: 'pencil', img: 'https://via.placeholder.com/150?text=Rotring+Tikky', rating: 4.3, reviews: 310, stock: 110 },
+            { id: 118, name: 'Pilot Neox Drawing Pencil', price: 180, mrp: 240, category: 'pencil', img: 'https://via.placeholder.com/150?text=Pilot+Neox', rating: 4.5, reviews: 175, stock: 55 },
+            { id: 119, name: 'Uni Findi Pencil 0.3mm', price: 65, mrp: 90, category: 'pencil', img: 'https://via.placeholder.com/150?text=Uni+Findi', rating: 4.4, reviews: 260, stock: 100 },
+            { id: 120, name: 'Zebra Delguard Pencil', price: 55, mrp: 75, category: 'pencil', img: 'https://via.placeholder.com/150?text=Zebra+Delguard', rating: 4.3, reviews: 185, stock: 130 },
+            // Erasers & Sharpeners (121-140)
+            { id: 121, name: 'Faber-Castell Eraser', price: 25, mrp: 35, category: 'eraser', img: 'https://via.placeholder.com/150?text=Faber+Eraser', rating: 4.5, reviews: 480, stock: 300 },
+            { id: 122, name: 'Staedtler Eraser 528 50', price: 35, mrp: 50, category: 'eraser', img: 'https://via.placeholder.com/150?text=Staedtler+Eraser', rating: 4.6, reviews: 350, stock: 250 },
+            { id: 123, name: 'Maped Eraser Soft', price: 15, mrp: 22, category: 'eraser', img: 'https://via.placeholder.com/150?text=Maped+Eraser', rating: 4.2, reviews: 520, stock: 400 },
+            { id: 124, name: 'Pentel Eraser C30', price: 45, mrp: 60, category: 'eraser', img: 'https://via.placeholder.com/150?text=Pentel+Eraser', rating: 4.4, reviews: 280, stock: 180 },
+            { id: 125, name: 'Pilot Eraser Hi-Poly', price: 35, mrp: 48, category: 'eraser', img: 'https://via.placeholder.com/150?text=Pilot+Eraser', rating: 4.3, reviews: 220, stock: 200 },
+            { id: 126, name: 'Cello Tape Dispenser', price: 45, mrp: 65, category: 'tape', img: 'https://via.placeholder.com/150?text=Cello+Tape', rating: 4.1, reviews: 380, stock: 150 },
+            { id: 127, name: 'Faber-Castell Sharpener', price: 55, mrp: 75, category: 'sharpener', img: 'https://via.placeholder.com/150?text=Faber+Sharpener', rating: 4.6, reviews: 290, stock: 120 },
+            { id: 128, name: 'Kores Double Hole Sharpener', price: 25, mrp: 35, category: 'sharpener', img: 'https://via.placeholder.com/150?text=Kores+Sharpener', rating: 4.3, reviews: 340, stock: 200 },
+            { id: 129, name: 'Maped Metal Sharpener', price: 65, mrp: 90, category: 'sharpener', img: 'https://via.placeholder.com/150?text=Maped+Sharpener', rating: 4.5, reviews: 210, stock: 100 },
+            { id: 130, name: 'Staedtler Metal Sharpener', price: 85, mrp: 110, category: 'sharpener', img: 'https://via.placeholder.com/150?text=Staedtler+Sharp', rating: 4.7, reviews: 180, stock: 80 },
+            // Notebooks (141-160)
+            { id: 131, name: 'Classmate Notebook 200 Pages', price: 80, mrp: 100, category: 'notebook', img: 'https://via.placeholder.com/150?text=Classmate+NB', rating: 4.2, reviews: 650, stock: 350 },
+            { id: 132, name: 'Spiral Notebook A4 300 Pages', price: 120, mrp: 150, category: 'notebook', img: 'https://via.placeholder.com/150?text=Spiral+NB', rating: 4.4, reviews: 420, stock: 200 },
+            { id: 133, name: 'Oxford Notebook Premium', price: 180, mrp: 220, category: 'notebook', img: 'https://via.placeholder.com/150?text=Oxford+NB', rating: 4.6, reviews: 280, stock: 120 },
+            { id: 134, name: 'Reynolds Notebook A5', price: 55, mrp: 75, category: 'notebook', img: 'https://via.placeholder.com/150?text=Reynolds+NB', rating: 4.1, reviews: 520, stock: 280 },
+            { id: 135, name: 'Camlin Notebook Hard Bound', price: 65, mrp: 85, category: 'notebook', img: 'https://via.placeholder.com/150?text=Camlin+NB', rating: 4.3, reviews: 380, stock: 220 },
+            { id: 136, name: 'Paper Grid Notebook', price: 95, mrp: 120, category: 'notebook', img: 'https://via.placeholder.com/150?text=Grid+NB', rating: 4.5, reviews: 290, stock: 150 },
+            { id: 137, name: 'Leuchtturm Notebook A5', price: 350, mrp: 420, category: 'notebook', img: 'https://via.placeholder.com/150?text=Leuchtturm', rating: 4.8, reviews: 145, stock: 45 },
+            { id: 138, name: 'Rhodia Notebook Dotgrid', price: 280, mrp: 350, category: 'notebook', img: 'https://via.placeholder.com/150?text=Rhodia+NB', rating: 4.7, reviews: 165, stock: 55 },
+            { id: 139, name: 'Moleskine Notebook Classic', price: 450, mrp: 550, category: 'notebook', img: 'https://via.placeholder.com/150?text=Moleskine', rating: 4.8, reviews: 220, stock: 40 },
+            { id: 140, name: 'Black n Red Notebook', price: 150, mrp: 190, category: 'notebook', img: 'https://via.placeholder.com/150?text=Black+n+Red', rating: 4.4, reviews: 185, stock: 100 },
+            // Files & Folders (161-180)
+            { id: 141, name: 'Kores File Folder Pack of 10', price: 85, mrp: 110, category: 'file', img: 'https://via.placeholder.com/150?text=Kores+File', rating: 4.2, reviews: 320, stock: 180 },
+            { id: 142, name: 'Office File Folder A4', price: 45, mrp: 60, category: 'file', img: 'https://via.placeholder.com/150?text=Office+File', rating: 4.0, reviews: 450, stock: 300 },
+            { id: 143, name: 'Plastic File Folder Set', price: 120, mrp: 160, category: 'file', img: 'https://via.placeholder.com/150?text=Plastic+File', rating: 4.3, reviews: 280, stock: 150 },
+            { id: 144, name: 'Manila File Folder Pack', price: 35, mrp: 50, category: 'file', img: 'https://via.placeholder.com/150?text=Manila+File', rating: 4.1, reviews: 520, stock: 400 },
+            { id: 145, name: 'Arch File Folder Heavy', price: 95, mrp: 130, category: 'file', img: 'https://via.placeholder.com/150?text=Arch+File', rating: 4.4, reviews: 190, stock: 100 },
+            { id: 146, name: 'Box File A4 Large', price: 150, mrp: 200, category: 'file', img: 'https://via.placeholder.com/150?text=Box+File', rating: 4.5, reviews: 145, stock: 80 },
+            { id: 147, name: 'Ring Binder File', price: 85, mrp: 115, category: 'file', img: 'https://via.placeholder.com/150?text=Ring+Binder', rating: 4.3, reviews: 210, stock: 120 },
+            { id: 148, name: 'Lever File Folder', price: 65, mrp: 90, category: 'file', img: 'https://via.placeholder.com/150?text=Lever+File', rating: 4.2, reviews: 260, stock: 160 },
+            { id: 149, name: 'Spring File Folder', price: 55, mrp: 75, category: 'file', img: 'https://via.placeholder.com/150?text=Spring+File', rating: 4.1, reviews: 320, stock: 200 },
+            { id: 150, name: 'Clip File Folder Pack', price: 45, mrp: 60, category: 'file', img: 'https://via.placeholder.com/150?text=Clip+File', rating: 4.0, reviews: 380, stock: 250 },
+            // More products (151-200)
+            { id: 151, name: 'Sticky Notes 3x3 Yellow', price: 25, mrp: 35, category: 'notes', img: 'https://via.placeholder.com/150?text=Sticky+Notes', rating: 4.3, reviews: 580, stock: 450 },
+            { id: 152, name: 'Sticky Notes 4x6 Assorted', price: 45, mrp: 60, category: 'notes', img: 'https://via.placeholder.com/150?text=Sticky+4x6', rating: 4.4, reviews: 420, stock: 300 },
+            { id: 153, name: 'Post It Notes Cube', price: 65, mrp: 85, category: 'notes', img: 'https://via.placeholder.com/150?text=Post+It+Cube', rating: 4.5, reviews: 340, stock: 200 },
+            { id: 154, name: 'Marker Pen Set 12 Colors', price: 85, mrp: 110, category: 'marker', img: 'https://via.placeholder.com/150?text=Marker+Set', rating: 4.4, reviews: 480, stock: 180 },
+            { id: 155, name: 'Permanent Marker Black', price: 15, mrp: 22, category: 'marker', img: 'https://via.placeholder.com/150?text=Permanent+Marker', rating: 4.2, reviews: 650, stock: 500 },
+            { id: 156, name: 'White Board Marker Set', price: 55, mrp: 75, category: 'marker', img: 'https://via.placeholder.com/150?text=Whiteboard+Marker', rating: 4.3, reviews: 380, stock: 250 },
+            { id: 157, name: 'Highlighters Set 6 Colors', price: 65, mrp: 85, category: 'highlighter', img: 'https://via.placeholder.com/150?text=Highlighter+Set', rating: 4.5, reviews: 420, stock: 200 },
+            { id: 158, name: 'Neon Highlighters Pack', price: 45, mrp: 60, category: 'highlighter', img: 'https://via.placeholder.com/150?text=Neon+Highlight', rating: 4.4, reviews: 350, stock: 220 },
+            { id: 159, name: 'Correction Tape 5 Pack', price: 55, mrp: 75, category: 'correction', img: 'https://via.placeholder.com/150?text=Correction+Tape', rating: 4.3, reviews: 480, stock: 300 },
+            { id: 160, name: 'White Correction Fluid', price: 25, mrp: 35, category: 'correction', img: 'https://via.placeholder.com/150?text=Correction+Fluid', rating: 4.1, reviews: 520, stock: 350 },
+            { id: 161, name: 'Glue Stick 8g Pack of 6', price: 65, mrp: 90, category: 'glue', img: 'https://via.placeholder.com/150?text=Glue+Stick', rating: 4.4, reviews: 380, stock: 250 },
+            { id: 162, name: 'Fevicol MR Glue 500ml', price: 85, mrp: 110, category: 'glue', img: 'https://via.placeholder.com/150?text=Fevicol+MR', rating: 4.5, reviews: 290, stock: 150 },
+            { id: 163, name: 'Super Glue 3g Pack', price: 35, mrp: 48, category: 'glue', img: 'https://via.placeholder.com/150?text=Super+Glue', rating: 4.2, reviews: 420, stock: 280 },
+            { id: 164, name: 'Hot Glue Gun with Sticks', price: 250, mrp: 320, category: 'glue', img: 'https://via.placeholder.com/150?text=Hot+Glue+Gun', rating: 4.6, reviews: 185, stock: 80 },
+            { id: 165, name: 'Double Sided Tape 12mm', price: 25, mrp: 35, category: 'tape', img: 'https://via.placeholder.com/150?text=Double+Tape', rating: 4.3, reviews: 350, stock: 300 },
+            { id: 166, name: 'Masking Tape 1 Inch', price: 35, mrp: 48, category: 'tape', img: 'https://via.placeholder.com/150?text=Masking+Tape', rating: 4.2, reviews: 280, stock: 350 },
+            { id: 167, name: 'Packing Tape 2 Inch', price: 45, mrp: 60, category: 'tape', img: 'https://via.placeholder.com/150?text=Packing+Tape', rating: 4.1, reviews: 220, stock: 400 },
+            { id: 168, name: 'Cellotape Clear 12mm', price: 20, mrp: 28, category: 'tape', img: 'https://via.placeholder.com/150?text=Cello+Tape', rating: 4.0, reviews: 650, stock: 500 },
+            { id: 169, name: 'Scissors Big Size 8 Inch', price: 85, mrp: 110, category: 'scissors', img: 'https://via.placeholder.com/150?text=Scissors+8inch', rating: 4.4, reviews: 320, stock: 180 },
+            { id: 170, name: 'Scissors Medium 6 Inch', price: 55, mrp: 75, category: 'scissors', img: 'https://via.placeholder.com/150?text=Scissors+6inch', rating: 4.3, reviews: 380, stock: 220 },
+            { id: 171, name: 'Paper Cutter A4 Size', price: 65, mrp: 85, category: 'cutter', img: 'https://via.placeholder.com/150?text=Paper+Cutter', rating: 4.4, reviews: 290, stock: 150 },
+            { id: 172, name: 'Blade Refill Pack of 10', price: 35, mrp: 48, category: 'cutter', img: 'https://via.placeholder.com/150?text=Blade+Refill', rating: 4.2, reviews: 350, stock: 280 },
+            { id: 173, name: 'Ruler 30cm Steel', price: 45, mrp: 60, category: 'ruler', img: 'https://via.placeholder.com/150?text=Ruler+30cm', rating: 4.3, reviews: 420, stock: 300 },
+            { id: 174, name: 'Ruler 15cm Plastic', price: 15, mrp: 22, category: 'ruler', img: 'https://via.placeholder.com/150?text=Ruler+15cm', rating: 4.0, reviews: 580, stock: 450 },
+            { id: 175, name: 'Set Square 25cm Pair', price: 35, mrp: 48, category: 'geometry', img: 'https://via.placeholder.com/150?text=Set+Square', rating: 4.2, reviews: 320, stock: 250 },
+            { id: 176, name: 'Protractor 15cm', price: 15, mrp: 22, category: 'geometry', img: 'https://via.placeholder.com/150?text=Protractor', rating: 4.1, reviews: 450, stock: 400 },
+            { id: 177, name: 'Compass Geometry Set', price: 85, mrp: 110, category: 'geometry', img: 'https://via.placeholder.com/150?text=Compass+Set', rating: 4.4, reviews: 280, stock: 150 },
+            { id: 178, name: 'Geometry Box Premium', price: 150, mrp: 200, category: 'geometry', img: 'https://via.placeholder.com/150?text=Geometry+Box', rating: 4.6, reviews: 220, stock: 100 },
+            { id: 179, name: 'Scientific Calculator', price: 450, mrp: 550, category: 'calculator', img: 'https://via.placeholder.com/150?text=Scientific+Calc', rating: 4.5, reviews: 185, stock: 80 },
+            { id: 180, name: 'Basic Calculator 12 Digit', price: 250, mrp: 320, category: 'calculator', img: 'https://via.placeholder.com/150?text=Basic+Calc', rating: 4.3, reviews: 290, stock: 150 },
+            // More products (181-210)
+            { id: 181, name: 'Stapler Heavy Duty', price: 180, mrp: 230, category: 'stapler', img: 'https://via.placeholder.com/150?text=Stapler+Heavy', rating: 4.5, reviews: 220, stock: 100 },
+            { id: 182, name: 'Stapler Mini 10 Sheets', price: 45, mrp: 60, category: 'stapler', img: 'https://via.placeholder.com/150?text=Stapler+Mini', rating: 4.2, reviews: 380, stock: 250 },
+            { id: 183, name: 'Staples Box 1000 Pins', price: 35, mrp: 48, category: 'stapler', img: 'https://via.placeholder.com/150?text=Staples+Box', rating: 4.3, reviews: 420, stock: 350 },
+            { id: 184, name: 'Punching Machine 2 Hole', price: 95, mrp: 130, category: 'punch', img: 'https://via.placeholder.com/150?text=Punch+2Hole', rating: 4.4, reviews: 280, stock: 150 },
+            { id: 185, name: 'Punching Machine 4 Hole', price: 150, mrp: 190, category: 'punch', img: 'https://via.placeholder.com/150?text=Punch+4Hole', rating: 4.5, reviews: 185, stock: 100 },
+            { id: 186, name: 'Paper Clips Box 100 Pcs', price: 25, mrp: 35, category: 'clips', img: 'https://via.placeholder.com/150?text=Paper+Clips', rating: 4.1, reviews: 520, stock: 450 },
+            { id: 187, name: 'Binder Clips Large 12 Pcs', price: 35, mrp: 48, category: 'clips', img: 'https://via.placeholder.com/150?text=Binder+Clips', rating: 4.3, reviews: 380, stock: 300 },
+            { id: 188, name: 'Push Pins Color 50 Pcs', price: 25, mrp: 35, category: 'clips', img: 'https://via.placeholder.com/150?text=Push+Pins', rating: 4.2, reviews: 320, stock: 350 },
+            { id: 189, name: 'Rubber Bands Pack 100g', price: 35, mrp: 48, category: 'clips', img: 'https://via.placeholder.com/150?text=Rubber+Bands', rating: 4.0, reviews: 280, stock: 400 },
+            { id: 190, name: 'Envelope Brown A4 Size', price: 15, mrp: 22, category: 'envelope', img: 'https://via.placeholder.com/150?text=Envelope+A4', rating: 4.1, reviews: 650, stock: 500 },
+            { id: 191, name: 'Envelope White A5 Size', price: 10, mrp: 15, category: 'envelope', img: 'https://via.placeholder.com/150?text=Envelope+A5', rating: 4.0, reviews: 480, stock: 600 },
+            { id: 192, name: 'Greeting Card Pack 10', price: 85, mrp: 110, category: 'card', img: 'https://via.placeholder.com/150?text=Greeting+Card', rating: 4.4, reviews: 220, stock: 150 },
+            { id: 193, name: 'Chart Paper White A1', price: 25, mrp: 35, category: 'paper', img: 'https://via.placeholder.com/150?text=Chart+Paper', rating: 4.2, reviews: 380, stock: 350 },
+            { id: 194, name: 'Origami Paper 100 Sheets', price: 45, mrp: 60, category: 'paper', img: 'https://via.placeholder.com/150?text=Origami+Paper', rating: 4.3, reviews: 290, stock: 250 },
+            { id: 195, name: 'Craft Paper Color 20 Sheets', price: 55, mrp: 75, category: 'paper', img: 'https://via.placeholder.com/150?text=Craft+Paper', rating: 4.4, reviews: 220, stock: 200 },
+            { id: 196, name: 'Glitter Paper Pack 10', price: 65, mrp: 85, category: 'paper', img: 'https://via.placeholder.com/150?text=Glitter+Paper', rating: 4.5, reviews: 180, stock: 150 },
+            { id: 197, name: 'Foam Sheet 10 Pcs', price: 85, mrp: 110, category: 'craft', img: 'https://via.placeholder.com/150?text=Foam+Sheet', rating: 4.3, reviews: 165, stock: 120 },
+            { id: 198, name: 'Glue Gun Sticks 50 Pcs', price: 95, mrp: 130, category: 'glue', img: 'https://via.placeholder.com/150?text=Glue+Sticks', rating: 4.4, reviews: 210, stock: 180 },
+            { id: 199, name: 'Wiggly Eyes Pack 100', price: 35, mrp: 48, category: 'craft', img: 'https://via.placeholder.com/150?text=Wiggly+Eyes', rating: 4.2, reviews: 185, stock: 200 },
+            { id: 200, name: 'Feather Decorative 20 Pcs', price: 55, mrp: 75, category: 'craft', img: 'https://via.placeholder.com/150?text=Feather', rating: 4.4, reviews: 145, stock: 130 },
+            // Additional products (201-250)
+            { id: 201, name: 'Paint Brush Set 10 Pcs', price: 120, mrp: 160, category: 'paint', img: 'https://via.placeholder.com/150?text=Brush+Set', rating: 4.5, reviews: 280, stock: 150 },
+            { id: 202, name: 'Acrylic Paint Set 12 Colors', price: 250, mrp: 320, category: 'paint', img: 'https://via.placeholder.com/150?text=Acrylic+Set', rating: 4.6, reviews: 220, stock: 100 },
+            { id: 203, name: 'Water Color Set 24 Colors', price: 350, mrp: 450, category: 'paint', img: 'https://via.placeholder.com/150?text=Water+Color', rating: 4.7, reviews: 165, stock: 70 },
+            { id: 204, name: 'Oil Paint Set 18 Colors', price: 450, mrp: 580, category: 'paint', img: 'https://via.placeholder.com/150?text=Oil+Paint', rating: 4.8, reviews: 120, stock: 45 },
+            { id: 205, name: 'Poster Color 12 Shades', price: 150, mrp: 200, category: 'paint', img: 'https://via.placeholder.com/150?text=Poster+Color', rating: 4.4, reviews: 290, stock: 120 },
+            { id: 206, name: 'Canvas Board 12x16 Inch', price: 85, mrp: 110, category: 'paint', img: 'https://via.placeholder.com/150?text=Canvas+Board', rating: 4.3, reviews: 220, stock: 180 },
+            { id: 207, name: 'Easel Stand Adjustable', price: 650, mrp: 800, category: 'paint', img: 'https://via.placeholder.com/150?text=Easel+Stand', rating: 4.6, reviews: 85, stock: 30 },
+            { id: 208, name: 'Palette Ceramic Round', price: 95, mrp: 130, category: 'paint', img: 'https://via.placeholder.com/150?text=Palette', rating: 4.4, reviews: 145, stock: 100 },
+            { id: 209, name: 'Water Color Paper Block', price: 180, mrp: 230, category: 'paint', img: 'https://via.placeholder.com/150?text=Water+Paper', rating: 4.5, reviews: 165, stock: 80 },
+            { id: 210, name: 'Sketch Paper Roll 10 Mtr', price: 250, mrp: 320, category: 'paint', img: 'https://via.placeholder.com/150?text=Sketch+Roll', rating: 4.4, reviews: 95, stock: 50 },
+            { id: 211, name: 'Calligraphy Set Premium', price: 350, mrp: 450, category: 'calligraphy', img: 'https://via.placeholder.com/150?text=Calligraphy+Set', rating: 4.7, reviews: 120, stock: 60 },
+            { id: 212, name: 'Ink Bottle 50ml Black', price: 45, mrp: 60, category: 'ink', img: 'https://via.placeholder.com/150?text=Ink+Bottle', rating: 4.3, reviews: 280, stock: 200 },
+            { id: 213, name: 'Ink Bottle 50ml Blue', price: 45, mrp: 60, category: 'ink', img: 'https://via.placeholder.com/150?text=Ink+Blue', rating: 4.3, reviews: 265, stock: 210 },
+            { id: 214, name: 'Ink Bottle 50ml Red', price: 45, mrp: 60, category: 'ink', img: 'https://via.placeholder.com/150?text=Ink+Red', rating: 4.2, reviews: 180, stock: 180 },
+            { id: 215, name: 'Refill Ink 10ml Pack', price: 25, mrp: 35, category: 'ink', img: 'https://via.placeholder.com/150?text=Refill+Ink', rating: 4.1, reviews: 420, stock: 350 },
+            { id: 216, name: 'Stamp Pad Large Size', price: 55, mrp: 75, category: 'stamp', img: 'https://via.placeholder.com/150?text=Stamp+Pad', rating: 4.2, reviews: 220, stock: 150 },
+            { id: 217, name: 'Stamp Pad Small Size', price: 35, mrp: 48, category: 'stamp', img: 'https://via.placeholder.com/150?text=Stamp+Small', rating: 4.1, reviews: 185, stock: 200 },
+            { id: 218, name: 'Date Stamp Self Inking', price: 150, mrp: 200, category: 'stamp', img: 'https://via.placeholder.com/150?text=Date+Stamp', rating: 4.4, reviews: 145, stock: 80 },
+            { id: 219, name: 'Address Stamp Custom', price: 250, mrp: 320, category: 'stamp', img: 'https://via.placeholder.com/150?text=Address+Stamp', rating: 4.5, reviews: 95, stock: 50 },
+            { id: 220, name: 'Numbering Stamp 6 Digit', price: 180, mrp: 230, category: 'stamp', img: 'https://via.placeholder.com/150?text=Numbering+Stamp', rating: 4.3, reviews: 75, stock: 40 },
+            { id: 221, name: 'Whiteboard Magnet 25 Pcs', price: 65, mrp: 85, category: 'magnet', img: 'https://via.placeholder.com/150?text=Magnet+Set', rating: 4.2, reviews: 165, stock: 180 },
+            { id: 222, name: 'Magnetic Tape 10 Mtr Roll', price: 85, mrp: 110, category: 'magnet', img: 'https://via.placeholder.com/150?text=Magnetic+Tape', rating: 4.3, reviews: 120, stock: 100 },
+            { id: 223, name: 'Pin Magnet Round 50 Pcs', price: 45, mrp: 60, category: 'magnet', img: 'https://via.placeholder.com/150?text=Pin+Magnet', rating: 4.1, reviews: 145, stock: 220 },
+            { id: 224, name: 'Clip Magnet 20 Pcs Set', price: 55, mrp: 75, category: 'magnet', img: 'https://via.placeholder.com/150?text=Clip+Magnet', rating: 4.2, reviews: 110, stock: 150 },
+            { id: 225, name: 'Whiteboard Cleaner Spray', price: 95, mrp: 130, category: 'cleaner', img: 'https://via.placeholder.com/150?text=Whiteboard+Cleaner', rating: 4.4, reviews: 185, stock: 120 },
+            { id: 226, name: 'Screen Cleaning Kit', price: 150, mrp: 190, category: 'cleaner', img: 'https://via.placeholder.com/150?text=Screen+Cleaner', rating: 4.5, reviews: 145, stock: 80 },
+            { id: 227, name: 'Dust Cleaner Compressed Air', price: 180, mrp: 230, category: 'cleaner', img: 'https://via.placeholder.com/150?text=Dust+Cleaner', rating: 4.3, reviews: 95, stock: 60 },
+            { id: 228, name: 'Microfiber Cloth Large', price: 65, mrp: 85, category: 'cleaner', img: 'https://via.placeholder.com/150?text=Microfiber', rating: 4.2, reviews: 165, stock: 140 },
+            { id: 229, name: 'Desk Organizer Mesh', price: 350, mrp: 450, category: 'organizer', img: 'https://via.placeholder.com/150?text=Desk+Organizer', rating: 4.5, reviews: 120, stock: 50 },
+            { id: 230, name: 'Pen Stand Acrylic Premium', price: 280, mrp: 360, category: 'organizer', img: 'https://via.placeholder.com/150?text=Pen+Stand', rating: 4.4, reviews: 95, stock: 70 },
+            { id: 231, name: 'File Rack 5 Tier Metal', price: 650, mrp: 800, category: 'organizer', img: 'https://via.placeholder.com/150?text=File+Rack', rating: 4.6, reviews: 85, stock: 35 },
+            { id: 232, name: 'Drawer Tray Plastic', price: 150, mrp: 200, category: 'organizer', img: 'https://via.placeholder.com/150?text=Drawer+Tray', rating: 4.3, reviews: 145, stock: 100 },
+            { id: 233, name: 'Paper Weight Set 5 Pcs', price: 95, mrp: 130, category: 'organizer', img: 'https://via.placeholder.com/150?text=Paper+Weight', rating: 4.4, reviews: 110, stock: 80 },
+            { id: 234, name: 'Business Card Holder', price: 180, mrp: 230, category: 'organizer', img: 'https://via.placeholder.com/150?text=Card+Holder', rating: 4.3, reviews: 85, stock: 60 },
+            { id: 235, name: 'Label Maker Handheld', price: 850, mrp: 1050, category: 'label', img: 'https://via.placeholder.com/150?text=Label+Maker', rating: 4.6, reviews: 65, stock: 25 },
+            { id: 236, name: 'Label Tape 12mm White', price: 95, mrp: 130, category: 'label', img: 'https://via.placeholder.com/150?text=Label+Tape', rating: 4.4, reviews: 185, stock: 150 },
+            { id: 237, name: 'Label Tape 12mm Yellow', price: 95, mrp: 130, category: 'label', img: 'https://via.placeholder.com/150?text=Label+Yellow', rating: 4.4, reviews: 165, stock: 140 },
+            { id: 238, name: 'Price Tag Gun with Tags', price: 450, mrp: 580, category: 'label', img: 'https://via.placeholder.com/150?text=Price+Tag+Gun', rating: 4.5, reviews: 75, stock: 40 },
+            { id: 239, name: 'Price Tags 1000 Pcs', price: 85, mrp: 110, category: 'label', img: 'https://via.placeholder.com/150?text=Price+Tags', rating: 4.2, reviews: 220, stock: 200 },
+            { id: 240, name: 'Barcode Labels Roll 500', price: 65, mrp: 85, category: 'label', img: 'https://via.placeholder.com/150?text=Barcode+Labels', rating: 4.3, reviews: 145, stock: 180 },
+            { id: 241, name: 'Gift Wrap Paper 5 Mtr', price: 85, mrp: 110, category: 'wrap', img: 'https://via.placeholder.com/150?text=Gift+Wrap', rating: 4.4, reviews: 185, stock: 150 },
+            { id: 242, name: 'Ribbon Roll 50 Mtr', price: 65, mrp: 85, category: 'wrap', img: 'https://via.placeholder.com/150?text=Ribbon+Roll', rating: 4.3, reviews: 145, stock: 120 },
+            { id: 243, name: 'Bow Set 20 Pcs Decorative', price: 95, mrp: 130, category: 'wrap', img: 'https://via.placeholder.com/150?text=Bow+Set', rating: 4.5, reviews: 110, stock: 90 },
+            { id: 244, name: 'Cellophane Paper 10 Sheets', price: 55, mrp: 75, category: 'wrap', img: 'https://via.placeholder.com/150?text=Cellophane', rating: 4.2, reviews: 165, stock: 140 },
+            { id: 245, name: 'Paper Bag Medium Size', price: 15, mrp: 22, category: 'wrap', img: 'https://via.placeholder.com/150?text=Paper+Bag', rating: 4.0, reviews: 420, stock: 500 },
+            { id: 246, name: 'Paper Bag Large Size', price: 20, mrp: 28, category: 'wrap', img: 'https://via.placeholder.com/150?text=Paper+Bag+Large', rating: 4.1, reviews: 350, stock: 450 },
+            { id: 247, name: 'Jute Bag Pack of 10', price: 150, mrp: 200, category: 'wrap', img: 'https://via.placeholder.com/150?text=Jute+Bag', rating: 4.4, reviews: 95, stock: 80 },
+            { id: 248, name: 'Plastic Bag 100 Pcs', price: 45, mrp: 60, category: 'wrap', img: 'https://via.placeholder.com/150?text=Plastic+Bag', rating: 4.0, reviews: 280, stock: 400 },
+            { id: 249, name: 'Bubble Wrap Roll 10 Mtr', price: 180, mrp: 230, category: 'wrap', img: 'https://via.placeholder.com/150?text=Bubble+Wrap', rating: 4.3, reviews: 120, stock: 100 },
+            { id: 250, name: 'Packing Peanuts 1 Kg', price: 95, mrp: 130, category: 'wrap', img: 'https://via.placeholder.com/150?text=Packing+Peanuts', rating: 4.2, reviews: 85, stock: 70 }
+        ];
+
+        let cart = [];
+        let currentCategory = 'all';
+        let searchQuery = '';
+
+        // Render Products
+        function renderProducts() {
+            const grid = document.getElementById('products-grid');
+            let filteredProducts = products;
+
+            // Filter by category
+            if (currentCategory !== 'all') {
+                filteredProducts = filteredProducts.filter(p => p.category === currentCategory);
+            }
+
+            // Filter by search
+            if (searchQuery) {
+                const query = searchQuery.toLowerCase();
+                filteredProducts = filteredProducts.filter(p => 
+                    p.name.toLowerCase().includes(query) ||
+                    p.category.toLowerCase().includes(query)
+                );
+            }
+
+            if (filteredProducts.length === 0) {
+                grid.innerHTML = `
+                    <div class="no-results" style="grid-column: 1 / -1;">
+                        <i class="fas fa-search"></i>
+                        <h3>No products found</h3>
+                        <p>Try different keywords or browse categories</p>
+                    </div>
+                `;
+                return;
+            }
+
+            grid.innerHTML = filteredProducts.map(product => {
+                const discount = Math.round(((product.mrp - product.price) / product.mrp) * 100);
+                const stars = '★'.repeat(Math.floor(product.rating)) + '☆'.repeat(5 - Math.floor(product.rating));
+                const stockStatus = product.stock <= 5 ? '<span class="stock-low">Only ' + product.stock + ' left!</span>' : '<span class="stock-available">In Stock (' + product.stock + ')</span>';
+                
+                return `
+                    <div class="product-card">
+                        <img src="${product.img}" alt="${product.name}" class="product-img">
+                        <div class="product-name">${product.name}</div>
+                        <div class="product-rating">
+                            <span class="stars">${stars}</span>
+                            <span class="rating-count">(${product.reviews})</span>
+                        </div>
+                        <div class="product-price">
+                            <span class="currency">₹</span>${product.price}
+                            <span class="decimal">00</span>
+                        </div>
+                        <div class="product-mrp">M.R.P: ₹${product.mrp}</div>
+                        <div class="discount">${discount}% OFF</div>
+                        <div class="delivery">Free Delivery by Tomorrow</div>
+                        <div class="product-stock">${stockStatus}</div>
+                        <button class="add-btn" onclick="addToCart(${product.id})">
+                            <i class="fas fa-cart-plus"></i> Add to Cart
+                        </button>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Add to Cart
+        function addToCart(productId) {
+            const product = products.find(p => p.id === productId);
+            const existingItem = cart.find(item => item.id === productId);
+
+            // Check stock availability
+            const cartQty = existingItem ? existingItem.qty : 0;
+            if (cartQty >= product.stock) {
+                showNotification('Sorry! Only ' + product.stock + ' available in stock.');
+                return;
+            }
+
+            if (existingItem) {
+                existingItem.qty++;
+            } else {
+                cart.push({ ...product, qty: 1 });
+            }
+
+            updateCartUI();
+            showNotification(`Added "${product.name}" to cart!`);
+        }
+
+        // Update Cart UI
+        function updateCartUI() {
+            // Update cart count
+            const totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
+            document.getElementById('cart-count').textContent = totalQty;
+            document.getElementById('cart-qty').textContent = totalQty;
+
+            // Update cart total
+            const total = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+            document.getElementById('cart-total').textContent = total;
+
+            // Render cart items
+            const cartItemsEl = document.getElementById('cart-items');
+            
+            if (cart.length === 0) {
+                cartItemsEl.innerHTML = `
+                    <div class="no-results">
+                        <i class="fas fa-shopping-cart" style="font-size: 50px;"></i>
+                        <h3>Your cart is empty</h3>
+                        <p>Add some products to get started</p>
+                    </div>
+                `;
+                return;
+            }
+
+            cartItemsEl.innerHTML = cart.map(item => `
+                <div class="cart-item">
+                    <img src="${item.img}" alt="${item.name}" class="cart-item-img">
+                    <div class="cart-item-details">
+                        <div class="cart-item-name">${item.name}</div>
+                        <div class="cart-item-price">₹${item.price}</div>
+                        <div class="cart-item-qty">
+                            <button class="qty-btn" onclick="updateQty(${item.id}, -1)">-</button>
+                            <span class="qty-value">${item.qty}</span>
+                            <button class="qty-btn" onclick="updateQty(${item.id}, 1)">+</button>
+                            <button class="remove-item" onclick="removeFromCart(${item.id})">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Update Quantity
+        function updateQty(productId, change) {
+            const item = cart.find(i => i.id === productId);
+            if (item) {
+                item.qty += change;
+                if (item.qty <= 0) {
+                    removeFromCart(productId);
+                } else {
+                    updateCartUI();
+                }
+            }
+        }
+
+        // Remove from Cart
+        function removeFromCart(productId) {
+            cart = cart.filter(item => item.id !== productId);
+            updateCartUI();
+            showNotification('Item removed from cart');
+        }
+
+        // Toggle Cart
+        function toggleCart() {
+            const sidebar = document.getElementById('cart-sidebar');
+            const overlay = document.getElementById('overlay');
+            sidebar.classList.toggle('open');
+            overlay.classList.toggle('show');
+        }
+
+        // Show Notification
+        function showNotification(message) {
+            const notif = document.getElementById('notification');
+            notif.innerHTML = `<i class="fas fa-check-circle"></i> ${message}`;
+            notif.classList.add('show');
+            setTimeout(() => {
+                notif.classList.remove('show');
+            }, 2500);
+        }
+
+        // Filter Category
+        function filterCategory(category) {
+            currentCategory = category;
+            document.querySelectorAll('.category').forEach(cat => {
+                cat.classList.remove('active');
+                if (cat.textContent.toLowerCase().includes(category) || (category === 'all' && cat.textContent.includes('All'))) {
+                    cat.classList.add('active');
+                }
+            });
+            
+            const titles = {
+                'all': 'Trending Products',
+                'pen': 'Pens Collection',
+                'pencil': 'Pencils Collection',
+                'kit': 'Kits & Sets',
+                'highlighter': 'Highlighters'
+            };
+            document.getElementById('section-title').textContent = titles[category];
+            renderProducts();
+        }
+
+        // Search Products
+        function searchProducts() {
+            searchQuery = document.getElementById('search-input').value;
+            renderProducts();
+        }
+
+        // Enter key search
+        document.getElementById('search-input').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                searchProducts();
+            }
+        });
+
+        // Proceed to Checkout
+        function proceedToCheckout() {
+            if (cart.length === 0) {
+                showNotification('Your cart is empty!');
+                return;
+            }
+            alert('Checkout functionality coming soon!\n\nTotal: ₹' + cart.reduce((sum, item) => sum + (item.price * item.qty), 0));
+        }
+
+        // Cookie Consent Functions
+        function checkCookieConsent() {
+            const consent = localStorage.getItem('cookieConsent');
+            if (!consent) {
+                setTimeout(() => {
+                    document.getElementById('cookie-banner').classList.add('show');
+                }, 1000);
+            }
+        }
+
+        function acceptCookies() {
+            localStorage.setItem('cookieConsent', 'accepted');
+            localStorage.setItem('cookieTimestamp', new Date().toISOString());
+            document.getElementById('cookie-banner').classList.remove('show');
+            showNotification('Cookies accepted! Thank you.');
+        }
+
+        function rejectCookies() {
+            localStorage.setItem('cookieConsent', 'rejected');
+            localStorage.setItem('cookieTimestamp', new Date().toISOString());
+            document.getElementById('cookie-banner').classList.remove('show');
+            showNotification('Cookies rejected. Some features may be limited.');
+        }
+
+        // Initialize
+        renderProducts();
+        checkCookieConsent();
+    </script>
+</body>
+</html>
