@@ -1,0 +1,2947 @@
+!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blinkart - Premium Online Shopping</title>
+    <meta name="description" content="Blinkart - Your premier destination for quality stationery and office supplies">
+    <meta name="theme-color" content="#0d1f35">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --amazon-orange: #FF9700;
+            --amazon-orange-dark: #F08804;
+            --amazon-blue: #232F3E;
+            --amazon-light: #EAEDED;
+            --amazon-border: #DDD;
+            --primary: #FF9700;
+            --primary-dark: #F08804;
+            --secondary: #FF9900;
+            --accent: #00C853;
+            --danger: #FF4444;
+            --dark-bg: #FFFFFF;
+            --card-bg: #FFFFFF;
+            --card-bg-light: #F3F3F3;
+            --border-color: #DDD;
+            --text-primary: #0F0F0F;
+            --text-secondary: #0F0F0F;
+            --text-muted: #565959;
+            --gradient-primary: linear-gradient(180deg, #F7CA00 0%, #F2A900 100%);
+            --gradient-secondary: linear-gradient(180deg, #FF9800 0%, #F08804 100%);
+            --gradient-accent: linear-gradient(135deg, #00C853 0%, #00A843 100%);
+            --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+            --shadow-md: 0 2px 5px rgba(0,0,0,0.1);
+            --shadow-lg: 0 4px 10px rgba(0,0,0,0.15);
+            --shadow-glow: 0 2px 8px rgba(255, 151, 0, 0.3);
+            --radius-sm: 4px;
+            --radius-md: 8px;
+            --radius-lg: 12px;
+            --radius-xl: 18px;
+            --transition-fast: 0.1s ease;
+            --transition-normal: 0.2s ease;
+            --transition-slow: 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Amazon Ember', Arial, sans-serif;
+            background: #EAEDED;
+            color: var(--text-primary);
+            min-height: 100vh;
+            line-height: 1.5;
+        }
+
+        /* Scrollbar Styling */
+        ::-webkit-scrollbar {
+            width: 11px;
+            height: 11px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #EAEDED;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #999;
+            border-radius: 6px;
+            border: 2px solid #EAEDED;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #666;
+        }
+
+        /* Top Navigation */
+        .top-nav {
+            background: linear-gradient(180deg, #131921 0%, #232F3E 100%);
+            padding: 8px 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            border-bottom: none;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            color: #FFFFFF;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            cursor: pointer;
+        }
+
+        .logo span {
+            color: #FFFFFF;
+        }
+
+        .logo-icon {
+            width: 30px;
+            height: 30px;
+            background: #FFFFFF;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            color: #131921;
+            font-weight: 700;
+            border: none;
+        }
+
+        .logo:hover {
+            text-decoration: underline;
+        }
+
+        .location {
+            display: flex;
+            align-items: flex-start;
+            gap: 4px;
+            color: #FFFFFF;
+            font-size: 12px;
+            cursor: pointer;
+            padding: 6px 10px;
+            border: 1px solid transparent;
+            border-radius: 4px;
+            transition: all var(--transition-normal);
+        }
+
+        .location:hover {
+            border-color: #FFFFFF;
+            background: rgba(255,255,255,0.1);
+        }
+
+        .location i {
+            color: #FFFFFF;
+            font-size: 18px;
+            margin-top: 2px;
+        }
+
+        .location div small {
+            color: #CCC;
+            font-size: 11px;
+        }
+
+        .location div strong {
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        /* Search Bar */
+        .search-section {
+            flex: 1;
+            display: flex;
+            max-width: 900px;
+        }
+
+        .search-bar {
+            flex: 1;
+            display: flex;
+            background: #FFFFFF;
+            border: none;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .search-bar:focus-within {
+            box-shadow: 0 0 0 3px #F08804;
+        }
+
+        .search-bar select {
+            border: none;
+            padding: 8px 12px;
+            background: #F3F3F3;
+            border-right: 1px solid #DDD;
+            font-size: 12px;
+            color: #0F0F0F;
+            cursor: pointer;
+            outline: none;
+            font-family: inherit;
+            border-radius: 4px 0 0 4px;
+        }
+
+        .search-bar select option {
+            background: #FFFFFF;
+        }
+
+        .search-bar input {
+            flex: 1;
+            border: none;
+            padding: 10px 12px;
+            font-size: 15px;
+            color: #0F0F0F;
+            background: #FFFFFF;
+            outline: none;
+            font-family: inherit;
+        }
+
+        .search-bar input::placeholder {
+            color: #999;
+        }
+
+        .search-btn {
+            background: #F08804;
+            border: none;
+            padding: 0 20px;
+            cursor: pointer;
+            font-size: 18px;
+            color: #0F0F0F;
+            transition: all var(--transition-normal);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .search-btn:hover {
+            background: #F7CA00;
+        }
+
+        .search-btn:active {
+            background: #E8E8E8;
+        }
+
+        /* Right Section */
+        .right-section {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .nav-btn {
+            background: none;
+            border: 1px solid transparent;
+            color: #FFFFFF;
+            padding: 6px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all var(--transition-normal);
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .nav-btn:hover {
+            border-color: #FFFFFF;
+            background: rgba(255,255,255,0.1);
+        }
+
+        .nav-btn small {
+            font-size: 11px;
+            color: #CCC;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-btn strong {
+            font-size: 14px;
+            font-weight: 600;
+            color: #FFFFFF;
+        }
+
+        /* Cart Button */
+        .cart-btn {
+            position: relative;
+            background: none;
+            border: 1px solid #FFFFFF;
+            color: #FFFFFF;
+            padding: 6px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all var(--transition-normal);
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .cart-btn:hover {
+            background: rgba(255,255,255,0.1);
+        }
+
+        .cart-btn i {
+            font-size: 28px;
+            color: #FFFFFF;
+        }
+
+        .cart-btn span {
+            font-size: 14px;
+            font-weight: 700;
+            color: #FFFFFF;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: 2px;
+            right: 18px;
+            background: #F08804;
+            color: #0F0F0F;
+            font-size: 14px;
+            font-weight: 700;
+            min-width: 20px;
+            height: 20px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Category Bar */
+        .category-bar {
+            background: #232F3E;
+            padding: 10px 20px;
+            display: flex;
+            gap: 6px;
+            overflow-x: auto;
+            border-bottom: 1px solid #DDD;
+        }
+
+        .category-bar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .category {
+            white-space: nowrap;
+            color: #0F0F0F;
+            cursor: pointer;
+            padding: 8px 16px;
+            border-radius: 20px;
+            transition: all var(--transition-normal);
+            font-size: 13px;
+            font-weight: 500;
+            background: #FFFFFF;
+            border: 1px solid #DDD;
+        }
+
+        .category:hover, .category.active {
+            background: #FF9700;
+            color: #0F0F0F;
+            border-color: #FF9700;
+        }
+
+        /* Main Content */
+        }
+
+        .category:hover, .category.active {
+            background: rgba(0, 212, 255, 0.15);
+            color: var(--primary);
+            border-color: rgba(0, 212, 255, 0.3);
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 20px;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        /* Banner */
+        .banner {
+            background: linear-gradient(180deg, #FFD78C 0%, #FFAB35 100%);
+            border-radius: 4px;
+            padding: 30px;
+            margin-bottom: 20px;
+            text-align: center;
+            position: relative;
+        }
+
+        .banner h1 {
+            font-size: 32px;
+            font-weight: 700;
+            color: #0F0F0F;
+            margin-bottom: 10px;
+        }
+
+        .banner p {
+            font-size: 16px;
+            color: #0F0F0F;
+        }
+
+        .banner .shop-now-btn {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 24px;
+            background: #FF9700;
+            color: #0F0F0F;
+            border-radius: 20px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .banner .shop-now-btn:hover {
+            background: #F08804;
+        }
+
+        /* Products Grid */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .banner h1 {
+            font-size: 42px;
+            margin-bottom: 12px;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+        }
+
+        .banner p {
+            font-size: 18px;
+            color: var(--text-secondary);
+            position: relative;
+        }
+
+        /* Products Grid */
+        .products-section {
+            margin-bottom: 50px;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+
+        .section-title {
+            font-size: 26px;
+            font-weight: 700;
+            margin-bottom: 0;
+            padding-bottom: 12px;
+            border-bottom: 3px solid var(--primary);
+            display: inline-block;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--secondary);
+        }
+
+        /* Sort Dropdown */
+        .sort-section {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .sort-label {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        .sort-dropdown {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: var(--text-primary);
+            padding: 12px 18px;
+            border-radius: var(--radius-md);
+            font-size: 14px;
+            cursor: pointer;
+            outline: none;
+            font-family: inherit;
+            transition: all var(--transition-normal);
+        }
+
+        .sort-dropdown:hover, .sort-dropdown:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.15);
+        }
+
+        /* Wishlist Heart */
+        .wishlist-btn {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: rgba(0, 0, 0, 0.5);
+            border: none;
+            color: var(--text-secondary);
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all var(--transition-normal);
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(5px);
+        }
+
+        .wishlist-btn:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: scale(1.1);
+            color: var(--danger);
+        }
+
+        .wishlist-btn.active {
+            color: var(--danger);
+            background: rgba(255, 68, 68, 0.2);
+        }
+
+        /* Quick View Modal */
+        .quick-view-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            z-index: 2000;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+        }
+
+        .quick-view-modal.show {
+            display: flex;
+        }
+
+        .quick-view-content {
+            background: linear-gradient(145deg, var(--card-bg) 0%, var(--card-bg-light) 100%);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            border-radius: var(--radius-lg);
+            max-width: 900px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            animation: modalSlide 0.3s ease;
+        }
+
+        @keyframes modalSlide {
+            from { transform: translateY(-30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .quick-view-close {
+            position: absolute;
+            top: 18px;
+            right: 18px;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: var(--text-secondary);
+            font-size: 28px;
+            cursor: pointer;
+            z-index: 10;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all var(--transition-normal);
+        }
+
+        .quick-view-close:hover {
+            background: var(--danger);
+            color: white;
+        }
+
+        .quick-view-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            padding: 35px;
+        }
+
+        .quick-view-img {
+            width: 100%;
+            height: 280px;
+            object-fit: contain;
+            background: white;
+            border-radius: var(--radius-lg);
+            padding: 25px;
+        }
+
+        .quick-view-details h2 {
+            font-size: 24px;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+            font-weight: 700;
+        }
+
+        .quick-view-rating {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 18px;
+        }
+
+        .quick-view-price {
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 12px;
+        }
+
+        .quick-view-mrp {
+            color: var(--text-muted);
+            text-decoration: line-through;
+            font-size: 18px;
+            margin-bottom: 8px;
+        }
+
+        .quick-view-discount {
+            color: var(--accent);
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .quick-view-stock {
+            font-size: 15px;
+            margin-bottom: 25px;
+            color: var(--text-secondary);
+        }
+
+        .quick-view-actions {
+            display: flex;
+            gap: 18px;
+            margin-top: 25px;
+        }
+
+        .quick-view-btn {
+            flex: 1;
+            padding: 16px;
+            border-radius: var(--radius-xl);
+            font-weight: 700;
+            cursor: pointer;
+            transition: all var(--transition-normal);
+            border: none;
+            font-size: 15px;
+            font-family: inherit;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .quick-view-add {
+            background: var(--gradient-secondary);
+            color: #0a1425;
+        }
+
+        .quick-view-add:hover {
+            background: linear-gradient(135deg, #ffaa22 0%, #ff8800 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 153, 0, 0.35);
+        }
+
+        .quick-view-buy {
+            background: var(--gradient-primary);
+            color: #0a1425;
+        }
+
+        .quick-view-buy:hover {
+            background: linear-gradient(135deg, #00e5ff 0%, #00aadd 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 212, 255, 0.35);
+        }
+
+        /* Flash Sale Banner */
+        .flash-sale-banner {
+            background: linear-gradient(135deg, #ff4444 0%, #ff6b35 50%, #ff4444 100%);
+            border-radius: var(--radius-lg);
+            padding: 24px 35px;
+            margin-bottom: 35px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            animation: flashPulse 2s infinite;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .flash-sale-banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            animation: flashShine 3s infinite;
+        }
+
+        @keyframes flashPulse {
+            0%, 100% { box-shadow: 0 0 25px rgba(255, 68, 68, 0.4); }
+            50% { box-shadow: 0 0 45px rgba(255, 68, 68, 0.7); }
+        }
+
+        @keyframes flashShine {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .flash-sale-left {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+        }
+
+        .flash-icon {
+            font-size: 42px;
+            animation: flashIcon 1s infinite;
+        }
+
+        @keyframes flashIcon {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.15); }
+        }
+
+        .flash-title {
+            font-size: 26px;
+            font-weight: 800;
+            color: white;
+            letter-spacing: 0.5px;
+        }
+
+        .flash-subtitle {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 14px;
+            margin-top: 4px;
+        }
+
+        .flash-timer {
+            display: flex;
+            gap: 12px;
+        }
+
+        .flash-time {
+            background: rgba(0, 0, 0, 0.25);
+            padding: 12px 18px;
+            border-radius: var(--radius-md);
+            text-align: center;
+            min-width: 70px;
+            backdrop-filter: blur(5px);
+        }
+
+        .flash-time-num {
+            font-size: 26px;
+            font-weight: 700;
+            color: white;
+            font-family: 'Inter', monospace;
+        }
+
+        .flash-time-label {
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.8);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 2px;
+        }
+
+        /* Wishlist Sidebar */
+        .wishlist-sidebar {
+            position: fixed;
+            top: 0;
+            right: -450px;
+            width: 450px;
+            height: 100vh;
+            background: linear-gradient(180deg, var(--card-bg) 0%, var(--card-bg-light) 100%);
+            border-left: 1px solid rgba(255, 68, 68, 0.2);
+            z-index: 1000;
+            transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            box-shadow: -10px 0 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .wishlist-sidebar.open {
+            right: 0;
+        }
+
+        .wishlist-header {
+            padding: 24px;
+            background: linear-gradient(135deg, rgba(80, 20, 20, 0.95), rgba(40, 10, 10, 0.95));
+            border-bottom: 1px solid rgba(255, 68, 68, 0.2);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .wishlist-header h2 {
+            font-size: 22px;
+            color: var(--danger);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .wishlist-items {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        .wishlist-item {
+            display: flex;
+            gap: 16px;
+            padding: 18px;
+            background: rgba(255, 68, 68, 0.05);
+            border-radius: var(--radius-md);
+            margin-bottom: 16px;
+            border: 1px solid rgba(255, 68, 68, 0.15);
+            transition: all var(--transition-normal);
+        }
+
+        .wishlist-item:hover {
+            border-color: rgba(255, 68, 68, 0.3);
+            background: rgba(255, 68, 68, 0.08);
+        }
+
+        .wishlist-item-img {
+            width: 85px;
+            height: 85px;
+            object-fit: contain;
+            background: white;
+            border-radius: var(--radius-md);
+            padding: 8px;
+        }
+
+        .wishlist-item-details {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .wishlist-item-name {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--text-primary);
+            line-height: 1.4;
+        }
+
+        .wishlist-item-price {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--danger);
+            margin-bottom: 12px;
+        }
+
+        .wishlist-item-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: auto;
+        }
+
+        .wishlist-add-cart {
+            flex: 1;
+            background: var(--primary);
+            border: none;
+            color: #0a1425;
+            padding: 10px 16px;
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 600;
+            transition: all var(--transition-normal);
+        }
+
+        .wishlist-add-cart:hover {
+            background: #00e5ff;
+            transform: translateY(-2px);
+        }
+
+        .wishlist-remove {
+            background: none;
+            border: 1px solid rgba(255, 68, 68, 0.3);
+            color: var(--danger);
+            padding: 10px 14px;
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 600;
+            transition: all var(--transition-normal);
+        }
+
+        .wishlist-remove:hover {
+            background: var(--danger);
+            color: white;
+        }
+
+        /* Compare Section */
+        .compare-bar {
+            position: fixed;
+            bottom: -80px;
+            left: 0;
+            right: 0;
+            background: linear-gradient(135deg, rgba(20, 45, 75, 0.98), rgba(10, 25, 50, 0.98));
+            border-top: 1px solid rgba(0, 212, 255, 0.2);
+            padding: 18px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 999;
+            transition: bottom 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(10px);
+        }
+
+        .compare-bar.show {
+            bottom: 0;
+        }
+
+        .compare-products {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+        }
+
+        .compare-product {
+            width: 55px;
+            height: 55px;
+            object-fit: contain;
+            background: white;
+            border-radius: var(--radius-md);
+            padding: 5px;
+            border: 2px solid var(--primary);
+        }
+
+        .compare-actions {
+            display: flex;
+            gap: 15px;
+        }
+
+        .compare-btn {
+            padding: 12px 24px;
+            border-radius: var(--radius-xl);
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all var(--transition-normal);
+        }
+
+        .compare-clear {
+            background: rgba(255, 68, 68, 0.15);
+            color: var(--danger);
+            border: 1px solid rgba(255, 68, 68, 0.3);
+        }
+
+        .compare-clear:hover {
+            background: var(--danger);
+            color: white;
+        }
+
+        .compare-view {
+            background: var(--gradient-primary);
+            color: #0a1425;
+        }
+
+        .compare-view:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(0, 212, 255, 0.35);
+        }
+
+        /* Mobile Improvements */
+        @media (max-width: 768px) {
+            .top-nav {
+                flex-wrap: wrap;
+                padding: 10px 15px;
+            }
+            
+            .search-section {
+                order: 3;
+                max-width: 100%;
+                width: 100%;
+                margin-top: 10px;
+            }
+            
+            .location, .nav-btn {
+                display: none;
+            }
+            
+            .cart-sidebar, .wishlist-sidebar {
+                width: 100%;
+                right: -100%;
+            }
+            
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
+            
+            .main-content {
+                padding: 15px;
+            }
+            
+            .section-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .quick-view-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .flash-sale-banner {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .flash-timer {
+                justify-content: center;
+            }
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 24px;
+        }
+
+        .product-card {
+            background: #FFFFFF;
+            border: 1px solid #E7E7E7;
+            border-radius: 8px;
+            padding: 20px;
+            transition: all var(--transition-normal);
+            cursor: pointer;
+            position: relative;
+        }
+
+        .product-card:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .product-img {
+            width: 100%;
+            height: 160px;
+            object-fit: contain;
+            background: #FFFFFF;
+            border-radius: 4px;
+            padding: 10px;
+            margin-bottom: 12px;
+        }
+
+        .product-name {
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 8px;
+            color: #0F0F0F;
+            line-height: 1.4;
+            height: 40px;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+        }
+
+        .product-rating {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 8px;
+        }
+
+        .stars {
+            color: #FFA41C;
+            font-size: 14px;
+            display: flex;
+            gap: 1px;
+        }
+
+        .rating-count {
+            color: #007185;
+            font-size: 13px;
+        }
+
+        .product-price {
+            font-size: 20px;
+            font-weight: 700;
+            color: #0F0F0F;
+            margin-bottom: 4px;
+            display: flex;
+            align-items: baseline;
+            gap: 4px;
+        }
+
+        .product-price .currency {
+            font-size: 14px;
+            color: #0F0F0F;
+        }
+
+        .product-price .decimal {
+            font-size: 12px;
+            vertical-align: super;
+        }
+
+        .product-mrp {
+            color: #565959;
+            font-size: 14px;
+            text-decoration: line-through;
+            margin-bottom: 4px;
+        }
+
+        .discount {
+            color: #CC2200;
+            font-size: 13px;
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+
+        .delivery {
+            color: var(--primary);
+            font-size: 13px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .product-stock {
+            font-size: 13px;
+            margin-bottom: 15px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .stock-available {
+            color: var(--accent);
+        }
+
+        .stock-low {
+            color: var(--danger);
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.6; }
+        }
+
+        .add-btn {
+            width: 100%;
+            background: var(--gradient-secondary);
+            border: none;
+            padding: 14px;
+            border-radius: var(--radius-xl);
+            color: #0a1425;
+            font-weight: 700;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all var(--transition-normal);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .add-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .add-btn:hover::before {
+            left: 100%;
+        }
+
+        .add-btn:hover {
+            background: linear-gradient(135deg, #ffaa22 0%, #ff8800 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 153, 0, 0.35);
+        }
+
+        .add-btn:active {
+            transform: translateY(0) scale(0.98);
+        }
+
+        /* Cart Sidebar */
+        .cart-sidebar {
+            position: fixed;
+            top: 0;
+            right: -420px;
+            width: 420px;
+            height: 100vh;
+            background: #FFFFFF;
+            border-left: 1px solid #DDD;
+            z-index: 1000;
+            transition: right 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            box-shadow: -5px 0 20px rgba(0,0,0,0.15);
+        }
+
+        .cart-sidebar.open {
+            right: 0;
+        }
+
+        .cart-header {
+            padding: 18px;
+            background: #232F3E;
+            border-bottom: 1px solid #DDD;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cart-header h2 {
+            font-size: 20px;
+            color: #FFFFFF;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .close-cart {
+            background: none;
+            border: none;
+            color: #CCCCCC;
+            font-size: 28px;
+            cursor: pointer;
+            transition: all var(--transition-normal);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .close-cart:hover {
+            color: #FFFFFF;
+        }
+
+        .cart-items {
+            flex: 1;
+            overflow-y: auto;
+            padding: 16px;
+        }
+
+        .cart-item {
+            display: flex;
+            gap: 14px;
+            padding: 14px;
+            background: #FFFFFF;
+            border-radius: 8px;
+            margin-bottom: 14px;
+            border: 1px solid #E7E7E7;
+            transition: all var(--transition-normal);
+        }
+
+        .cart-item:hover {
+            border-color: #FF9700;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .cart-item-img {
+            width: 85px;
+            height: 85px;
+            object-fit: contain;
+            background: white;
+            border-radius: var(--radius-md);
+            padding: 8px;
+        }
+
+        .cart-item-details {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cart-item-name {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--text-primary);
+            line-height: 1.4;
+        }
+
+        .cart-item-price {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 12px;
+        }
+
+        .cart-item-qty {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: auto;
+        }
+
+        .qty-btn {
+            width: 32px;
+            height: 32px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: var(--text-primary);
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            font-size: 16px;
+            transition: all var(--transition-fast);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .qty-btn:hover {
+            background: var(--primary);
+            color: #0a1425;
+            border-color: var(--primary);
+        }
+
+        .qty-value {
+            font-size: 16px;
+            font-weight: 600;
+            min-width: 30px;
+            text-align: center;
+        }
+
+        .remove-item {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            font-size: 18px;
+            margin-left: auto;
+            transition: all var(--transition-normal);
+            padding: 8px;
+            border-radius: var(--radius-sm);
+        }
+
+        .remove-item:hover {
+            color: var(--danger);
+            background: rgba(255, 68, 68, 0.1);
+        }
+
+        .cart-footer {
+            padding: 24px;
+            background: linear-gradient(135deg, rgba(20, 45, 75, 0.95), rgba(10, 25, 50, 0.95));
+            border-top: 1px solid rgba(0, 212, 255, 0.15);
+        }
+
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            font-size: 18px;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .cart-total span:last-child {
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 22px;
+        }
+
+        .checkout-btn {
+            width: 100%;
+            background: var(--gradient-primary);
+            border: none;
+            padding: 16px;
+            border-radius: var(--radius-xl);
+            color: #0a1425;
+            font-weight: 700;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all var(--transition-normal);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .checkout-btn:hover {
+            background: linear-gradient(135deg, #00e5ff 0%, #00aadd 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 212, 255, 0.35);
+        }
+
+        /* Notification */
+        .notification {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: linear-gradient(135deg, #00ff88, #00cc6a);
+            color: black;
+            padding: 15px 30px;
+            border-radius: 30px;
+            font-weight: 600;
+            box-shadow: 0 10px 30px rgba(0, 255, 136, 0.4);
+            transition: transform 0.4s ease;
+            z-index: 1001;
+        }
+
+        .notification.show {
+            transform: translateX(-50%) translateY(0);
+        }
+
+        /* Checkout Modal */
+        .checkout-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 2500;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .checkout-modal.show {
+            display: flex;
+        }
+
+        .checkout-content {
+            background: #FFFFFF;
+            border: 1px solid #DDD;
+            border-radius: 8px;
+            max-width: 500px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            padding: 24px;
+        }
+
+        .checkout-close {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: none;
+            border: none;
+            color: #555;
+            font-size: 24px;
+            cursor: pointer;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .checkout-close:hover {
+            background: #F3F3F3;
+        }
+
+        .checkout-content h2 {
+            font-size: 22px;
+            margin-bottom: 20px;
+            color: #0F0F0F;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .checkout-content h2 i {
+            color: #FF9700;
+        }
+
+        .form-group {
+            margin-bottom: 14px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 6px;
+            color: #0F0F0F;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 10px 12px;
+            background: #FFFFFF;
+            border: 1px solid #A6A6A6;
+            border-radius: 4px;
+            color: #0F0F0F;
+            font-size: 14px;
+            font-family: inherit;
+            transition: all 0.2s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #FF9700;
+            box-shadow: 0 0 3px #F08804;
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: #999;
+        }
+
+        .form-group select {
+            cursor: pointer;
+        }
+
+        .form-group select option {
+            background: #FFFFFF;
+            color: #0F0F0F;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+        }
+
+        @media (max-width: 500px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .checkout-summary {
+            background: #F3F3F3;
+            border-radius: 4px;
+            padding: 14px;
+            margin: 14px 0;
+        }
+
+        .checkout-summary h3 {
+            font-size: 15px;
+            margin-bottom: 10px;
+            color: #0F0F0F;
+        }
+
+        .summary-items {
+            max-height: 100px;
+            overflow-y: auto;
+            margin-bottom: 10px;
+        }
+
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 6px 0;
+            border-bottom: 1px solid #E7E7E7;
+            font-size: 13px;
+            color: #565959;
+        }
+
+        .summary-item:last-child {
+            border-bottom: none;
+        }
+
+        .summary-total {
+            display: flex;
+            justify-content: space-between;
+            padding-top: 10px;
+            border-top: 1px solid #DDD;
+            font-size: 16px;
+            font-weight: 700;
+            color: #B12705;
+        }
+
+        .place-order-btn {
+            width: 100%;
+            padding: 12px;
+            background: #F7CA00;
+            border: 1px solid #F2A900;
+            border-radius: 20px;
+            color: #0F0F0F;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .place-order-btn:hover {
+            background: #F2A900;
+        }
+
+        /* Cookie Banner */
+        .cookie-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: #232F3E;
+            border-top: 2px solid #00d4ff;
+            padding: 20px 30px;
+            z-index: 2000;
+            transform: translateY(100%);
+            transition: transform 0.4s ease;
+            box-shadow: 0 -5px 30px rgba(0, 212, 255, 0.3);
+        }
+
+        .cookie-banner.show {
+            transform: translateY(0);
+        }
+
+        .cookie-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+
+        .cookie-icon {
+            font-size: 40px;
+            color: #ff9900;
+        }
+
+        .cookie-text {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .cookie-text h3 {
+            color: #00d4ff;
+            font-size: 18px;
+            margin-bottom: 8px;
+        }
+
+        .cookie-text p {
+            color: #ccc;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .cookie-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .cookie-btn {
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+        }
+
+        .cookie-accept {
+            background: linear-gradient(135deg, #00d4ff, #0099cc);
+            color: black;
+        }
+
+        .cookie-accept:hover {
+            background: linear-gradient(135deg, #00e5ff, #00aadd);
+            box-shadow: 0 5px 20px rgba(0, 212, 255, 0.4);
+        }
+
+        .cookie-reject {
+            background: transparent;
+            border: 1px solid #666;
+            color: #ccc;
+        }
+
+        .cookie-reject:hover {
+            border-color: #ff4444;
+            color: #ff4444;
+        }
+
+        /* Overlay */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+        }
+
+        .overlay.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        #wishlist-overlay {
+            z-index: 999;
+        }
+
+        /* No Results */
+        .no-results {
+            text-align: center;
+            padding: 60px 20px;
+            color: #888;
+        }
+
+        .no-results i {
+            font-size: 60px;
+            margin-bottom: 20px;
+            color: #444;
+        }
+
+        .no-results h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .top-nav {
+                flex-wrap: wrap;
+                padding: 10px 15px;
+            }
+            
+            .search-section {
+                order: 3;
+                max-width: 100%;
+                width: 100%;
+                margin-top: 10px;
+            }
+            
+            .location, .nav-btn {
+                display: none;
+            }
+            
+            .cart-sidebar, .wishlist-sidebar {
+                width: 100%;
+                right: -100%;
+            }
+            
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
+            
+            .main-content {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Navigation -->
+    <div class="top-nav">
+        <div class="logo-section">
+            <div class="logo-icon">
+                <i class="fas fa-shopping-bag"></i>
+            </div>
+            <div class="logo">blinkart</div>
+        </div>
+        
+        <div class="location">
+            <i class="fas fa-map-marker-alt"></i>
+            <div>
+                <small>Deliver to</small><br>
+                <strong>India</strong>
+            </div>
+        </div>
+
+        <div class="search-section">
+            <div class="search-bar">
+                <select id="search-category">
+                    <option value="all">All</option>
+                    <option value="pen">Pens</option>
+                    <option value="pencil">Pencils</option>
+                    <option value="kit">Kits</option>
+                    <option value="highlighter">Highlighters</option>
+                </select>
+                <input type="text" id="search-input" placeholder="Search blinkart">
+                <button class="search-btn" onclick="searchProducts()">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="right-section">
+            <button class="nav-btn" onclick="openSignModal()">
+                <small>Sign in</small>
+                <strong>Account</strong>
+            </button>
+            <button class="nav-btn">
+                <small>Return &</small>
+                <strong>Orders</strong>
+            </button>
+            <button class="cart-btn" onclick="toggleCart()">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="cart-count" id="cart-count">0</span>
+            </button>
+            <button class="cart-btn" onclick="toggleWishlist()" style="margin-left: 10px;">
+                <i class="fas fa-heart" style="color: #ff4444;"></i>
+                <span class="cart-count" id="wishlist-count" style="background: #ff4444;">0</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Category Bar -->
+    <div class="category-bar">
+        <div class="category active" onclick="filterCategory('all')">All Products</div>
+        <div class="category" onclick="filterCategory('pen')">Pens</div>
+        <div class="category" onclick="filterCategory('pencil')">Pencils</div>
+        <div class="category" onclick="filterCategory('kit')">Kits</div>
+        <div class="category" onclick="filterCategory('highlighter')">Highlighters</div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Flash Sale Banner -->
+        <div class="flash-sale-banner" id="flash-sale">
+            <div class="flash-sale-left">
+                <i class="fas fa-bolt flash-icon"></i>
+                <div>
+                    <div class="flash-title">⚡ FLASH SALE - 50% OFF</div>
+                    <div class="flash-subtitle">On all Premium Pens! Limited time offer.</div>
+                </div>
+            </div>
+            <div class="flash-timer">
+                <div class="flash-time">
+                    <div class="flash-time-num" id="hours">02</div>
+                    <div class="flash-time-label">Hours</div>
+                </div>
+                <div class="flash-time">
+                    <div class="flash-time-num" id="minutes">45</div>
+                    <div class="flash-time-label">Mins</div>
+                </div>
+                <div class="flash-time">
+                    <div class="flash-time-num" id="seconds">30</div>
+                    <div class="flash-time-label">Secs</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Banner -->
+        <div class="banner">
+            <h1>🚀 Crazy Deals in Stationery</h1>
+            <p>0% GST | Free Delivery | Up to 50% Off</p>
+        </div>
+
+        <!-- Products -->
+        <div class="products-section">
+            <div class="section-header">
+                <h2 class="section-title" id="section-title">Trending Products</h2>
+                <div class="sort-section">
+                    <span class="sort-label">Sort by:</span>
+                    <select class="sort-dropdown" id="sort-dropdown" onchange="sortProducts()">
+                        <option value="default">Featured</option>
+                        <option value="price-low">Price: Low to High</option>
+                        <option value="price-high">Price: High to Low</option>
+                        <option value="rating">Highest Rated</option>
+                        <option value="discount">Best Discount</option>
+                    </select>
+                </div>
+            </div>
+            <div class="products-grid" id="products-grid">
+                <!-- Products will be rendered here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Cart Sidebar -->
+    <div class="overlay" id="overlay" onclick="toggleCart()"></div>
+    <div class="cart-sidebar" id="cart-sidebar">
+        <div class="cart-header">
+            <h2><i class="fas fa-shopping-cart"></i> Your Cart</h2>
+            <button class="close-cart" onclick="toggleCart()">&times;</button>
+        </div>
+        <div class="cart-items" id="cart-items">
+            <!-- Cart items will be rendered here -->
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Subtotal (<span id="cart-qty">0</span> items):</span>
+                <span>₹<span id="cart-total">0</span></span>
+            </div>
+            <button class="checkout-btn" onclick="proceedToCheckout()">
+                Proceed to Buy
+            </button>
+        </div>
+    </div>
+
+    <!-- Wishlist Sidebar -->
+    <div class="overlay" id="wishlist-overlay" onclick="toggleWishlist()"></div>
+    <div class="wishlist-sidebar" id="wishlist-sidebar">
+        <div class="wishlist-header">
+            <h2><i class="fas fa-heart"></i> My Wishlist</h2>
+            <button class="close-cart" onclick="toggleWishlist()">&times;</button>
+        </div>
+        <div class="wishlist-items" id="wishlist-items">
+            <!-- Wishlist items will be rendered here -->
+        </div>
+    </div>
+
+    <!-- Quick View Modal -->
+    <div class="quick-view-modal" id="quick-view-modal">
+        <div class="quick-view-content">
+            <button class="quick-view-close" onclick="closeQuickView()">&times;</button>
+            <div class="quick-view-grid">
+                <img src="" alt="" class="quick-view-img" id="qv-img">
+                <div class="quick-view-details">
+                    <h2 id="qv-name"></h2>
+                    <div class="quick-view-rating">
+                        <span class="stars" id="qv-stars"></span>
+                        <span class="rating-count" id="qv-reviews"></span>
+                    </div>
+                    <div class="quick-view-price" id="qv-price"></div>
+                    <div class="quick-view-mrp" id="qv-mrp"></div>
+                    <div class="quick-view-discount" id="qv-discount"></div>
+                    <div class="quick-view-stock" id="qv-stock"></div>
+                    <div class="quick-view-actions">
+                        <button class="quick-view-btn quick-view-add" onclick="addFromQuickView()">
+                            <i class="fas fa-cart-plus"></i> Add to Cart
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Compare Bar -->
+    <div class="compare-bar" id="compare-bar">
+        <div class="compare-products" id="compare-products">
+            <!-- Compare items will be rendered here -->
+        </div>
+        <div class="compare-actions">
+            <button class="compare-btn compare-clear" onclick="clearCompare()">Clear All</button>
+            <button class="compare-btn compare-view" onclick="viewCompare()">Compare (<span id="compare-count">0</span>)</button>
+        </div>
+    </div>
+
+    <!-- Notification -->
+    <div class="notification" id="notification">
+        <i class="fas fa-check-circle"></i> Added to cart!
+    </div>
+
+    <!-- Checkout Modal -->
+    <div class="checkout-modal" id="checkout-modal">
+        <div class="checkout-content">
+            <button class="checkout-close" onclick="closeCheckout()">&times;</button>
+            <h2><i class="fas fa-shopping-bag"></i> Checkout</h2>
+            <div class="checkout-form">
+                <div class="form-group">
+                    <label>Full Name *</label>
+                    <input type="text" id="cust-name" placeholder="Enter your full name" required>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Email *</label>
+                        <input type="email" id="cust-email" placeholder="your@email.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Phone *</label>
+                        <input type="tel" id="cust-phone" placeholder="10-digit mobile number" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Address *</label>
+                    <textarea id="cust-address" placeholder="Complete delivery address" rows="2" required></textarea>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>State *</label>
+                        <select id="cust-state" onchange="updateCapital()" required>
+                            <option value="">Select State</option>
+                            <option value="Andhra Pradesh">Andhra Pradesh</option>
+                            <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                            <option value="Assam">Assam</option>
+                            <option value="Bihar">Bihar</option>
+                            <option value="Chhattisgarh">Chhattisgarh</option>
+                            <option value="Goa">Goa</option>
+                            <option value="Gujarat">Gujarat</option>
+                            <option value="Haryana">Haryana</option>
+                            <option value="Himachal Pradesh">Himachal Pradesh</option>
+                            <option value="Jharkhand">Jharkhand</option>
+                            <option value="Karnataka">Karnataka</option>
+                            <option value="Kerala">Kerala</option>
+                            <option value="Madhya Pradesh">Madhya Pradesh</option>
+                            <option value="Maharashtra">Maharashtra</option>
+                            <option value="Manipur">Manipur</option>
+                            <option value="Meghalaya">Meghalaya</option>
+                            <option value="Mizoram">Mizoram</option>
+                            <option value="Nagaland">Nagaland</option>
+                            <option value="Odisha">Odisha</option>
+                            <option value="Punjab">Punjab</option>
+                            <option value="Rajasthan">Rajasthan</option>
+                            <option value="Sikkim">Sikkim</option>
+                            <option value="Tamil Nadu">Tamil Nadu</option>
+                            <option value="Telangana">Telangana</option>
+                            <option value="Tripura">Tripura</option>
+                            <option value="Uttar Pradesh">Uttar Pradesh</option>
+                            <option value="Uttarakhand">Uttarakhand</option>
+                            <option value="West Bengal">West Bengal</option>
+                            <option value="Delhi">Delhi (UT)</option>
+                            <option value="Jammu & Kashmir">Jammu & Kashmir (UT)</option>
+                            <option value="Ladakh">Ladakh (UT)</option>
+                            <option value="Chandigarh">Chandigarh (UT)</option>
+                            <option value="Puducherry">Puducherry (UT)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Capital *</label>
+                        <input type="text" id="cust-capital" placeholder="Capital city" readonly>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Pincode *</label>
+                    <input type="text" id="cust-pincode" placeholder="6-digit PIN code" maxlength="6" pattern="[0-9]{6}" required>
+                </div>
+                <div class="checkout-summary">
+                    <h3>Order Summary</h3>
+                    <div class="summary-items" id="summary-items"></div>
+                    <div class="summary-total">
+                        <span>Total (<span id="summary-qty">0</span> items):</span>
+                        <span>₹<span id="summary-total">0</span></span>
+                    </div>
+                </div>
+                <button class="place-order-btn" onclick="placeOrder()">
+                    <i class="fas fa-check-circle"></i> Place Order
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cookie Consent Banner -->
+    <div class="cookie-banner" id="cookie-banner">
+        <div class="cookie-content">
+            <div class="cookie-icon">
+                <i class="fas fa-cookie-bite"></i>
+            </div>
+            <div class="cookie-text">
+                <h3>We use cookies</h3>
+                <p>This website uses cookies to enhance your browsing experience, provide personalized content, and analyze our traffic. By clicking "Accept All", you consent to our use of cookies.</p>
+            </div>
+            <div class="cookie-buttons">
+                <button class="cookie-btn cookie-reject" onclick="rejectCookies()">Reject All</button>
+                <button class="cookie-btn cookie-accept" onclick="acceptCookies()">Accept All</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Products Data
+        // Products Data - 250+ Products
+        const products = [
+            // Ballpoint Pens
+            { id: 1, name: 'Pilot V2 Roller Ball Pen', price: 20, mrp: 35, category: 'pen', img: 'https://via.placeholder.com/150?text=Pilot+V2', rating: 4.5, reviews: 1250, stock: 150 },
+            { id: 2, name: 'Reynolds Trimax Ball Pen', price: 60, mrp: 100, category: 'pen', img: 'https://via.placeholder.com/150?text=Reynolds+Trimax', rating: 4.0, reviews: 890, stock: 80 },
+            { id: 3, name: 'Reynolds Trimax Gold Pen', price: 120, mrp: 180, category: 'pen', img: 'https://via.placeholder.com/150?text=Trimax+Gold', rating: 4.8, reviews: 560, stock: 45 },
+            { id: 4, name: 'Fountain Pen Premium', price: 65, mrp: 120, category: 'pen', img: 'https://via.placeholder.com/150?text=Fountain+Pen', rating: 4.2, reviews: 320, stock: 30 },
+            { id: 5, name: 'Perie Cardian Pen Premium', price: 480, mrp: 650, category: 'pen', img: 'https://via.placeholder.com/150?text=Perie+Cardian', rating: 4.9, reviews: 210, stock: 15 },
+            { id: 6, name: 'Pilot V7 Hi-Tec Point', price: 60, mrp: 90, category: 'pen', img: 'https://via.placeholder.com/150?text=Pilot+V7', rating: 4.3, reviews: 780, stock: 60 },
+            { id: 7, name: 'Pilot V5 Needle Point', price: 68, mrp: 100, category: 'pen', img: 'https://via.placeholder.com/150?text=Pilot+V5', rating: 4.1, reviews: 920, stock: 55 },
+            { id: 8, name: 'Writo Meter Ball Pen', price: 20, mrp: 35, category: 'pen', img: 'https://via.placeholder.com/150?text=Writo+Meter', rating: 3.8, reviews: 450, stock: 100 },
+            { id: 9, name: 'Jeter Ballpoint Pens Pack', price: 30, mrp: 50, category: 'pen', img: 'https://via.placeholder.com/150?text=Jeter+Ballpoint', rating: 4.0, reviews: 670, stock: 200 },
+            { id: 10, name: 'Joter Gel Pen Premium', price: 45, mrp: 75, category: 'pen', img: 'https://via.placeholder.com/150?text=Joter+Gelpen', rating: 4.4, reviews: 380, stock: 75 },
+            { id: 11, name: 'Parker Ballpoint Pen Elite', price: 1990, mrp: 2500, category: 'pen', img: 'https://via.placeholder.com/150?text=Parkar+Ballpoint', rating: 5.0, reviews: 120, stock: 8 },
+            { id: 12, name: 'Classmate Hook Pen', price: 10, mrp: 20, category: 'pen', img: 'https://via.placeholder.com/150?text=Classmate+Hook', rating: 3.9, reviews: 1100, stock: 500 },
+            { id: 13, name: 'Unomax Ultron Pen', price: 10, mrp: 18, category: 'pen', img: 'https://via.placeholder.com/150?text=Unomax+Ultron', rating: 4.0, reviews: 890, stock: 400 },
+            { id: 14, name: 'Unomax Pearl Pen', price: 10, mrp: 18, category: 'pen', img: 'https://via.placeholder.com/150?text=Unomax+Pearl', rating: 4.1, reviews: 750, stock: 350 },
+            { id: 15, name: 'Doms Inxon Pen', price: 10, mrp: 20, category: 'pen', img: 'https://via.placeholder.com/150?text=Doms+Inxon', rating: 4.2, reviews: 620, stock: 300 },
+            { id: 16, name: 'Flair Woody Pencil', price: 10, mrp: 18, category: 'pencil', img: 'https://via.placeholder.com/150?text=Flair+Woody', rating: 4.3, reviews: 540, stock: 250 },
+            { id: 17, name: 'Hauser XO Premium Pen', price: 10, mrp: 20, category: 'pen', img: 'https://via.placeholder.com/150?text=Hauser+XO', rating: 4.4, reviews: 480, stock: 200 },
+            { id: 18, name: 'Supra Gold Ball Pen', price: 10, mrp: 20, category: 'pen', img: 'https://via.placeholder.com/150?text=Supra+Gold', rating: 4.5, reviews: 390, stock: 180 },
+            { id: 19, name: 'Classmate Octane Ball Pen', price: 10, mrp: 18, category: 'pen', img: 'https://via.placeholder.com/150?text=Octane+Ball', rating: 4.6, reviews: 310, stock: 150 },
+            { id: 20, name: 'Classmate Octane Gel Pen', price: 10, mrp: 18, category: 'pen', img: 'https://via.placeholder.com/150?text=Octane+Gel', rating: 4.7, reviews: 280, stock: 140 },
+            { id: 21, name: 'Doms Pencil Set', price: 65, mrp: 100, category: 'pencil', img: 'https://via.placeholder.com/150?text=Doms+Pencil', rating: 4.4, reviews: 890, stock: 120 },
+            { id: 22, name: 'Natraj Pencils Pack', price: 55, mrp: 80, category: 'pencil', img: 'https://via.placeholder.com/150?text=Natraj+Pencils', rating: 4.2, reviews: 720, stock: 200 },
+            { id: 23, name: 'Flair Move Penpencil 2.0', price: 100, mrp: 150, category: 'pencil', img: 'https://via.placeholder.com/150?text=Flair+Move+2.0', rating: 4.6, reviews: 450, stock: 60 },
+            { id: 24, name: 'Flair Move Penpencil 0.7', price: 20, mrp: 35, category: 'pencil', img: 'https://via.placeholder.com/150?text=Flair+Move+0.7', rating: 4.1, reviews: 380, stock: 100 },
+            { id: 25, name: 'Reynolds 0.5 Mechanical Pencil', price: 8, mrp: 15, category: 'pencil', img: 'https://via.placeholder.com/150?text=Reynolds+0.5', rating: 3.9, reviews: 520, stock: 300 },
+            { id: 26, name: 'Stationery Kit Complete', price: 150, mrp: 250, category: 'kit', img: 'https://via.placeholder.com/150?text=Stationery+Kit', rating: 4.5, reviews: 320, stock: 50 },
+            { id: 27, name: 'Art Kit Professional', price: 850, mrp: 1200, category: 'kit', img: 'https://via.placeholder.com/150?text=Art+Kit', rating: 4.7, reviews: 180, stock: 20 },
+            { id: 28, name: 'Sketch Book A4', price: 100, mrp: 150, category: 'kit', img: 'https://via.placeholder.com/150?text=Sketch+Book', rating: 4.3, reviews: 290, stock: 80 },
+            { id: 29, name: 'Luxor Fluorescent Highlighter', price: 100, mrp: 150, category: 'highlighter', img: 'https://via.placeholder.com/150?text=Luxor+Fluorescent', rating: 4.5, reviews: 410, stock: 90 },
+            { id: 30, name: 'Luxor Pastel Highlighter Set', price: 125, mrp: 180, category: 'highlighter', img: 'https://via.placeholder.com/150?text=Luxor+Pastel', rating: 4.7, reviews: 280, stock: 60 },
+            // Additional Pens - Amazon Style
+            { id: 31, name: 'Cello Butterflow Ball Pen Pack of 50', price: 145, mrp: 200, category: 'pen', img: 'https://via.placeholder.com/150?text=Cello+Butterflow', rating: 4.3, reviews: 2340, stock: 25 },
+            { id: 32, name: 'Pilot G2 Premium Gel Pen Blue', price: 180, mrp: 250, category: 'pen', img: 'https://via.placeholder.com/150?text=Pilot+G2', rating: 4.7, reviews: 1890, stock: 40 },
+            { id: 33, name: 'Uni Jetstream Ball Pen Black', price: 95, mrp: 150, category: 'pen', img: 'https://via.placeholder.com/150?text=Uni+Jetstream', rating: 4.5, reviews: 980, stock: 70 },
+            { id: 34, name: 'Pentonic Ball Pen Pack of 10', price: 35, mrp: 55, category: 'pen', img: 'https://via.placeholder.com/150?text=Pentonic', rating: 4.1, reviews: 650, stock: 150 },
+            { id: 35, name: 'Rotomagic Ball Pen 0.7mm', price: 25, mrp: 40, category: 'pen', img: 'https://via.placeholder.com/150?text=Rotomagic', rating: 4.0, reviews: 420, stock: 200 },
+            { id: 36, name: 'Montex Ball Pen Pack of 20', price: 45, mrp: 70, category: 'pen', img: 'https://via.placeholder.com/150?text=Montex', rating: 3.9, reviews: 380, stock: 120 },
+            { id: 37, name: 'Kores Ball Pen Medium Point', price: 15, mrp: 25, category: 'pen', img: 'https://via.placeholder.com/150?text=Kores', rating: 4.2, reviews: 520, stock: 250 },
+            { id: 38, name: 'Add Gel Pen 0.5mm Blue', price: 30, mrp: 45, category: 'pen', img: 'https://via.placeholder.com/150?text=Add+Gel', rating: 4.4, reviews: 710, stock: 180 },
+            { id: 39, name: 'Gelly Ball Pen Pack of 12', price: 55, mrp: 85, category: 'pen', img: 'https://via.placeholder.com/150?text=Gelly', rating: 4.3, reviews: 290, stock: 90 },
+            { id: 40, name: 'Smart Ball Pen Multi Color', price: 40, mrp: 60, category: 'pen', img: 'https://via.placeholder.com/150?text=Smart+Ball', rating: 4.0, reviews: 180, stock: 75 },
+            { id: 41, name: 'Luxor Ultra Smooth Ball Pen', price: 20, mrp: 35, category: 'pen', img: 'https://via.placeholder.com/150?text=Luxor+Ultra', rating: 4.1, reviews: 450, stock: 160 },
+            { id: 42, name: 'Precise Gel Pen 0.7mm Black', price: 35, mrp: 50, category: 'pen', img: 'https://via.placeholder.com/150?text=Precise+Gel', rating: 4.5, reviews: 620, stock: 100 },
+            { id: 43, name: 'Faber-Castell Ball Pen Premium', price: 150, mrp: 220, category: 'pen', img: 'https://via.placeholder.com/150?text=Faber+Castell', rating: 4.8, reviews: 340, stock: 25 },
+            { id: 44, name: 'Stabilo Ball Pen Pack of 10', price: 85, mrp: 120, category: 'pen', img: 'https://via.placeholder.com/150?text=Stabilo', rating: 4.6, reviews: 280, stock: 45 },
+            { id: 45, name: 'Paper Mate Inkjoy Gel Pen', price: 120, mrp: 180, category: 'pen', img: 'https://via.placeholder.com/150?text=Paper+Mate', rating: 4.4, reviews: 190, stock: 35 },
+            { id: 46, name: 'BIC Clic Ball Pen 1.6mm', price: 25, mrp: 40, category: 'pen', img: 'https://via.placeholder.com/150?text=BIC+Clic', rating: 4.2, reviews: 560, stock: 140 },
+            { id: 47, name: 'Cross Ball Pen Classic', price: 350, mrp: 450, category: 'pen', img: 'https://via.placeholder.com/150?text=Cross+Classic', rating: 4.7, reviews: 150, stock: 12 },
+            { id: 48, name: 'Shepherd Ball Pen Pack of 5', price: 30, mrp: 50, category: 'pen', img: 'https://via.placeholder.com/150?text=Shepherd', rating: 4.0, reviews: 220, stock: 180 },
+            { id: 49, name: 'Linc Ball Pen Fluoro Color', price: 18, mrp: 30, category: 'pen', img: 'https://via.placeholder.com/150?text=Linc+Fluoro', rating: 4.1, reviews: 380, stock: 220 },
+            { id: 50, name: 'Penta Ball Pen 0.8mm Pack', price: 22, mrp: 35, category: 'pen', img: 'https://via.placeholder.com/150?text=Penta', rating: 3.8, reviews: 290, stock: 190 },
+            { id: 51, name: 'Reynolds Jetter Ball Pen', price: 15, mrp: 25, category: 'pen', img: 'https://via.placeholder.com/150?text=Reynolds+Jetter', rating: 4.0, reviews: 420, stock: 280 },
+            { id: 52, name: 'Camlin Kokuyo Ball Pen', price: 12, mrp: 20, category: 'pen', img: 'https://via.placeholder.com/150?text=Camlin+Kokuyo', rating: 3.9, reviews: 350, stock: 350 },
+            { id: 53, name: 'Eagle Ball Pen Pack of 50', price: 180, mrp: 280, category: 'pen', img: 'https://via.placeholder.com/150?text=Eagle+Ball', rating: 4.3, reviews: 180, stock: 30 },
+            { id: 54, name: 'XYZ Ball Pen Multi Pack', price: 65, mrp: 100, category: 'pen', img: 'https://via.placeholder.com/150?text=XYZ+Multi', rating: 4.1, reviews: 140, stock: 85 },
+            { id: 55, name: 'Gel Pen 0.5mm Spark Blue', price: 45, mrp: 70, category: 'pen', img: 'https://via.placeholder.com/150?text=Spark+Blue', rating: 4.5, reviews: 260, stock: 95 },
+            { id: 56, name: 'Pilot Hi-Tecpoint V7 Cartridge', price: 90, mrp: 130, category: 'pen', img: 'https://via.placeholder.com/150?text=Hi-Tecpoint', rating: 4.6, reviews: 480, stock: 55 },
+            { id: 57, name: 'Reynolds Porter Ball Pen', price: 25, mrp: 40, category: 'pen', img: 'https://via.placeholder.com/150?text=Porter', rating: 4.2, reviews: 320, stock: 150 },
+            { id: 58, name: 'Cello Pinpoint Ball Pen', price: 20, mrp: 32, category: 'pen', img: 'https://via.placeholder.com/150?text=Cello+Pinpoint', rating: 4.3, reviews: 410, stock: 200 },
+            { id: 59, name: 'Flair Tuff Ball Pen Pack', price: 35, mrp: 55, category: 'pen', img: 'https://via.placeholder.com/150?text=Flair+Tuff', rating: 4.0, reviews: 270, stock: 130 },
+            { id: 60, name: 'Unomax Nova Ball Pen', price: 12, mrp: 20, category: 'pen', img: 'https://via.placeholder.com/150?text=Unomax+Nova', rating: 4.1, reviews: 390, stock: 400 },
+            { id: 61, name: 'Classmate Smooth Ball Pen', price: 8, mrp: 15, category: 'pen', img: 'https://via.placeholder.com/150?text=Classmate+Smooth', rating: 3.8, reviews: 520, stock: 600 },
+            { id: 62, name: 'Doms Astro Ball Pen Pack', price: 25, mrp: 40, category: 'pen', img: 'https://via.placeholder.com/150?text=Doms+Astro', rating: 4.2, reviews: 280, stock: 170 },
+            { id: 63, name: 'Hauser Matrix Ball Pen', price: 15, mrp: 25, category: 'pen', img: 'https://via.placeholder.com/150?text=Hauser+Matrix', rating: 4.4, reviews: 350, stock: 220 },
+            { id: 64, name: 'Pentel Hybrid Ball Pen 0.7', price: 95, mrp: 140, category: 'pen', img: 'https://via.placeholder.com/150?text=Pentel+Hybrid', rating: 4.7, reviews: 220, stock: 50 },
+            { id: 65, name: 'Zebra Sarasa Clip Ball Pen', price: 65, mrp: 95, category: 'pen', img: 'https://via.placeholder.com/150?text=Zebra+Sarasa', rating: 4.6, reviews: 180, stock: 65 },
+            { id: 66, name: 'MUJi Aluminum Ball Pen', price: 280, mrp: 350, category: 'pen', img: 'https://via.placeholder.com/150?text=MUJI+Aluminum', rating: 4.8, reviews: 90, stock: 18 },
+            { id: 67, name: 'Pilot Juice Gel Pen Set', price: 150, mrp: 220, category: 'pen', img: 'https://via.placeholder.com/150?text=Pilot+Juice', rating: 4.5, reviews: 260, stock: 35 },
+            { id: 68, name: 'Staedtler Noris Club Pen', price: 45, mrp: 65, category: 'pen', img: 'https://via.placeholder.com/150?text=Staedtler', rating: 4.3, reviews: 140, stock: 75 },
+            { id: 69, name: 'Maped Color Ball Pen Pack', price: 55, mrp: 80, category: 'pen', img: 'https://via.placeholder.com/150?text=Maped+Color', rating: 4.2, reviews: 190, stock: 95 },
+            { id: 70, name: 'Lyra Groove Slim Ball Pen', price: 35, mrp: 50, category: 'pen', img: 'https://via.placeholder.com/150?text=Lyra+Groove', rating: 4.4, reviews: 120, stock: 110 },
+            // More pens (71-150)
+            { id: 71, name: 'Cello Flowster Ball Pen', price: 18, mrp: 28, category: 'pen', img: 'https://via.placeholder.com/150?text=Cello+Flowster', rating: 4.1, reviews: 380, stock: 250 },
+            { id: 72, name: 'Reynolds Business Pen', price: 22, mrp: 35, category: 'pen', img: 'https://via.placeholder.com/150?text=Reynolds+Business', rating: 4.2, reviews: 290, stock: 180 },
+            { id: 73, name: 'Pilot Megaloman Pen', price: 650, mrp: 800, category: 'pen', img: 'https://via.placeholder.com/150?text=Pilot+Megaloman', rating: 4.9, reviews: 85, stock: 10 },
+            { id: 74, name: 'Faber-Castell Loom Pen', price: 220, mrp: 300, category: 'pen', img: 'https://via.placeholder.com/150?text=Faber+Loom', rating: 4.7, reviews: 160, stock: 25 },
+            { id: 75, name: 'Aurora Ball Pen Premium', price: 85, mrp: 120, category: 'pen', img: 'https://via.placeholder.com/150?text=Aurora+Pen', rating: 4.4, reviews: 210, stock: 55 },
+            { id: 76, name: 'Parker Vector Ball Pen', price: 180, mrp: 250, category: 'pen', img: 'https://via.placeholder.com/150?text=Parker+Vector', rating: 4.5, reviews: 340, stock: 40 },
+            { id: 77, name: 'Waterman Carene Pen', price: 1200, mrp: 1500, category: 'pen', img: 'https://via.placeholder.com/150?text=Waterman+Carene', rating: 4.8, reviews: 65, stock: 8 },
+            { id: 78, name: 'Montblanc Meisterstuck', price: 8500, mrp: 10000, category: 'pen', img: 'https://via.placeholder.com/150?text=Montblanc', rating: 5.0, reviews: 25, stock: 3 },
+            { id: 79, name: 'Lamy Safari Ball Pen', price: 450, mrp: 550, category: 'pen', img: 'https://via.placeholder.com/150?text=Lamy+Safari', rating: 4.6, reviews: 180, stock: 20 },
+            { id: 80, name: 'Pelikan Souveran Pen', price: 3200, mrp: 3800, category: 'pen', img: 'https://via.placeholder.com/150?text=Pelikan', rating: 4.9, reviews: 45, stock: 5 },
+            { id: 81, name: 'Sheaffer Ball Pen Value', price: 150, mrp: 200, category: 'pen', img: 'https://via.placeholder.com/150?text=Sheaffer', rating: 4.3, reviews: 220, stock: 35 },
+            { id: 82, name: 'Pilot Custom 7420 Pen', price: 1800, mrp: 2200, category: 'pen', img: 'https://via.placeholder.com/150?text=Pilot+7420', rating: 4.9, reviews: 95, stock: 12 },
+            { id: 83, name: 'Sailor Progear Slim Pen', price: 950, mrp: 1200, category: 'pen', img: 'https://via.placeholder.com/150?text=Sailor+Progear', rating: 4.7, reviews: 120, stock: 15 },
+            { id: 84, name: 'Platinum Preppy Pen', price: 120, mrp: 160, category: 'pen', img: 'https://via.placeholder.com/150?text=Platinum+Preppy', rating: 4.4, reviews: 380, stock: 50 },
+            { id: 85, name: 'TWSBI Eco Fountain Pen', price: 680, mrp: 850, category: 'pen', img: 'https://via.placeholder.com/150?text=TWSBI+Eco', rating: 4.6, reviews: 145, stock: 22 },
+            { id: 86, name: 'Kaweco Sport Ball Pen', price: 380, mrp: 480, category: 'pen', img: 'https://via.placeholder.com/150?text=Kaweco+Sport', rating: 4.5, reviews: 190, stock: 30 },
+            { id: 87, name: 'Conway Stewart Churchill', price: 4500, mrp: 5500, category: 'pen', img: 'https://via.placeholder.com/150?text=Churchill', rating: 4.9, reviews: 35, stock: 4 },
+            { id: 88, name: 'Delta Dolce Vita Pen', price: 2800, mrp: 3500, category: 'pen', img: 'https://via.placeholder.com/150?text=Delta+Dolce', rating: 4.8, reviews: 55, stock: 6 },
+            { id: 89, name: 'Montegrappa Nero Pen', price: 3200, mrp: 4000, category: 'pen', img: 'https://via.placeholder.com/150?text=Montegrappa', rating: 4.7, reviews: 40, stock: 5 },
+            { id: 90, name: 'Visconti Homo Sapiens', price: 6500, mrp: 8000, category: 'pen', img: 'https://via.placeholder.com/150?text=Visconti', rating: 4.9, reviews: 28, stock: 3 },
+            { id: 91, name: 'St Dupont Line 2', price: 12000, mrp: 15000, category: 'pen', img: 'https://via.placeholder.com/150?text=St+Dupont', rating: 5.0, reviews: 15, stock: 2 },
+            { id: 92, name: 'Cartier Must Ball Pen', price: 2800, mrp: 3500, category: 'pen', img: 'https://via.placeholder.com/150?text=Cartier+Must', rating: 4.8, reviews: 65, stock: 8 },
+            { id: 93, name: 'Dunhill Signet Pen', price: 5500, mrp: 6800, category: 'pen', img: 'https://via.placeholder.com/150?text=Dunhill', rating: 4.9, reviews: 30, stock: 4 },
+            { id: 94, name: 'Gucci Pen GG Logo', price: 3800, mrp: 4500, category: 'pen', img: 'https://via.placeholder.com/150?text=Gucci+Pen', rating: 4.7, reviews: 45, stock: 6 },
+            { id: 95, name: 'Versace Medusa Pen', price: 4200, mrp: 5200, category: 'pen', img: 'https://via.placeholder.com/150?text=Versace', rating: 4.8, reviews: 38, stock: 5 },
+            { id: 96, name: 'Burberry Ball Pen', price: 3200, mrp: 4000, category: 'pen', img: 'https://via.placeholder.com/150?text=Burberry', rating: 4.6, reviews: 52, stock: 7 },
+            { id: 97, name: 'Prada Pen Premium', price: 4500, mrp: 5500, category: 'pen', img: 'https://via.placeholder.com/150?text=Prada+Pen', rating: 4.7, reviews: 42, stock: 5 },
+            { id: 98, name: 'Dolce Gabbana Pen', price: 3800, mrp: 4700, category: 'pen', img: 'https://via.placeholder.com/150?text=DG+Pen', rating: 4.6, reviews: 48, stock: 6 },
+            { id: 99, name: 'Hugo Boss Pen Executive', price: 1800, mrp: 2200, category: 'pen', img: 'https://via.placeholder.com/150?text=Hugo+Boss', rating: 4.5, reviews: 85, stock: 12 },
+            { id: 100, name: 'Tommy Hilfiger Pen', price: 1200, mrp: 1500, category: 'pen', img: 'https://via.placeholder.com/150?text=Tommy+Hilfiger', rating: 4.4, reviews: 95, stock: 15 },
+            // Pencils (101-130)
+            { id: 101, name: 'Doms Aurora Pencil Set', price: 45, mrp: 65, category: 'pencil', img: 'https://via.placeholder.com/150?text=Doms+Aurora', rating: 4.3, reviews: 420, stock: 180 },
+            { id: 102, name: 'Natraj 621 Pencils Pack', price: 35, mrp: 50, category: 'pencil', img: 'https://via.placeholder.com/150?text=Natraj+621', rating: 4.1, reviews: 550, stock: 250 },
+            { id: 103, name: 'Faber-Castell 9000 Pencil', price: 120, mrp: 160, category: 'pencil', img: 'https://via.placeholder.com/150?text=Faber+9000', rating: 4.7, reviews: 280, stock: 90 },
+            { id: 104, name: 'Staedtler Mars Lumograph', price: 180, mrp: 240, category: 'pencil', img: 'https://via.placeholder.com/150?text=Staedtler+Lumograph', rating: 4.8, reviews: 320, stock: 70 },
+            { id: 105, name: 'Derwent Graphic Pencil Set', price: 450, mrp: 600, category: 'pencil', img: 'https://via.placeholder.com/150?text=Derwent+Graphic', rating: 4.9, reviews: 185, stock: 35 },
+            { id: 106, name: 'Prismacolor Premier Pencils', price: 850, mrp: 1100, category: 'pencil', img: 'https://via.placeholder.com/150?text=Prismacolor', rating: 4.8, reviews: 145, stock: 25 },
+            { id: 107, name: 'Lyra Rembrandt Pencil Set', price: 320, mrp: 420, category: 'pencil', img: 'https://via.placeholder.com/150?text=Lyra+Rembrandt', rating: 4.6, reviews: 210, stock: 55 },
+            { id: 108, name: 'Caran dAche Pablo Pencils', price: 680, mrp: 850, category: 'pencil', img: 'https://via.placeholder.com/150?text=Caran+dAche', rating: 4.7, reviews: 125, stock: 30 },
+            { id: 109, name: 'Uni Mitsubishi Pencil', price: 95, mrp: 130, category: 'pencil', img: 'https://via.placeholder.com/150?text=Uni+Mitsubishi', rating: 4.5, reviews: 290, stock: 85 },
+            { id: 110, name: 'Pentel Ain Stein Pencils', price: 250, mrp: 320, category: 'pencil', img: 'https://via.placeholder.com/150?text=Pentel+Ain', rating: 4.6, reviews: 180, stock: 60 },
+            { id: 111, name: 'Koh-I-Noor 1500 Pencils', price: 85, mrp: 120, category: 'pencil', img: 'https://via.placeholder.com/150?text=Koh-I-Noor', rating: 4.4, reviews: 340, stock: 120 },
+            { id: 112, name: 'Maped Color Peps Pencils', price: 45, mrp: 65, category: 'pencil', img: 'https://via.placeholder.com/150?text=Maped+Peps', rating: 4.2, reviews: 420, stock: 150 },
+            { id: 113, name: 'Cretacolor Mega Pencils', price: 180, mrp: 240, category: 'pencil', img: 'https://via.placeholder.com/150?text=Cretacolor', rating: 4.5, reviews: 165, stock: 70 },
+            { id: 114, name: 'Stabilo 8008 Pencils', price: 120, mrp: 160, category: 'pencil', img: 'https://via.placeholder.com/150?text=Stabilo+8008', rating: 4.6, reviews: 220, stock: 80 },
+            { id: 115, name: 'Faber-Castell Goldfaber', price: 95, mrp: 130, category: 'pencil', img: 'https://via.placeholder.com/150?text=Faber+Goldfaber', rating: 4.4, reviews: 195, stock: 90 },
+            { id: 116, name: 'Tombow Mono Drawing Pencil', price: 150, mrp: 200, category: 'pencil', img: 'https://via.placeholder.com/150?text=Tombow+Mono', rating: 4.7, reviews: 240, stock: 65 },
+            { id: 117, name: 'Rotring Tikky Pencils', price: 85, mrp: 115, category: 'pencil', img: 'https://via.placeholder.com/150?text=Rotring+Tikky', rating: 4.3, reviews: 310, stock: 110 },
+            { id: 118, name: 'Pilot Neox Drawing Pencil', price: 180, mrp: 240, category: 'pencil', img: 'https://via.placeholder.com/150?text=Pilot+Neox', rating: 4.5, reviews: 175, stock: 55 },
+            { id: 119, name: 'Uni Findi Pencil 0.3mm', price: 65, mrp: 90, category: 'pencil', img: 'https://via.placeholder.com/150?text=Uni+Findi', rating: 4.4, reviews: 260, stock: 100 },
+            { id: 120, name: 'Zebra Delguard Pencil', price: 55, mrp: 75, category: 'pencil', img: 'https://via.placeholder.com/150?text=Zebra+Delguard', rating: 4.3, reviews: 185, stock: 130 },
+            // Erasers & Sharpeners (121-140)
+            { id: 121, name: 'Faber-Castell Eraser', price: 25, mrp: 35, category: 'eraser', img: 'https://via.placeholder.com/150?text=Faber+Eraser', rating: 4.5, reviews: 480, stock: 300 },
+            { id: 122, name: 'Staedtler Eraser 528 50', price: 35, mrp: 50, category: 'eraser', img: 'https://via.placeholder.com/150?text=Staedtler+Eraser', rating: 4.6, reviews: 350, stock: 250 },
+            { id: 123, name: 'Maped Eraser Soft', price: 15, mrp: 22, category: 'eraser', img: 'https://via.placeholder.com/150?text=Maped+Eraser', rating: 4.2, reviews: 520, stock: 400 },
+            { id: 124, name: 'Pentel Eraser C30', price: 45, mrp: 60, category: 'eraser', img: 'https://via.placeholder.com/150?text=Pentel+Eraser', rating: 4.4, reviews: 280, stock: 180 },
+            { id: 125, name: 'Pilot Eraser Hi-Poly', price: 35, mrp: 48, category: 'eraser', img: 'https://via.placeholder.com/150?text=Pilot+Eraser', rating: 4.3, reviews: 220, stock: 200 },
+            { id: 126, name: 'Cello Tape Dispenser', price: 45, mrp: 65, category: 'tape', img: 'https://via.placeholder.com/150?text=Cello+Tape', rating: 4.1, reviews: 380, stock: 150 },
+            { id: 127, name: 'Faber-Castell Sharpener', price: 55, mrp: 75, category: 'sharpener', img: 'https://via.placeholder.com/150?text=Faber+Sharpener', rating: 4.6, reviews: 290, stock: 120 },
+            { id: 128, name: 'Kores Double Hole Sharpener', price: 25, mrp: 35, category: 'sharpener', img: 'https://via.placeholder.com/150?text=Kores+Sharpener', rating: 4.3, reviews: 340, stock: 200 },
+            { id: 129, name: 'Maped Metal Sharpener', price: 65, mrp: 90, category: 'sharpener', img: 'https://via.placeholder.com/150?text=Maped+Sharpener', rating: 4.5, reviews: 210, stock: 100 },
+            { id: 130, name: 'Staedtler Metal Sharpener', price: 85, mrp: 110, category: 'sharpener', img: 'https://via.placeholder.com/150?text=Staedtler+Sharp', rating: 4.7, reviews: 180, stock: 80 },
+            // Notebooks (141-160)
+            { id: 131, name: 'Classmate Notebook 200 Pages', price: 80, mrp: 100, category: 'notebook', img: 'https://via.placeholder.com/150?text=Classmate+NB', rating: 4.2, reviews: 650, stock: 350 },
+            { id: 132, name: 'Spiral Notebook A4 300 Pages', price: 120, mrp: 150, category: 'notebook', img: 'https://via.placeholder.com/150?text=Spiral+NB', rating: 4.4, reviews: 420, stock: 200 },
+            { id: 133, name: 'Oxford Notebook Premium', price: 180, mrp: 220, category: 'notebook', img: 'https://via.placeholder.com/150?text=Oxford+NB', rating: 4.6, reviews: 280, stock: 120 },
+            { id: 134, name: 'Reynolds Notebook A5', price: 55, mrp: 75, category: 'notebook', img: 'https://via.placeholder.com/150?text=Reynolds+NB', rating: 4.1, reviews: 520, stock: 280 },
+            { id: 135, name: 'Camlin Notebook Hard Bound', price: 65, mrp: 85, category: 'notebook', img: 'https://via.placeholder.com/150?text=Camlin+NB', rating: 4.3, reviews: 380, stock: 220 },
+            { id: 136, name: 'Paper Grid Notebook', price: 95, mrp: 120, category: 'notebook', img: 'https://via.placeholder.com/150?text=Grid+NB', rating: 4.5, reviews: 290, stock: 150 },
+            { id: 137, name: 'Leuchtturm Notebook A5', price: 350, mrp: 420, category: 'notebook', img: 'https://via.placeholder.com/150?text=Leuchtturm', rating: 4.8, reviews: 145, stock: 45 },
+            { id: 138, name: 'Rhodia Notebook Dotgrid', price: 280, mrp: 350, category: 'notebook', img: 'https://via.placeholder.com/150?text=Rhodia+NB', rating: 4.7, reviews: 165, stock: 55 },
+            { id: 139, name: 'Moleskine Notebook Classic', price: 450, mrp: 550, category: 'notebook', img: 'https://via.placeholder.com/150?text=Moleskine', rating: 4.8, reviews: 220, stock: 40 },
+            { id: 140, name: 'Black n Red Notebook', price: 150, mrp: 190, category: 'notebook', img: 'https://via.placeholder.com/150?text=Black+n+Red', rating: 4.4, reviews: 185, stock: 100 },
+            // Files & Folders (161-180)
+            { id: 141, name: 'Kores File Folder Pack of 10', price: 85, mrp: 110, category: 'file', img: 'https://via.placeholder.com/150?text=Kores+File', rating: 4.2, reviews: 320, stock: 180 },
+            { id: 142, name: 'Office File Folder A4', price: 45, mrp: 60, category: 'file', img: 'https://via.placeholder.com/150?text=Office+File', rating: 4.0, reviews: 450, stock: 300 },
+            { id: 143, name: 'Plastic File Folder Set', price: 120, mrp: 160, category: 'file', img: 'https://via.placeholder.com/150?text=Plastic+File', rating: 4.3, reviews: 280, stock: 150 },
+            { id: 144, name: 'Manila File Folder Pack', price: 35, mrp: 50, category: 'file', img: 'https://via.placeholder.com/150?text=Manila+File', rating: 4.1, reviews: 520, stock: 400 },
+            { id: 145, name: 'Arch File Folder Heavy', price: 95, mrp: 130, category: 'file', img: 'https://via.placeholder.com/150?text=Arch+File', rating: 4.4, reviews: 190, stock: 100 },
+            { id: 146, name: 'Box File A4 Large', price: 150, mrp: 200, category: 'file', img: 'https://via.placeholder.com/150?text=Box+File', rating: 4.5, reviews: 145, stock: 80 },
+            { id: 147, name: 'Ring Binder File', price: 85, mrp: 115, category: 'file', img: 'https://via.placeholder.com/150?text=Ring+Binder', rating: 4.3, reviews: 210, stock: 120 },
+            { id: 148, name: 'Lever File Folder', price: 65, mrp: 90, category: 'file', img: 'https://via.placeholder.com/150?text=Lever+File', rating: 4.2, reviews: 260, stock: 160 },
+            { id: 149, name: 'Spring File Folder', price: 55, mrp: 75, category: 'file', img: 'https://via.placeholder.com/150?text=Spring+File', rating: 4.1, reviews: 320, stock: 200 },
+            { id: 150, name: 'Clip File Folder Pack', price: 45, mrp: 60, category: 'file', img: 'https://via.placeholder.com/150?text=Clip+File', rating: 4.0, reviews: 380, stock: 250 },
+            // More products (151-200)
+            { id: 151, name: 'Sticky Notes 3x3 Yellow', price: 25, mrp: 35, category: 'notes', img: 'https://via.placeholder.com/150?text=Sticky+Notes', rating: 4.3, reviews: 580, stock: 450 },
+            { id: 152, name: 'Sticky Notes 4x6 Assorted', price: 45, mrp: 60, category: 'notes', img: 'https://via.placeholder.com/150?text=Sticky+4x6', rating: 4.4, reviews: 420, stock: 300 },
+            { id: 153, name: 'Post It Notes Cube', price: 65, mrp: 85, category: 'notes', img: 'https://via.placeholder.com/150?text=Post+It+Cube', rating: 4.5, reviews: 340, stock: 200 },
+            { id: 154, name: 'Marker Pen Set 12 Colors', price: 85, mrp: 110, category: 'marker', img: 'https://via.placeholder.com/150?text=Marker+Set', rating: 4.4, reviews: 480, stock: 180 },
+            { id: 155, name: 'Permanent Marker Black', price: 15, mrp: 22, category: 'marker', img: 'https://via.placeholder.com/150?text=Permanent+Marker', rating: 4.2, reviews: 650, stock: 500 },
+            { id: 156, name: 'White Board Marker Set', price: 55, mrp: 75, category: 'marker', img: 'https://via.placeholder.com/150?text=Whiteboard+Marker', rating: 4.3, reviews: 380, stock: 250 },
+            { id: 157, name: 'Highlighters Set 6 Colors', price: 65, mrp: 85, category: 'highlighter', img: 'https://via.placeholder.com/150?text=Highlighter+Set', rating: 4.5, reviews: 420, stock: 200 },
+            { id: 158, name: 'Neon Highlighters Pack', price: 45, mrp: 60, category: 'highlighter', img: 'https://via.placeholder.com/150?text=Neon+Highlight', rating: 4.4, reviews: 350, stock: 220 },
+            { id: 159, name: 'Correction Tape 5 Pack', price: 55, mrp: 75, category: 'correction', img: 'https://via.placeholder.com/150?text=Correction+Tape', rating: 4.3, reviews: 480, stock: 300 },
+            { id: 160, name: 'White Correction Fluid', price: 25, mrp: 35, category: 'correction', img: 'https://via.placeholder.com/150?text=Correction+Fluid', rating: 4.1, reviews: 520, stock: 350 },
+            { id: 161, name: 'Glue Stick 8g Pack of 6', price: 65, mrp: 90, category: 'glue', img: 'https://via.placeholder.com/150?text=Glue+Stick', rating: 4.4, reviews: 380, stock: 250 },
+            { id: 162, name: 'Fevicol MR Glue 500ml', price: 85, mrp: 110, category: 'glue', img: 'https://via.placeholder.com/150?text=Fevicol+MR', rating: 4.5, reviews: 290, stock: 150 },
+            { id: 163, name: 'Super Glue 3g Pack', price: 35, mrp: 48, category: 'glue', img: 'https://via.placeholder.com/150?text=Super+Glue', rating: 4.2, reviews: 420, stock: 280 },
+            { id: 164, name: 'Hot Glue Gun with Sticks', price: 250, mrp: 320, category: 'glue', img: 'https://via.placeholder.com/150?text=Hot+Glue+Gun', rating: 4.6, reviews: 185, stock: 80 },
+            { id: 165, name: 'Double Sided Tape 12mm', price: 25, mrp: 35, category: 'tape', img: 'https://via.placeholder.com/150?text=Double+Tape', rating: 4.3, reviews: 350, stock: 300 },
+            { id: 166, name: 'Masking Tape 1 Inch', price: 35, mrp: 48, category: 'tape', img: 'https://via.placeholder.com/150?text=Masking+Tape', rating: 4.2, reviews: 280, stock: 350 },
+            { id: 167, name: 'Packing Tape 2 Inch', price: 45, mrp: 60, category: 'tape', img: 'https://via.placeholder.com/150?text=Packing+Tape', rating: 4.1, reviews: 220, stock: 400 },
+            { id: 168, name: 'Cellotape Clear 12mm', price: 20, mrp: 28, category: 'tape', img: 'https://via.placeholder.com/150?text=Cello+Tape', rating: 4.0, reviews: 650, stock: 500 },
+            { id: 169, name: 'Scissors Big Size 8 Inch', price: 85, mrp: 110, category: 'scissors', img: 'https://via.placeholder.com/150?text=Scissors+8inch', rating: 4.4, reviews: 320, stock: 180 },
+            { id: 170, name: 'Scissors Medium 6 Inch', price: 55, mrp: 75, category: 'scissors', img: 'https://via.placeholder.com/150?text=Scissors+6inch', rating: 4.3, reviews: 380, stock: 220 },
+            { id: 171, name: 'Paper Cutter A4 Size', price: 65, mrp: 85, category: 'cutter', img: 'https://via.placeholder.com/150?text=Paper+Cutter', rating: 4.4, reviews: 290, stock: 150 },
+            { id: 172, name: 'Blade Refill Pack of 10', price: 35, mrp: 48, category: 'cutter', img: 'https://via.placeholder.com/150?text=Blade+Refill', rating: 4.2, reviews: 350, stock: 280 },
+            { id: 173, name: 'Ruler 30cm Steel', price: 45, mrp: 60, category: 'ruler', img: 'https://via.placeholder.com/150?text=Ruler+30cm', rating: 4.3, reviews: 420, stock: 300 },
+            { id: 174, name: 'Ruler 15cm Plastic', price: 15, mrp: 22, category: 'ruler', img: 'https://via.placeholder.com/150?text=Ruler+15cm', rating: 4.0, reviews: 580, stock: 450 },
+            { id: 175, name: 'Set Square 25cm Pair', price: 35, mrp: 48, category: 'geometry', img: 'https://via.placeholder.com/150?text=Set+Square', rating: 4.2, reviews: 320, stock: 250 },
+            { id: 176, name: 'Protractor 15cm', price: 15, mrp: 22, category: 'geometry', img: 'https://via.placeholder.com/150?text=Protractor', rating: 4.1, reviews: 450, stock: 400 },
+            { id: 177, name: 'Compass Geometry Set', price: 85, mrp: 110, category: 'geometry', img: 'https://via.placeholder.com/150?text=Compass+Set', rating: 4.4, reviews: 280, stock: 150 },
+            { id: 178, name: 'Geometry Box Premium', price: 150, mrp: 200, category: 'geometry', img: 'https://via.placeholder.com/150?text=Geometry+Box', rating: 4.6, reviews: 220, stock: 100 },
+            { id: 179, name: 'Scientific Calculator', price: 450, mrp: 550, category: 'calculator', img: 'https://via.placeholder.com/150?text=Scientific+Calc', rating: 4.5, reviews: 185, stock: 80 },
+            { id: 180, name: 'Basic Calculator 12 Digit', price: 250, mrp: 320, category: 'calculator', img: 'https://via.placeholder.com/150?text=Basic+Calc', rating: 4.3, reviews: 290, stock: 150 },
+            // More products (181-210)
+            { id: 181, name: 'Stapler Heavy Duty', price: 180, mrp: 230, category: 'stapler', img: 'https://via.placeholder.com/150?text=Stapler+Heavy', rating: 4.5, reviews: 220, stock: 100 },
+            { id: 182, name: 'Stapler Mini 10 Sheets', price: 45, mrp: 60, category: 'stapler', img: 'https://via.placeholder.com/150?text=Stapler+Mini', rating: 4.2, reviews: 380, stock: 250 },
+            { id: 183, name: 'Staples Box 1000 Pins', price: 35, mrp: 48, category: 'stapler', img: 'https://via.placeholder.com/150?text=Staples+Box', rating: 4.3, reviews: 420, stock: 350 },
+            { id: 184, name: 'Punching Machine 2 Hole', price: 95, mrp: 130, category: 'punch', img: 'https://via.placeholder.com/150?text=Punch+2Hole', rating: 4.4, reviews: 280, stock: 150 },
+            { id: 185, name: 'Punching Machine 4 Hole', price: 150, mrp: 190, category: 'punch', img: 'https://via.placeholder.com/150?text=Punch+4Hole', rating: 4.5, reviews: 185, stock: 100 },
+            { id: 186, name: 'Paper Clips Box 100 Pcs', price: 25, mrp: 35, category: 'clips', img: 'https://via.placeholder.com/150?text=Paper+Clips', rating: 4.1, reviews: 520, stock: 450 },
+            { id: 187, name: 'Binder Clips Large 12 Pcs', price: 35, mrp: 48, category: 'clips', img: 'https://via.placeholder.com/150?text=Binder+Clips', rating: 4.3, reviews: 380, stock: 300 },
+            { id: 188, name: 'Push Pins Color 50 Pcs', price: 25, mrp: 35, category: 'clips', img: 'https://via.placeholder.com/150?text=Push+Pins', rating: 4.2, reviews: 320, stock: 350 },
+            { id: 189, name: 'Rubber Bands Pack 100g', price: 35, mrp: 48, category: 'clips', img: 'https://via.placeholder.com/150?text=Rubber+Bands', rating: 4.0, reviews: 280, stock: 400 },
+            { id: 190, name: 'Envelope Brown A4 Size', price: 15, mrp: 22, category: 'envelope', img: 'https://via.placeholder.com/150?text=Envelope+A4', rating: 4.1, reviews: 650, stock: 500 },
+            { id: 191, name: 'Envelope White A5 Size', price: 10, mrp: 15, category: 'envelope', img: 'https://via.placeholder.com/150?text=Envelope+A5', rating: 4.0, reviews: 480, stock: 600 },
+            { id: 192, name: 'Greeting Card Pack 10', price: 85, mrp: 110, category: 'card', img: 'https://via.placeholder.com/150?text=Greeting+Card', rating: 4.4, reviews: 220, stock: 150 },
+            { id: 193, name: 'Chart Paper White A1', price: 25, mrp: 35, category: 'paper', img: 'https://via.placeholder.com/150?text=Chart+Paper', rating: 4.2, reviews: 380, stock: 350 },
+            { id: 194, name: 'Origami Paper 100 Sheets', price: 45, mrp: 60, category: 'paper', img: 'https://via.placeholder.com/150?text=Origami+Paper', rating: 4.3, reviews: 290, stock: 250 },
+            { id: 195, name: 'Craft Paper Color 20 Sheets', price: 55, mrp: 75, category: 'paper', img: 'https://via.placeholder.com/150?text=Craft+Paper', rating: 4.4, reviews: 220, stock: 200 },
+            { id: 196, name: 'Glitter Paper Pack 10', price: 65, mrp: 85, category: 'paper', img: 'https://via.placeholder.com/150?text=Glitter+Paper', rating: 4.5, reviews: 180, stock: 150 },
+            { id: 197, name: 'Foam Sheet 10 Pcs', price: 85, mrp: 110, category: 'craft', img: 'https://via.placeholder.com/150?text=Foam+Sheet', rating: 4.3, reviews: 165, stock: 120 },
+            { id: 198, name: 'Glue Gun Sticks 50 Pcs', price: 95, mrp: 130, category: 'glue', img: 'https://via.placeholder.com/150?text=Glue+Sticks', rating: 4.4, reviews: 210, stock: 180 },
+            { id: 199, name: 'Wiggly Eyes Pack 100', price: 35, mrp: 48, category: 'craft', img: 'https://via.placeholder.com/150?text=Wiggly+Eyes', rating: 4.2, reviews: 185, stock: 200 },
+            { id: 200, name: 'Feather Decorative 20 Pcs', price: 55, mrp: 75, category: 'craft', img: 'https://via.placeholder.com/150?text=Feather', rating: 4.4, reviews: 145, stock: 130 },
+            // Additional products (201-250)
+            { id: 201, name: 'Paint Brush Set 10 Pcs', price: 120, mrp: 160, category: 'paint', img: 'https://via.placeholder.com/150?text=Brush+Set', rating: 4.5, reviews: 280, stock: 150 },
+            { id: 202, name: 'Acrylic Paint Set 12 Colors', price: 250, mrp: 320, category: 'paint', img: 'https://via.placeholder.com/150?text=Acrylic+Set', rating: 4.6, reviews: 220, stock: 100 },
+            { id: 203, name: 'Water Color Set 24 Colors', price: 350, mrp: 450, category: 'paint', img: 'https://via.placeholder.com/150?text=Water+Color', rating: 4.7, reviews: 165, stock: 70 },
+            { id: 204, name: 'Oil Paint Set 18 Colors', price: 450, mrp: 580, category: 'paint', img: 'https://via.placeholder.com/150?text=Oil+Paint', rating: 4.8, reviews: 120, stock: 45 },
+            { id: 205, name: 'Poster Color 12 Shades', price: 150, mrp: 200, category: 'paint', img: 'https://via.placeholder.com/150?text=Poster+Color', rating: 4.4, reviews: 290, stock: 120 },
+            { id: 206, name: 'Canvas Board 12x16 Inch', price: 85, mrp: 110, category: 'paint', img: 'https://via.placeholder.com/150?text=Canvas+Board', rating: 4.3, reviews: 220, stock: 180 },
+            { id: 207, name: 'Easel Stand Adjustable', price: 650, mrp: 800, category: 'paint', img: 'https://via.placeholder.com/150?text=Easel+Stand', rating: 4.6, reviews: 85, stock: 30 },
+            { id: 208, name: 'Palette Ceramic Round', price: 95, mrp: 130, category: 'paint', img: 'https://via.placeholder.com/150?text=Palette', rating: 4.4, reviews: 145, stock: 100 },
+            { id: 209, name: 'Water Color Paper Block', price: 180, mrp: 230, category: 'paint', img: 'https://via.placeholder.com/150?text=Water+Paper', rating: 4.5, reviews: 165, stock: 80 },
+            { id: 210, name: 'Sketch Paper Roll 10 Mtr', price: 250, mrp: 320, category: 'paint', img: 'https://via.placeholder.com/150?text=Sketch+Roll', rating: 4.4, reviews: 95, stock: 50 },
+            { id: 211, name: 'Calligraphy Set Premium', price: 350, mrp: 450, category: 'calligraphy', img: 'https://via.placeholder.com/150?text=Calligraphy+Set', rating: 4.7, reviews: 120, stock: 60 },
+            { id: 212, name: 'Ink Bottle 50ml Black', price: 45, mrp: 60, category: 'ink', img: 'https://via.placeholder.com/150?text=Ink+Bottle', rating: 4.3, reviews: 280, stock: 200 },
+            { id: 213, name: 'Ink Bottle 50ml Blue', price: 45, mrp: 60, category: 'ink', img: 'https://via.placeholder.com/150?text=Ink+Blue', rating: 4.3, reviews: 265, stock: 210 },
+            { id: 214, name: 'Ink Bottle 50ml Red', price: 45, mrp: 60, category: 'ink', img: 'https://via.placeholder.com/150?text=Ink+Red', rating: 4.2, reviews: 180, stock: 180 },
+            { id: 215, name: 'Refill Ink 10ml Pack', price: 25, mrp: 35, category: 'ink', img: 'https://via.placeholder.com/150?text=Refill+Ink', rating: 4.1, reviews: 420, stock: 350 },
+            { id: 216, name: 'Stamp Pad Large Size', price: 55, mrp: 75, category: 'stamp', img: 'https://via.placeholder.com/150?text=Stamp+Pad', rating: 4.2, reviews: 220, stock: 150 },
+            { id: 217, name: 'Stamp Pad Small Size', price: 35, mrp: 48, category: 'stamp', img: 'https://via.placeholder.com/150?text=Stamp+Small', rating: 4.1, reviews: 185, stock: 200 },
+            { id: 218, name: 'Date Stamp Self Inking', price: 150, mrp: 200, category: 'stamp', img: 'https://via.placeholder.com/150?text=Date+Stamp', rating: 4.4, reviews: 145, stock: 80 },
+            { id: 219, name: 'Address Stamp Custom', price: 250, mrp: 320, category: 'stamp', img: 'https://via.placeholder.com/150?text=Address+Stamp', rating: 4.5, reviews: 95, stock: 50 },
+            { id: 220, name: 'Numbering Stamp 6 Digit', price: 180, mrp: 230, category: 'stamp', img: 'https://via.placeholder.com/150?text=Numbering+Stamp', rating: 4.3, reviews: 75, stock: 40 },
+            { id: 221, name: 'Whiteboard Magnet 25 Pcs', price: 65, mrp: 85, category: 'magnet', img: 'https://via.placeholder.com/150?text=Magnet+Set', rating: 4.2, reviews: 165, stock: 180 },
+            { id: 222, name: 'Magnetic Tape 10 Mtr Roll', price: 85, mrp: 110, category: 'magnet', img: 'https://via.placeholder.com/150?text=Magnetic+Tape', rating: 4.3, reviews: 120, stock: 100 },
+            { id: 223, name: 'Pin Magnet Round 50 Pcs', price: 45, mrp: 60, category: 'magnet', img: 'https://via.placeholder.com/150?text=Pin+Magnet', rating: 4.1, reviews: 145, stock: 220 },
+            { id: 224, name: 'Clip Magnet 20 Pcs Set', price: 55, mrp: 75, category: 'magnet', img: 'https://via.placeholder.com/150?text=Clip+Magnet', rating: 4.2, reviews: 110, stock: 150 },
+            { id: 225, name: 'Whiteboard Cleaner Spray', price: 95, mrp: 130, category: 'cleaner', img: 'https://via.placeholder.com/150?text=Whiteboard+Cleaner', rating: 4.4, reviews: 185, stock: 120 },
+            { id: 226, name: 'Screen Cleaning Kit', price: 150, mrp: 190, category: 'cleaner', img: 'https://via.placeholder.com/150?text=Screen+Cleaner', rating: 4.5, reviews: 145, stock: 80 },
+            { id: 227, name: 'Dust Cleaner Compressed Air', price: 180, mrp: 230, category: 'cleaner', img: 'https://via.placeholder.com/150?text=Dust+Cleaner', rating: 4.3, reviews: 95, stock: 60 },
+            { id: 228, name: 'Microfiber Cloth Large', price: 65, mrp: 85, category: 'cleaner', img: 'https://via.placeholder.com/150?text=Microfiber', rating: 4.2, reviews: 165, stock: 140 },
+            { id: 229, name: 'Desk Organizer Mesh', price: 350, mrp: 450, category: 'organizer', img: 'https://via.placeholder.com/150?text=Desk+Organizer', rating: 4.5, reviews: 120, stock: 50 },
+            { id: 230, name: 'Pen Stand Acrylic Premium', price: 280, mrp: 360, category: 'organizer', img: 'https://via.placeholder.com/150?text=Pen+Stand', rating: 4.4, reviews: 95, stock: 70 },
+            { id: 231, name: 'File Rack 5 Tier Metal', price: 650, mrp: 800, category: 'organizer', img: 'https://via.placeholder.com/150?text=File+Rack', rating: 4.6, reviews: 85, stock: 35 },
+            { id: 232, name: 'Drawer Tray Plastic', price: 150, mrp: 200, category: 'organizer', img: 'https://via.placeholder.com/150?text=Drawer+Tray', rating: 4.3, reviews: 145, stock: 100 },
+            { id: 233, name: 'Paper Weight Set 5 Pcs', price: 95, mrp: 130, category: 'organizer', img: 'https://via.placeholder.com/150?text=Paper+Weight', rating: 4.4, reviews: 110, stock: 80 },
+            { id: 234, name: 'Business Card Holder', price: 180, mrp: 230, category: 'organizer', img: 'https://via.placeholder.com/150?text=Card+Holder', rating: 4.3, reviews: 85, stock: 60 },
+            { id: 235, name: 'Label Maker Handheld', price: 850, mrp: 1050, category: 'label', img: 'https://via.placeholder.com/150?text=Label+Maker', rating: 4.6, reviews: 65, stock: 25 },
+            { id: 236, name: 'Label Tape 12mm White', price: 95, mrp: 130, category: 'label', img: 'https://via.placeholder.com/150?text=Label+Tape', rating: 4.4, reviews: 185, stock: 150 },
+            { id: 237, name: 'Label Tape 12mm Yellow', price: 95, mrp: 130, category: 'label', img: 'https://via.placeholder.com/150?text=Label+Yellow', rating: 4.4, reviews: 165, stock: 140 },
+            { id: 238, name: 'Price Tag Gun with Tags', price: 450, mrp: 580, category: 'label', img: 'https://via.placeholder.com/150?text=Price+Tag+Gun', rating: 4.5, reviews: 75, stock: 40 },
+            { id: 239, name: 'Price Tags 1000 Pcs', price: 85, mrp: 110, category: 'label', img: 'https://via.placeholder.com/150?text=Price+Tags', rating: 4.2, reviews: 220, stock: 200 },
+            { id: 240, name: 'Barcode Labels Roll 500', price: 65, mrp: 85, category: 'label', img: 'https://via.placeholder.com/150?text=Barcode+Labels', rating: 4.3, reviews: 145, stock: 180 },
+            { id: 241, name: 'Gift Wrap Paper 5 Mtr', price: 85, mrp: 110, category: 'wrap', img: 'https://via.placeholder.com/150?text=Gift+Wrap', rating: 4.4, reviews: 185, stock: 150 },
+            { id: 242, name: 'Ribbon Roll 50 Mtr', price: 65, mrp: 85, category: 'wrap', img: 'https://via.placeholder.com/150?text=Ribbon+Roll', rating: 4.3, reviews: 145, stock: 120 },
+            { id: 243, name: 'Bow Set 20 Pcs Decorative', price: 95, mrp: 130, category: 'wrap', img: 'https://via.placeholder.com/150?text=Bow+Set', rating: 4.5, reviews: 110, stock: 90 },
+            { id: 244, name: 'Cellophane Paper 10 Sheets', price: 55, mrp: 75, category: 'wrap', img: 'https://via.placeholder.com/150?text=Cellophane', rating: 4.2, reviews: 165, stock: 140 },
+            { id: 245, name: 'Paper Bag Medium Size', price: 15, mrp: 22, category: 'wrap', img: 'https://via.placeholder.com/150?text=Paper+Bag', rating: 4.0, reviews: 420, stock: 500 },
+            { id: 246, name: 'Paper Bag Large Size', price: 20, mrp: 28, category: 'wrap', img: 'https://via.placeholder.com/150?text=Paper+Bag+Large', rating: 4.1, reviews: 350, stock: 450 },
+            { id: 247, name: 'Jute Bag Pack of 10', price: 150, mrp: 200, category: 'wrap', img: 'https://via.placeholder.com/150?text=Jute+Bag', rating: 4.4, reviews: 95, stock: 80 },
+            { id: 248, name: 'Plastic Bag 100 Pcs', price: 45, mrp: 60, category: 'wrap', img: 'https://via.placeholder.com/150?text=Plastic+Bag', rating: 4.0, reviews: 280, stock: 400 },
+            { id: 249, name: 'Bubble Wrap Roll 10 Mtr', price: 180, mrp: 230, category: 'wrap', img: 'https://via.placeholder.com/150?text=Bubble+Wrap', rating: 4.3, reviews: 120, stock: 100 },
+            { id: 250, name: 'Packing Peanuts 1 Kg', price: 95, mrp: 130, category: 'wrap', img: 'https://via.placeholder.com/150?text=Packing+Peanuts', rating: 4.2, reviews: 85, stock: 70 }
+        ];
+
+        let cart = [];
+        let wishlist = [];
+        let compareList = [];
+        let currentCategory = 'all';
+        let searchQuery = '';
+        let quickViewProduct = null;
+
+        // Flash Sale Timer
+        function startFlashTimer() {
+            let hours = 2, minutes = 45, seconds = 30;
+            setInterval(() => {
+                seconds--;
+                if (seconds < 0) { seconds = 59; minutes--; }
+                if (minutes < 0) { minutes = 59; hours--; }
+                if (hours < 0) { hours = 2; minutes = 45; seconds = 30; }
+                document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+                document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+                document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+            }, 1000);
+        }
+
+        // Sort Products
+        function sortProducts() {
+            const sortBy = document.getElementById('sort-dropdown').value;
+            renderProducts(sortBy);
+        }
+
+        // Render Products
+        function renderProducts(sortBy = 'default') {
+            const grid = document.getElementById('products-grid');
+            let filteredProducts = products;
+
+            // Filter by category
+            if (currentCategory !== 'all') {
+                filteredProducts = filteredProducts.filter(p => p.category === currentCategory);
+            }
+
+            // Filter by search
+            if (searchQuery) {
+                const query = searchQuery.toLowerCase();
+                filteredProducts = filteredProducts.filter(p => 
+                    p.name.toLowerCase().includes(query) ||
+                    p.category.toLowerCase().includes(query)
+                );
+            }
+
+            // Sort products
+            if (sortBy === 'price-low') {
+                filteredProducts.sort((a, b) => a.price - b.price);
+            } else if (sortBy === 'price-high') {
+                filteredProducts.sort((a, b) => b.price - a.price);
+            } else if (sortBy === 'rating') {
+                filteredProducts.sort((a, b) => b.rating - a.rating);
+            } else if (sortBy === 'discount') {
+                filteredProducts.sort((a, b) => ((b.mrp - b.price) / b.mrp) - ((a.mrp - a.price) / a.mrp));
+            }
+
+            if (filteredProducts.length === 0) {
+                grid.innerHTML = `
+                    <div class="no-results" style="grid-column: 1 / -1;">
+                        <i class="fas fa-search"></i>
+                        <h3>No products found</h3>
+                        <p>Try different keywords or browse categories</p>
+                    </div>
+                `;
+                return;
+            }
+
+            grid.innerHTML = filteredProducts.map(product => {
+                const discount = Math.round(((product.mrp - product.price) / product.mrp) * 100);
+                const stars = '★'.repeat(Math.floor(product.rating)) + '☆'.repeat(5 - Math.floor(product.rating));
+                const stockStatus = product.stock <= 5 ? '<span class="stock-low">Only ' + product.stock + ' left!</span>' : '<span class="stock-available">In Stock (' + product.stock + ')</span>';
+                const isWishlisted = wishlist.some(w => w.id === product.id);
+                
+                return `
+                    <div class="product-card">
+                        <button class="wishlist-btn ${isWishlisted ? 'active' : ''}" onclick="toggleWishlistItem(${product.id})">
+                            <i class="fas fa-heart"></i>
+                        </button>
+                        <img src="${product.img}" alt="${product.name}" class="product-img" onclick="openQuickView(${product.id})">
+                        <div class="product-name">${product.name}</div>
+                        <div class="product-rating">
+                            <span class="stars">${stars}</span>
+                            <span class="rating-count">(${product.reviews})</span>
+                        </div>
+                        <div class="product-price">
+                            <span class="currency">₹</span>${product.price}
+                            <span class="decimal">00</span>
+                        </div>
+                        <div class="product-mrp">M.R.P: ₹${product.mrp}</div>
+                        <div class="discount">${discount}% OFF</div>
+                        <div class="delivery">Free Delivery by Tomorrow</div>
+                        <div class="product-stock">${stockStatus}</div>
+                        <button class="add-btn" onclick="addToCart(${product.id})">
+                            <i class="fas fa-cart-plus"></i> Add to Cart
+                        </button>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Quick View Functions
+        function openQuickView(productId) {
+            const product = products.find(p => p.id === productId);
+            if (!product) return;
+            
+            quickViewProduct = product;
+            const discount = Math.round(((product.mrp - product.price) / product.mrp) * 100);
+            const stars = '★'.repeat(Math.floor(product.rating)) + '☆'.repeat(5 - Math.floor(product.rating));
+            
+            document.getElementById('qv-img').src = product.img;
+            document.getElementById('qv-name').textContent = product.name;
+            document.getElementById('qv-stars').textContent = stars;
+            document.getElementById('qv-reviews').textContent = `(${product.reviews} reviews)`;
+            document.getElementById('qv-price').innerHTML = `<span class="currency">₹</span>${product.price}<span class="decimal">00</span>`;
+            document.getElementById('qv-mrp').textContent = `M.R.P: ₹${product.mrp}`;
+            document.getElementById('qv-discount').textContent = `${discount}% OFF`;
+            document.getElementById('qv-stock').textContent = product.stock <= 5 ? `⚠️ Only ${product.stock} left!` : `✅ In Stock (${product.stock} available)`;
+            
+            document.getElementById('quick-view-modal').classList.add('show');
+        }
+
+        function closeQuickView() {
+            document.getElementById('quick-view-modal').classList.remove('show');
+            quickViewProduct = null;
+        }
+
+        function addFromQuickView() {
+            if (quickViewProduct) {
+                addToCart(quickViewProduct.id);
+                closeQuickView();
+            }
+        }
+
+        // Wishlist Functions
+        function toggleWishlistItem(productId) {
+            const product = products.find(p => p.id === productId);
+            const existingIndex = wishlist.findIndex(w => w.id === productId);
+            
+            if (existingIndex >= 0) {
+                wishlist.splice(existingIndex, 1);
+                showNotification('Removed from wishlist');
+            } else {
+                wishlist.push(product);
+                showNotification('Added to wishlist ❤️');
+            }
+            
+            updateWishlistUI();
+            renderProducts(document.getElementById('sort-dropdown').value);
+        }
+
+        function updateWishlistUI() {
+            document.getElementById('wishlist-count').textContent = wishlist.length;
+            
+            const wishlistItemsEl = document.getElementById('wishlist-items');
+            
+            if (wishlist.length === 0) {
+                wishlistItemsEl.innerHTML = `
+                    <div class="no-results">
+                        <i class="fas fa-heart" style="font-size: 50px; color: #ff4444;"></i>
+                        <h3>Your wishlist is empty</h3>
+                        <p>Save your favorite products here</p>
+                    </div>
+                `;
+                return;
+            }
+
+            wishlistItemsEl.innerHTML = wishlist.map(item => `
+                <div class="wishlist-item">
+                    <img src="${item.img}" alt="${item.name}" class="wishlist-item-img">
+                    <div class="wishlist-item-details">
+                        <div class="wishlist-item-name">${item.name}</div>
+                        <div class="wishlist-item-price">₹${item.price}</div>
+                        <div class="wishlist-item-actions">
+                            <button class="wishlist-add-cart" onclick="addWishlistToCart(${item.id})">
+                                <i class="fas fa-cart-plus"></i> Add to Cart
+                            </button>
+                            <button class="wishlist-remove" onclick="toggleWishlistItem(${item.id})">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function addWishlistToCart(productId) {
+            addToCart(productId);
+            toggleWishlistItem(productId);
+        }
+
+        function toggleWishlist() {
+            const sidebar = document.getElementById('wishlist-sidebar');
+            const overlay = document.getElementById('wishlist-overlay');
+            sidebar.classList.toggle('open');
+            overlay.classList.toggle('show');
+        }
+
+        // Compare Functions
+        function addToCompare(productId) {
+            if (compareList.length >= 4) {
+                showNotification('Maximum 4 products can be compared');
+                return;
+            }
+            if (compareList.includes(productId)) {
+                showNotification('Product already in compare list');
+                return;
+            }
+            compareList.push(productId);
+            updateCompareBar();
+            showNotification('Added to compare');
+        }
+
+        function updateCompareBar() {
+            const bar = document.getElementById('compare-bar');
+            const container = document.getElementById('compare-products');
+            document.getElementById('compare-count').textContent = compareList.length;
+            
+            if (compareList.length > 0) {
+                bar.classList.add('show');
+                container.innerHTML = compareList.map(id => {
+                    const p = products.find(prod => prod.id === id);
+                    return p ? `<img src="${p.img}" class="compare-product" title="${p.name}">` : '';
+                }).join('');
+            } else {
+                bar.classList.remove('show');
+            }
+        }
+
+        function clearCompare() {
+            compareList = [];
+            updateCompareBar();
+            showNotification('Compare list cleared');
+        }
+
+        function viewCompare() {
+            if (compareList.length < 2) {
+                showNotification('Add at least 2 products to compare');
+                return;
+            }
+            const compareProducts = compareList.map(id => products.find(p => p.id === id));
+            let table = 'Compare Products:\\n\\n';
+            compareProducts.forEach(p => {
+                table += `${p.name}\\nPrice: ₹${p.price}\\nRating: ${p.rating}\\nStock: ${p.stock}\\n\\n`;
+            });
+            alert(table);
+        }
+
+        // Add to Cart
+        function addToCart(productId) {
+            const product = products.find(p => p.id === productId);
+            const existingItem = cart.find(item => item.id === productId);
+
+            // Check stock availability
+            const cartQty = existingItem ? existingItem.qty : 0;
+            if (cartQty >= product.stock) {
+                showNotification('Sorry! Only ' + product.stock + ' available in stock.');
+                return;
+            }
+
+            if (existingItem) {
+                existingItem.qty++;
+            } else {
+                cart.push({ ...product, qty: 1 });
+            }
+
+            updateCartUI();
+            showNotification(`Added "${product.name}" to cart!`);
+        }
+
+        // Update Cart UI
+        function updateCartUI() {
+            // Update cart count
+            const totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
+            document.getElementById('cart-count').textContent = totalQty;
+            document.getElementById('cart-qty').textContent = totalQty;
+
+            // Update cart total
+            const total = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+            document.getElementById('cart-total').textContent = total;
+
+            // Render cart items
+            const cartItemsEl = document.getElementById('cart-items');
+            
+            if (cart.length === 0) {
+                cartItemsEl.innerHTML = `
+                    <div class="no-results">
+                        <i class="fas fa-shopping-cart" style="font-size: 50px;"></i>
+                        <h3>Your cart is empty</h3>
+                        <p>Add some products to get started</p>
+                    </div>
+                `;
+                return;
+            }
+
+            cartItemsEl.innerHTML = cart.map(item => `
+                <div class="cart-item">
+                    <img src="${item.img}" alt="${item.name}" class="cart-item-img">
+                    <div class="cart-item-details">
+                        <div class="cart-item-name">${item.name}</div>
+                        <div class="cart-item-price">₹${item.price}</div>
+                        <div class="cart-item-qty">
+                            <button class="qty-btn" onclick="updateQty(${item.id}, -1)">-</button>
+                            <span class="qty-value">${item.qty}</span>
+                            <button class="qty-btn" onclick="updateQty(${item.id}, 1)">+</button>
+                            <button class="remove-item" onclick="removeFromCart(${item.id})">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Update Quantity
+        function updateQty(productId, change) {
+            const item = cart.find(i => i.id === productId);
+            if (item) {
+                item.qty += change;
+                if (item.qty <= 0) {
+                    removeFromCart(productId);
+                } else {
+                    updateCartUI();
+                }
+            }
+        }
+
+        // Remove from Cart
+        function removeFromCart(productId) {
+            cart = cart.filter(item => item.id !== productId);
+            updateCartUI();
+            showNotification('Item removed from cart');
+        }
+
+        // Toggle Cart
+        function toggleCart() {
+            const sidebar = document.getElementById('cart-sidebar');
+            const overlay = document.getElementById('overlay');
+            sidebar.classList.toggle('open');
+            overlay.classList.toggle('show');
+        }
+
+        // Show Notification
+        function showNotification(message) {
+            const notif = document.getElementById('notification');
+            notif.innerHTML = `<i class="fas fa-check-circle"></i> ${message}`;
+            notif.classList.add('show');
+            setTimeout(() => {
+                notif.classList.remove('show');
+            }, 2500);
+        }
+
+        // Filter Category
+        function filterCategory(category) {
+            currentCategory = category;
+            document.querySelectorAll('.category').forEach(cat => {
+                cat.classList.remove('active');
+                if (cat.textContent.toLowerCase().includes(category) || (category === 'all' && cat.textContent.includes('All'))) {
+                    cat.classList.add('active');
+                }
+            });
+            
+            const titles = {
+                'all': 'Trending Products',
+                'pen': 'Pens Collection',
+                'pencil': 'Pencils Collection',
+                'kit': 'Kits & Sets',
+                'highlighter': 'Highlighters'
+            };
+            document.getElementById('section-title').textContent = titles[category];
+            renderProducts(document.getElementById('sort-dropdown').value);
+        }
+
+        // Search Products
+        function searchProducts() {
+            searchQuery = document.getElementById('search-input').value;
+            renderProducts(document.getElementById('sort-dropdown').value);
+        }
+
+        // Enter key search
+        document.getElementById('search-input').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                searchProducts();
+            }
+        });
+
+        // Close modals on escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeQuickView();
+                if (document.getElementById('cart-sidebar').classList.contains('open')) {
+                    toggleCart();
+                }
+                if (document.getElementById('wishlist-sidebar').classList.contains('open')) {
+                    toggleWishlist();
+                }
+            }
+        });
+
+        // Proceed to Checkout
+        function proceedToCheckout() {
+            if (cart.length === 0) {
+                showNotification('Your cart is empty!');
+                return;
+            }
+            // Close cart sidebar first
+            document.getElementById('cart-sidebar').classList.remove('open');
+            document.getElementById('overlay').classList.remove('show');
+            // Populate summary and open checkout modal
+            populateCheckoutSummary();
+            document.getElementById('checkout-modal').classList.add('show');
+        }
+
+        // Populate checkout summary
+        function populateCheckoutSummary() {
+            const summaryItems = document.getElementById('summary-items');
+            const summaryQty = document.getElementById('summary-qty');
+            const summaryTotal = document.getElementById('summary-total');
+            
+            let itemsHtml = '';
+            let totalQty = 0;
+            let totalPrice = 0;
+            
+            cart.forEach(item => {
+                itemsHtml += `<div class="summary-item">
+                    <span>${item.name} (x${item.qty})</span>
+                    <span>₹${item.price * item.qty}</span>
+                </div>`;
+                totalQty += item.qty;
+                totalPrice += item.price * item.qty;
+            });
+            
+            summaryItems.innerHTML = itemsHtml;
+            summaryQty.textContent = totalQty;
+            summaryTotal.textContent = totalPrice;
+        }
+
+        // State and Capital data for India
+        const stateCapitals = {
+            'Andhra Pradesh': 'Amaravati',
+            'Arunachal Pradesh': 'Itanagar',
+            'Assam': 'Dispur',
+            'Bihar': 'Patna',
+            'Chhattisgarh': 'Raipur',
+            'Goa': 'Panaji',
+            'Gujarat': 'Gandhinagar',
+            'Haryana': 'Chandigarh',
+            'Himachal Pradesh': 'Shimla',
+            'Jharkhand': 'Ranchi',
+            'Karnataka': 'Bengaluru',
+            'Kerala': 'Thiruvananthapuram',
+            'Madhya Pradesh': 'Bhopal',
+            'Maharashtra': 'Mumbai',
+            'Manipur': 'Imphal',
+            'Meghalaya': 'Shillong',
+            'Mizoram': 'Aizawl',
+            'Nagaland': 'Kohima',
+            'Odisha': 'Bhubaneswar',
+            'Punjab': 'Chandigarh',
+            'Rajasthan': 'Jaipur',
+            'Sikkim': 'Gangtok',
+            'Tamil Nadu': 'Chennai',
+            'Telangana': 'Hyderabad',
+            'Tripura': 'Agartala',
+            'Uttar Pradesh': 'Lucknow',
+            'Uttarakhand': 'Dehradun',
+            'West Bengal': 'Kolkata',
+            'Delhi': 'New Delhi',
+            'Jammu & Kashmir': 'Srinagar',
+            'Ladakh': 'Leh',
+            'Chandigarh': 'Chandigarh',
+            'Puducherry': 'Puducherry'
+        };
+
+        // Update capital when state is selected
+        function updateCapital() {
+            const state = document.getElementById('cust-state').value;
+            const capitalInput = document.getElementById('cust-capital');
+            if (state && stateCapitals[state]) {
+                capitalInput.value = stateCapitals[state];
+            } else {
+                capitalInput.value = '';
+            }
+        }
+
+        // Close checkout modal
+        function closeCheckout() {
+            document.getElementById('checkout-modal').classList.remove('show');
+        }
+
+        // Place order
+        function placeOrder() {
+            const name = document.getElementById('cust-name').value.trim();
+            const email = document.getElementById('cust-email').value.trim();
+            const phone = document.getElementById('cust-phone').value.trim();
+            const address = document.getElementById('cust-address').value.trim();
+            const state = document.getElementById('cust-state').value;
+            const capital = document.getElementById('cust-capital').value.trim();
+            const pincode = document.getElementById('cust-pincode').value.trim();
+
+            // Validation
+            if (!name) {
+                showNotification('Please enter your name!');
+                document.getElementById('cust-name').focus();
+                return;
+            }
+            if (!email || !email.includes('@')) {
+                showNotification('Please enter a valid email!');
+                document.getElementById('cust-email').focus();
+                return;
+            }
+            if (!phone || phone.length < 10) {
+                showNotification('Please enter a valid phone number!');
+                document.getElementById('cust-phone').focus();
+                return;
+            }
+            if (!address) {
+                showNotification('Please enter your address!');
+                document.getElementById('cust-address').focus();
+                return;
+            }
+            if (!state) {
+                showNotification('Please select your state!');
+                document.getElementById('cust-state').focus();
+                return;
+            }
+            if (!pincode || pincode.length !== 6 || isNaN(pincode)) {
+                showNotification('Please enter a valid 6-digit pincode!');
+                document.getElementById('cust-pincode').focus();
+                return;
+            }
+
+            // Calculate total
+            const total = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+
+            // Show order confirmation
+            const orderDetails = `
+🛒 Order Confirmation
+
+👤 Customer Details:
+Name: ${name}
+Email: ${email}
+Phone: ${phone}
+
+📍 Delivery Address:
+${address}
+State: ${state}
+Capital: ${capital}
+Pincode: ${pincode}
+
+💰 Order Total: ₹${total}
+📦 Items: ${cart.length}
+
+Thank you for your order!`;
+            
+            alert(orderDetails);
+            closeCheckout();
+            
+            // Clear cart
+            cart = [];
+            localStorage.setItem('cart', JSON.stringify(cart));
+            renderCart();
+            showNotification('Order placed successfully!');
+        }
+
+        // Cookie Consent Functions
+        function checkCookieConsent() {
+            const consent = localStorage.getItem('cookieConsent');
+            if (!consent) {
+                setTimeout(() => {
+                    document.getElementById('cookie-banner').classList.add('show');
+                }, 1000);
+            }
+        }
+
+        function acceptCookies() {
+            localStorage.setItem('cookieConsent', 'accepted');
+            localStorage.setItem('cookieTimestamp', new Date().toISOString());
+            document.getElementById('cookie-banner').classList.remove('show');
+            showNotification('Cookies accepted! Thank you.');
+        }
+
+        function rejectCookies() {
+            localStorage.setItem('cookieConsent', 'rejected');
+            localStorage.setItem('cookieTimestamp', new Date().toISOString());
+            document.getElementById('cookie-banner').classList.remove('show');
+            showNotification('Cookies rejected. Some features may be limited.');
+        }
+
+        // Initialize
+        renderProducts();
+        startFlashTimer();
+        checkCookieConsent();
+    </script>
+</body>
+</html>
