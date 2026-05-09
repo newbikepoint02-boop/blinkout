@@ -3067,7 +3067,228 @@ Thank you for your order!`;
 <script>
 function showNotifications() {
   document.getElementById("notificationBox").classList.toggle("hidden");
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Summer Vacation 2026 Sale</title>
+
+<style>
+    *{
+        margin:0;
+        padding:0;
+        box-sizing:border-box;
+        font-family:Arial, sans-serif;
+    }
+
+    body{
+        background:#fff8f0;
+    }
+
+    /* Notification Bar */
+    .top-bar{
+        background:#ff4d4d;
+        color:white;
+        text-align:center;
+        padding:12px;
+        font-size:18px;
+        font-weight:bold;
+        animation:blink 1s infinite;
+    }
+
+    @keyframes blink{
+        50%{
+            opacity:0.7;
+        }
+    }
+
+    /* Hero Section */
+    .hero{
+        height:100vh;
+        background:linear-gradient(to right,#ff9966,#ff5e62);
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        flex-direction:column;
+        text-align:center;
+        color:white;
+        padding:20px;
+    }
+
+    .hero h1{
+        font-size:70px;
+        text-shadow:3px 3px 10px rgba(0,0,0,0.4);
+    }
+
+    .hero p{
+        margin-top:15px;
+        font-size:28px;
+    }
+
+    .discount{
+        margin-top:25px;
+        font-size:60px;
+        background:white;
+        color:#ff4d4d;
+        padding:20px 40px;
+        border-radius:20px;
+        font-weight:bold;
+        box-shadow:0 0 20px rgba(0,0,0,0.3);
+        animation:pulse 1.5s infinite;
+    }
+
+    @keyframes pulse{
+        0%{
+            transform:scale(1);
+        }
+        50%{
+            transform:scale(1.08);
+        }
+        100%{
+            transform:scale(1);
+        }
+    }
+
+    .btn{
+        margin-top:35px;
+        padding:15px 40px;
+        background:#222;
+        color:white;
+        text-decoration:none;
+        border-radius:50px;
+        font-size:22px;
+        transition:0.3s;
+    }
+
+    .btn:hover{
+        background:white;
+        color:#222;
+    }
+
+    /* Product Section */
+    .products{
+        padding:60px 20px;
+        text-align:center;
+    }
+
+    .products h2{
+        font-size:40px;
+        margin-bottom:40px;
+        color:#333;
+    }
+
+    .product-container{
+        display:flex;
+        flex-wrap:wrap;
+        justify-content:center;
+        gap:30px;
+    }
+
+    .card{
+        width:280px;
+        background:white;
+        border-radius:20px;
+        overflow:hidden;
+        box-shadow:0 5px 15px rgba(0,0,0,0.15);
+        transition:0.3s;
+    }
+
+    .card:hover{
+        transform:translateY(-10px);
+    }
+
+    .card img{
+        width:100%;
+        height:250px;
+        object-fit:cover;
+    }
+
+    .card h3{
+        padding:15px;
+        font-size:24px;
+    }
+
+    .price{
+        color:#ff4d4d;
+        font-size:24px;
+        font-weight:bold;
+        padding-bottom:20px;
+    }
+
+    footer{
+        background:#222;
+        color:white;
+        text-align:center;
+        padding:20px;
+        margin-top:50px;
+    }
+
+    @media(max-width:768px){
+        .hero h1{
+            font-size:45px;
+        }
+
+        .discount{
+            font-size:40px;
+        }
+
+        .hero p{
+            font-size:22px;
+        }
+    }
+</style>
+</head>
+
+<body>
+
+<div class="top-bar">
+🔥 SUMMER VACATION 2026 SALE — FLAT 30% OFF ON ALL STATIONERY ITEMS 🔥
+</div>
+
+<section class="hero">
+    <h1>SUMMER VACATION SALE 2026</h1>
+    <p>Upgrade Your Stationery Collection Now</p>
+
+    <div class="discount">
+        30% OFF
+    </div>
+
+    <a href="#products" class="btn">Shop Now</a>
+</section>
+
+<section class="products" id="products">
+    <h2>Trending Products</h2>
+
+    <div class="product-container">
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1517842645767-c639042777db?q=80&w=1200&auto=format&fit=crop" alt="Notebook">
+            <h3>Premium Notebook</h3>
+            <div class="price">₹199</div>
+        </div>                
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?q=80&w=1200&auto=format&fit=crop" alt="Pens">
+            <h3>Color Pen Set</h3>
+            <div class="price">₹149</div>
+        </div>
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1200&auto=format&fit=crop" alt="School Kit">
+            <h3>School Kit</h3>
+            <div class="price">₹499</div>
+        </div>
+
+    </div>
+</section>
+
+<footer>
+    © 2026 Blinkart Stationery Store | Summer Vacation Mega Sale
+</footer>
+
+</body>
+</html>    }
 </script>
 
 </body>
