@@ -63,6 +63,142 @@
             line-height: 1.5;
         }
 
+        /* Product Card Styles */
+        .product-card {
+            background: white;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transition: all var(--transition-normal);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-card:hover {
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-5px);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 200px;
+            background: #F3F3F3;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
+            color: #DDD;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-info {
+            padding: 16px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-name {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+            line-height: 1.3;
+            min-height: 28px;
+        }
+
+        .product-rating {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 8px;
+            font-size: 12px;
+        }
+
+        .product-rating .stars {
+            color: #FFA500;
+        }
+
+        .product-rating .count {
+            color: var(--text-muted);
+        }
+
+        .product-price-section {
+            margin-bottom: 12px;
+        }
+
+        .product-price {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .product-mrp {
+            font-size: 12px;
+            color: var(--text-muted);
+            text-decoration: line-through;
+        }
+
+        .product-discount {
+            font-size: 12px;
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        .product-actions {
+            display: flex;
+            gap: 8px;
+            margin-top: auto;
+        }
+
+        .btn-add-cart {
+            flex: 1;
+            background: var(--gradient-secondary);
+            border: none;
+            color: white;
+            padding: 10px;
+            border-radius: var(--radius-md);
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all var(--transition-normal);
+        }
+
+        .btn-add-cart:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 153, 0, 0.3);
+        }
+
+        .btn-wishlist {
+            width: 40px;
+            background: #F3F3F3;
+            border: none;
+            color: var(--text-muted);
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            transition: all var(--transition-normal);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-wishlist:hover {
+            color: var(--danger);
+            background: rgba(255, 68, 68, 0.1);
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 16px;
+            margin-bottom: 40px;
+        }
+
         /* Scrollbar Styling */
         ::-webkit-scrollbar {
             width: 11px;
@@ -454,15 +590,6 @@
         }
 
         /* Main Content */
-        }
-
-        .category:hover, .category.active {
-            background: rgba(0, 212, 255, 0.15);
-            color: var(--primary);
-            border-color: rgba(0, 212, 255, 0.3);
-        }
-
-        /* Main Content */
         .main-content {
             padding: 20px;
             max-width: 1600px;
@@ -629,35 +756,7 @@
             background: #F08804;
         }
 
-        /* Products Grid */
-        .products-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-            gap: 20px;
-        }
-
-        .banner h1 {
-            font-size: 42px;
-            margin-bottom: 12px;
-            font-weight: 700;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            position: relative;
-        }
-
-        .banner p {
-            font-size: 18px;
-            color: var(--text-secondary);
-            position: relative;
-        }
-
-        /* Products Grid */
-        .products-section {
-            margin-bottom: 50px;
-        }
-
+        /* Section Header */
         .section-header {
             display: flex;
             justify-content: space-between;
@@ -687,585 +786,8 @@
             background: var(--secondary);
         }
 
-        /* Sort Dropdown */
-        .sort-section {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .sort-label {
-            color: var(--text-secondary);
-            font-size: 14px;
-        }
-
-        .sort-dropdown {
-            background: rgba(255, 255, 255, 0.08);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            color: var(--text-primary);
-            padding: 12px 18px;
-            border-radius: var(--radius-md);
-            font-size: 14px;
-            cursor: pointer;
-            outline: none;
-            font-family: inherit;
-            transition: all var(--transition-normal);
-        }
-
-        .sort-dropdown:hover, .sort-dropdown:focus {
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.15);
-        }
-
-        /* Wishlist Heart */
-        .wishlist-btn {
-            position: absolute;
-            top: 12px;
-            right: 12px;
-            background: rgba(0, 0, 0, 0.5);
-            border: none;
-            color: var(--text-secondary);
-            width: 38px;
-            height: 38px;
-            border-radius: 50%;
-            cursor: pointer;
-            font-size: 16px;
-            transition: all var(--transition-normal);
-            z-index: 10;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            backdrop-filter: blur(5px);
-        }
-
-        .wishlist-btn:hover {
-            background: rgba(255, 255, 255, 0.15);
-            transform: scale(1.1);
-            color: var(--danger);
-        }
-
-        .wishlist-btn.active {
-            color: var(--danger);
-            background: rgba(255, 68, 68, 0.2);
-        }
-
-        /* Quick View Modal */
-        .quick-view-modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.85);
-            z-index: 2000;
-            display: none;
-            justify-content: center;
-            align-items: center;
-            padding: 30px;
-            backdrop-filter: blur(10px);
-        }
-
-        .quick-view-modal.show {
-            display: flex;
-        }
-
-        .quick-view-content {
-            background: linear-gradient(145deg, var(--card-bg) 0%, var(--card-bg-light) 100%);
-            border: 1px solid rgba(0, 212, 255, 0.2);
-            border-radius: var(--radius-lg);
-            max-width: 900px;
-            width: 100%;
-            max-height: 90vh;
-            overflow-y: auto;
-            position: relative;
-            animation: modalSlide 0.3s ease;
-        }
-
-        @keyframes modalSlide {
-            from { transform: translateY(-30px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-
-        .quick-view-close {
-            position: absolute;
-            top: 18px;
-            right: 18px;
-            background: rgba(255, 255, 255, 0.1);
-            border: none;
-            color: var(--text-secondary);
-            font-size: 28px;
-            cursor: pointer;
-            z-index: 10;
-            width: 42px;
-            height: 42px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all var(--transition-normal);
-        }
-
-        .quick-view-close:hover {
-            background: var(--danger);
-            color: white;
-        }
-
-        .quick-view-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            padding: 35px;
-        }
-
-        .quick-view-img {
-            width: 100%;
-            height: 280px;
-            object-fit: contain;
-            background: white;
-            border-radius: var(--radius-lg);
-            padding: 25px;
-        }
-
-        .quick-view-details h2 {
-            font-size: 24px;
-            margin-bottom: 12px;
-            color: var(--text-primary);
-            font-weight: 700;
-        }
-
-        .quick-view-rating {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 18px;
-        }
-
-        .quick-view-price {
-            font-size: 36px;
-            font-weight: 700;
-            color: var(--primary);
-            margin-bottom: 12px;
-        }
-
-        .quick-view-mrp {
-            color: var(--text-muted);
-            text-decoration: line-through;
-            font-size: 18px;
-            margin-bottom: 8px;
-        }
-
-        .quick-view-discount {
-            color: var(--accent);
-            font-size: 16px;
-            font-weight: 600;
-            margin-bottom: 20px;
-        }
-
-        .quick-view-stock {
-            font-size: 15px;
-            margin-bottom: 25px;
-            color: var(--text-secondary);
-        }
-
-        .quick-view-actions {
-            display: flex;
-            gap: 18px;
-            margin-top: 25px;
-        }
-
-        .quick-view-btn {
-            flex: 1;
-            padding: 16px;
-            border-radius: var(--radius-xl);
-            font-weight: 700;
-            cursor: pointer;
-            transition: all var(--transition-normal);
-            border: none;
-            font-size: 15px;
-            font-family: inherit;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .quick-view-add {
-            background: var(--gradient-secondary);
-            color: #0a1425;
-        }
-
-        .quick-view-add:hover {
-            background: linear-gradient(135deg, #ffaa22 0%, #ff8800 100%);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(255, 153, 0, 0.35);
-        }
-
-        .quick-view-buy {
-            background: var(--gradient-primary);
-            color: #0a1425;
-        }
-
-        .quick-view-buy:hover {
-            background: linear-gradient(135deg, #00e5ff 0%, #00aadd 100%);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(0, 212, 255, 0.35);
-        }
-
-        /* Flash Sale Banner */
-        .flash-sale-banner {
-            background: linear-gradient(135deg, #ff4444 0%, #ff6b35 50%, #ff4444 100%);
-            border-radius: var(--radius-lg);
-            padding: 24px 35px;
-            margin-bottom: 35px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 20px;
-            animation: flashPulse 2s infinite;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .flash-sale-banner::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
-            animation: flashShine 3s infinite;
-        }
-
-        @keyframes flashPulse {
-            0%, 100% { box-shadow: 0 0 25px rgba(255, 68, 68, 0.4); }
-            50% { box-shadow: 0 0 45px rgba(255, 68, 68, 0.7); }
-        }
-
-        @keyframes flashShine {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
-        }
-
-        .flash-sale-left {
-            display: flex;
-            align-items: center;
-            gap: 18px;
-        }
-
-        .flash-icon {
-            font-size: 42px;
-            animation: flashIcon 1s infinite;
-        }
-
-        @keyframes flashIcon {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.15); }
-        }
-
-        .flash-title {
-            font-size: 26px;
-            font-weight: 800;
-            color: white;
-            letter-spacing: 0.5px;
-        }
-
-        .flash-subtitle {
-            color: rgba(255, 255, 255, 0.9);
-            font-size: 14px;
-            margin-top: 4px;
-        }
-
-        .flash-timer {
-            display: flex;
-            gap: 12px;
-        }
-
-        .flash-time {
-            background: rgba(0, 0, 0, 0.25);
-            padding: 12px 18px;
-            border-radius: var(--radius-md);
-            text-align: center;
-            min-width: 70px;
-            backdrop-filter: blur(5px);
-        }
-
-        .flash-time-num {
-            font-size: 26px;
-            font-weight: 700;
-            color: white;
-            font-family: 'Inter', monospace;
-        }
-
-        .flash-time-label {
-            font-size: 11px;
-            color: rgba(255, 255, 255, 0.8);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-top: 2px;
-        }
-
-        /* Wishlist Sidebar */
-        .wishlist-sidebar {
-            position: fixed;
-            top: 0;
-            right: -450px;
-            width: 450px;
-            height: 100vh;
-            background: linear-gradient(180deg, var(--card-bg) 0%, var(--card-bg-light) 100%);
-            border-left: 1px solid rgba(255, 68, 68, 0.2);
-            z-index: 1000;
-            transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            display: flex;
-            flex-direction: column;
-            box-shadow: -10px 0 40px rgba(0, 0, 0, 0.5);
-        }
-
-        .wishlist-sidebar.open {
-            right: 0;
-        }
-
-        .wishlist-header {
-            padding: 24px;
-            background: linear-gradient(135deg, rgba(80, 20, 20, 0.95), rgba(40, 10, 10, 0.95));
-            border-bottom: 1px solid rgba(255, 68, 68, 0.2);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .wishlist-header h2 {
-            font-size: 22px;
-            color: var(--danger);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .wishlist-items {
-            flex: 1;
-            overflow-y: auto;
-            padding: 20px;
-        }
-
-        .wishlist-item {
-            display: flex;
-            gap: 16px;
-            padding: 18px;
-            background: rgba(255, 68, 68, 0.05);
-            border-radius: var(--radius-md);
-            margin-bottom: 16px;
-            border: 1px solid rgba(255, 68, 68, 0.15);
-            transition: all var(--transition-normal);
-        }
-
-        .wishlist-item:hover {
-            border-color: rgba(255, 68, 68, 0.3);
-            background: rgba(255, 68, 68, 0.08);
-        }
-
-        .wishlist-item-img {
-            width: 85px;
-            height: 85px;
-            object-fit: contain;
-            background: white;
-            border-radius: var(--radius-md);
-            padding: 8px;
-        }
-
-        .wishlist-item-details {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .wishlist-item-name {
-            font-size: 14px;
-            font-weight: 600;
-            margin-bottom: 8px;
-            color: var(--text-primary);
-            line-height: 1.4;
-        }
-
-        .wishlist-item-price {
-            font-size: 18px;
-            font-weight: 700;
-            color: var(--danger);
-            margin-bottom: 12px;
-        }
-
-        .wishlist-item-actions {
-            display: flex;
-            gap: 10px;
-            margin-top: auto;
-        }
-
-        .wishlist-add-cart {
-            flex: 1;
-            background: var(--primary);
-            border: none;
-            color: #0a1425;
-            padding: 10px 16px;
-            border-radius: var(--radius-md);
-            cursor: pointer;
-            font-size: 13px;
-            font-weight: 600;
-            transition: all var(--transition-normal);
-        }
-
-        .wishlist-add-cart:hover {
-            background: #00e5ff;
-            transform: translateY(-2px);
-        }
-
-        .wishlist-remove {
-            background: none;
-            border: 1px solid rgba(255, 68, 68, 0.3);
-            color: var(--danger);
-            padding: 10px 14px;
-            border-radius: var(--radius-md);
-            cursor: pointer;
-            font-size: 13px;
-            font-weight: 600;
-            transition: all var(--transition-normal);
-        }
-
-        .wishlist-remove:hover {
-            background: var(--danger);
-            color: white;
-        }
-
-        /* Compare Section */
-        .compare-bar {
-            position: fixed;
-            bottom: -80px;
-            left: 0;
-            right: 0;
-            background: linear-gradient(135deg, rgba(20, 45, 75, 0.98), rgba(10, 25, 50, 0.98));
-            border-top: 1px solid rgba(0, 212, 255, 0.2);
-            padding: 18px 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 999;
-            transition: bottom 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            backdrop-filter: blur(10px);
-        }
-
-        .compare-bar.show {
-            bottom: 0;
-        }
-
-        .compare-products {
-            display: flex;
-            gap: 16px;
-            align-items: center;
-        }
-
-        .compare-product {
-            width: 55px;
-            height: 55px;
-            object-fit: contain;
-            background: white;
-            border-radius: var(--radius-md);
-            padding: 5px;
-            border: 2px solid var(--primary);
-        }
-
-        .compare-actions {
-            display: flex;
-            gap: 15px;
-        }
-
-        .compare-btn {
-            padding: 12px 24px;
-            border-radius: var(--radius-xl);
-            border: none;
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 14px;
-            transition: all var(--transition-normal);
-        }
-
-        .compare-clear {
-            background: rgba(255, 68, 68, 0.15);
-            color: var(--danger);
-            border: 1px solid rgba(255, 68, 68, 0.3);
-        }
-
-        .compare-clear:hover {
-            background: var(--danger);
-            color: white;
-        }
-
-        .compare-view {
-            background: var(--gradient-primary);
-            color: #0a1425;
-        }
-
-        .compare-view:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 20px rgba(0, 212, 255, 0.35);
-        }
-
-        /* Mobile Improvements */
-        @media (max-width: 768px) {
-            .top-nav {
-                flex-wrap: wrap;
-            }
-            
-            .notification-icon {
-                width: 45px;
-                height: 45px;
-                font-size: 20px;
-            }
-            
-            .notification-popup {
-                max-width: 280px;
-                right: 5px;
-                top: 60px;
-            }
-            
-            .summer-sale-banner {
-                padding: 25px;
-            }
-            
-            .summer-sale-banner h2 {
-                font-size: 32px;
-            }
-            
-            .summer-sale-banner .sale-countdown {
-                gap: 10px;
-            }
-            
-            .countdown-item {
-                padding: 10px 15px;
-                min-width: 65px;
-            }
-            
-            .countdown-num {
-                font-size: 20px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .notification-icon {
-                width: 40px;
-                height: 40px;
-                font-size: 18px;
-            }
-            
-            .summer-sale-banner h2 {
-                font-size: 24px;
-            }
-            
-            .summer-sale-banner p {
-                font-size: 14px;
-            }
-            
-            .summer-sale-banner .shop-sale-btn {
-                padding: 10px 24px;
-                font-size: 14px;
-            }
+        .products-section {
+            margin-bottom: 50px;
         }
     </style>
 </head>
@@ -1279,42 +801,38 @@
     <!-- Notification Popup -->
     <div class="notification-popup" id="notificationPopup">
         <h3>🎉 Summer Vacation Sale!</h3>
-        <p>Get 40% OFF on all products from May 17 - June 2. Don't miss this amazing offer!</p>
+        <p>Get 40% off on selected items this weekend. Limited time only!</p>
     </div>
 
     <!-- Top Navigation -->
-    <nav class="top-nav">
+    <div class="top-nav">
         <div class="logo-section">
             <div class="logo-icon">B</div>
             <div class="logo">Blinkart</div>
         </div>
-
         <div class="location">
             <i class="fas fa-map-marker-alt"></i>
             <div>
-                <small>Delivering to</small>
+                <small>Deliver to</small>
                 <strong>India</strong>
             </div>
         </div>
-
         <div class="search-section">
             <div class="search-bar">
                 <select>
                     <option>All Categories</option>
-                    <option>Stationery</option>
+                    <option>Pens & Pencils</option>
+                    <option>Notebooks</option>
+                    <option>Paper</option>
                     <option>Office Supplies</option>
-                    <option>Art & Craft</option>
                 </select>
-                <input type="text" placeholder="Search for products...">
-                <button class="search-btn">
-                    <i class="fas fa-search"></i>
-                </button>
+                <input type="text" placeholder="Search products...">
+                <button class="search-btn"><i class="fas fa-search"></i></button>
             </div>
         </div>
-
         <div class="right-section">
             <button class="nav-btn">
-                <small>Sign In</small>
+                <small>Your</small>
                 <strong>Account</strong>
             </button>
             <button class="nav-btn">
@@ -1323,143 +841,362 @@
             </button>
             <button class="cart-btn">
                 <i class="fas fa-shopping-cart"></i>
+                <span>Cart</span>
                 <span class="cart-count">0</span>
             </button>
         </div>
-    </nav>
+    </div>
 
     <!-- Category Bar -->
     <div class="category-bar">
-        <div class="category active">All</div>
-        <div class="category">Best Sellers</div>
-        <div class="category">New Arrivals</div>
-        <div class="category">Today's Deals</div>
-        <div class="category">Summer Sale</div>
+        <div class="category active">🏠 All</div>
+        <div class="category">✏️ Pens</div>
+        <div class="category">📓 Notebooks</div>
+        <div class="category">📄 Paper</div>
+        <div class="category">📎 Clips</div>
+        <div class="category">🔖 Sticky Notes</div>
+        <div class="category">✂️ Scissors</div>
+        <div class="category">📐 Rulers</div>
     </div>
 
     <!-- Main Content -->
-    <main class="main-content">
-        <!-- Summer Vacation Sale Banner -->
+    <div class="main-content">
+        <!-- Summer Sale Banner -->
         <div class="summer-sale-banner">
-            <h2>🌞 SUMMER VACATION SALE 🌞</h2>
-            <div class="sale-tag">40% OFF EVERYTHING!</div>
-            <p>Limited Time Offer • May 17 - June 2, 2026</p>
-            
+            <span class="sale-tag">🎊 MEGA SALE</span>
+            <h2>Summer Sale Extravaganza</h2>
+            <p>Unbeatable prices on your favorite stationery items!</p>
             <div class="sale-countdown">
                 <div class="countdown-item">
-                    <div class="countdown-num" id="days">7</div>
-                    <div class="countdown-label">Days Left</div>
+                    <div class="countdown-num">05</div>
+                    <div class="countdown-label">Days</div>
                 </div>
                 <div class="countdown-item">
-                    <div class="countdown-num" id="hours">12</div>
+                    <div class="countdown-num">12</div>
                     <div class="countdown-label">Hours</div>
                 </div>
                 <div class="countdown-item">
-                    <div class="countdown-num" id="minutes">45</div>
+                    <div class="countdown-num">34</div>
                     <div class="countdown-label">Minutes</div>
                 </div>
                 <div class="countdown-item">
-                    <div class="countdown-num" id="seconds">30</div>
+                    <div class="countdown-num">56</div>
                     <div class="countdown-label">Seconds</div>
                 </div>
             </div>
-            
-            <button class="shop-sale-btn" onclick="scrollToProducts()">
-                🛒 SHOP NOW & SAVE 40%
-            </button>
+            <button class="summer-sale-banner shop-sale-btn">Shop Now</button>
         </div>
 
-        <!-- Flash Sale Banner -->
-        <div class="flash-sale-banner">
-            <div class="flash-sale-left">
-                <div class="flash-icon">⚡</div>
-                <div>
-                    <div class="flash-title">Flash Deal!</div>
-                    <div class="flash-subtitle">Unbeatable prices for limited time</div>
-                </div>
-            </div>
-            <div class="flash-timer">
-                <div class="flash-time">
-                    <div class="flash-time-num" id="flashHours">02</div>
-                    <div class="flash-time-label">Hours</div>
-                </div>
-                <div class="flash-time">
-                    <div class="flash-time-num" id="flashMins">15</div>
-                    <div class="flash-time-label">Mins</div>
-                </div>
-                <div class="flash-time">
-                    <div class="flash-time-num" id="flashSecs">42</div>
-                    <div class="flash-time-label">Secs</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Products Section -->
-        <section class="products-section">
+        <!-- Featured Products Section -->
+        <div class="products-section">
             <div class="section-header">
-                <h2 class="section-title">Summer Sale Products</h2>
-                <div class="sort-section">
-                    <label class="sort-label">Sort by:</label>
-                    <select class="sort-dropdown">
-                        <option>Relevance</option>
-                        <option>Price: Low to High</option>
-                        <option>Price: High to Low</option>
-                        <option>Newest</option>
-                    </select>
+                <h3 class="section-title">Featured Products</h3>
+            </div>
+            <div class="products-grid">
+                <!-- Product 1 -->
+                <div class="product-card">
+                    <div class="product-image">✏️</div>
+                    <div class="product-info">
+                        <div class="product-name">Premium Gel Pens Pack (10pcs)</div>
+                        <div class="product-rating">
+                            <span class="stars">⭐⭐⭐⭐⭐</span>
+                            <span class="count">(2,847)</span>
+                        </div>
+                        <div class="product-price-section">
+                            <div class="product-price">₹299</div>
+                            <div class="product-mrp">₹499</div>
+                            <div class="product-discount">40% off</div>
+                        </div>
+                    </div>
+                    <div class="product-actions">
+                        <button class="btn-add-cart">Add to Cart</button>
+                        <button class="btn-wishlist"><i class="far fa-heart"></i></button>
+                    </div>
+                </div>
+
+                <!-- Product 2 -->
+                <div class="product-card">
+                    <div class="product-image">📓</div>
+                    <div class="product-info">
+                        <div class="product-name">A4 Ruled Notebook 200 Pages</div>
+                        <div class="product-rating">
+                            <span class="stars">⭐⭐⭐⭐</span>
+                            <span class="count">(1,923)</span>
+                        </div>
+                        <div class="product-price-section">
+                            <div class="product-price">₹149</div>
+                            <div class="product-mrp">₹249</div>
+                            <div class="product-discount">40% off</div>
+                        </div>
+                    </div>
+                    <div class="product-actions">
+                        <button class="btn-add-cart">Add to Cart</button>
+                        <button class="btn-wishlist"><i class="far fa-heart"></i></button>
+                    </div>
+                </div>
+
+                <!-- Product 3 -->
+                <div class="product-card">
+                    <div class="product-image">📄</div>
+                    <div class="product-info">
+                        <div class="product-name">A4 White Paper Ream (500 sheets)</div>
+                        <div class="product-rating">
+                            <span class="stars">⭐⭐⭐⭐⭐</span>
+                            <span class="count">(3,156)</span>
+                        </div>
+                        <div class="product-price-section">
+                            <div class="product-price">₹199</div>
+                            <div class="product-mrp">₹349</div>
+                            <div class="product-discount">43% off</div>
+                        </div>
+                    </div>
+                    <div class="product-actions">
+                        <button class="btn-add-cart">Add to Cart</button>
+                        <button class="btn-wishlist"><i class="far fa-heart"></i></button>
+                    </div>
+                </div>
+
+                <!-- Product 4 -->
+                <div class="product-card">
+                    <div class="product-image">📎</div>
+                    <div class="product-info">
+                        <div class="product-name">Metal Paper Clips Assorted (100pcs)</div>
+                        <div class="product-rating">
+                            <span class="stars">⭐⭐⭐⭐</span>
+                            <span class="count">(892)</span>
+                        </div>
+                        <div class="product-price-section">
+                            <div class="product-price">₹79</div>
+                            <div class="product-mrp">₹129</div>
+                            <div class="product-discount">39% off</div>
+                        </div>
+                    </div>
+                    <div class="product-actions">
+                        <button class="btn-add-cart">Add to Cart</button>
+                        <button class="btn-wishlist"><i class="far fa-heart"></i></button>
+                    </div>
+                </div>
+
+                <!-- Product 5 -->
+                <div class="product-card">
+                    <div class="product-image">🖊️</div>
+                    <div class="product-info">
+                        <div class="product-name">Ballpoint Pens Assorted Colors</div>
+                        <div class="product-rating">
+                            <span class="stars">⭐⭐⭐⭐⭐</span>
+                            <span class="count">(4,201)</span>
+                        </div>
+                        <div class="product-price-section">
+                            <div class="product-price">₹89</div>
+                            <div class="product-mrp">₹159</div>
+                            <div class="product-discount">44% off</div>
+                        </div>
+                    </div>
+                    <div class="product-actions">
+                        <button class="btn-add-cart">Add to Cart</button>
+                        <button class="btn-wishlist"><i class="far fa-heart"></i></button>
+                    </div>
+                </div>
+
+                <!-- Product 6 -->
+                <div class="product-card">
+                    <div class="product-image">✂️</div>
+                    <div class="product-info">
+                        <div class="product-name">Stainless Steel Scissors Set</div>
+                        <div class="product-rating">
+                            <span class="stars">⭐⭐⭐⭐⭐</span>
+                            <span class="count">(1,567)</span>
+                        </div>
+                        <div class="product-price-section">
+                            <div class="product-price">₹199</div>
+                            <div class="product-mrp">₹349</div>
+                            <div class="product-discount">43% off</div>
+                        </div>
+                    </div>
+                    <div class="product-actions">
+                        <button class="btn-add-cart">Add to Cart</button>
+                        <button class="btn-wishlist"><i class="far fa-heart"></i></button>
+                    </div>
                 </div>
             </div>
+        </div>
 
-            <div class="products-grid" id="productsGrid">
-                <!-- Products will be dynamically loaded here -->
+        <!-- Best Sellers Section -->
+        <div class="products-section">
+            <div class="section-header">
+                <h3 class="section-title">Best Sellers</h3>
             </div>
-        </section>
-    </main>
+            <div class="products-grid">
+                <!-- Product 7 -->
+                <div class="product-card">
+                    <div class="product-image">🖍️</div>
+                    <div class="product-info">
+                        <div class="product-name">Colored Pencil Set 36 Colors</div>
+                        <div class="product-rating">
+                            <span class="stars">⭐⭐⭐⭐⭐</span>
+                            <span class="count">(5,234)</span>
+                        </div>
+                        <div class="product-price-section">
+                            <div class="product-price">₹329</div>
+                            <div class="product-mrp">₹599</div>
+                            <div class="product-discount">45% off</div>
+                        </div>
+                    </div>
+                    <div class="product-actions">
+                        <button class="btn-add-cart">Add to Cart</button>
+                        <button class="btn-wishlist"><i class="far fa-heart"></i></button>
+                    </div>
+                </div>
+
+                <!-- Product 8 -->
+                <div class="product-card">
+                    <div class="product-image">🔖</div>
+                    <div class="product-info">
+                        <div class="product-name">Sticky Notes Rainbow Pack</div>
+                        <div class="product-rating">
+                            <span class="stars">⭐⭐⭐⭐</span>
+                            <span class="count">(3,891)</span>
+                        </div>
+                        <div class="product-price-section">
+                            <div class="product-price">₹59</div>
+                            <div class="product-mrp">₹99</div>
+                            <div class="product-discount">40% off</div>
+                        </div>
+                    </div>
+                    <div class="product-actions">
+                        <button class="btn-add-cart">Add to Cart</button>
+                        <button class="btn-wishlist"><i class="far fa-heart"></i></button>
+                    </div>
+                </div>
+
+                <!-- Product 9 -->
+                <div class="product-card">
+                    <div class="product-image">📐</div>
+                    <div class="product-info">
+                        <div class="product-name">Geometry Box Complete Set</div>
+                        <div class="product-rating">
+                            <span class="stars">⭐⭐⭐⭐⭐</span>
+                            <span class="count">(2,456)</span>
+                        </div>
+                        <div class="product-price-section">
+                            <div class="product-price">₹129</div>
+                            <div class="product-mrp">₹229</div>
+                            <div class="product-discount">44% off</div>
+                        </div>
+                    </div>
+                    <div class="product-actions">
+                        <button class="btn-add-cart">Add to Cart</button>
+                        <button class="btn-wishlist"><i class="far fa-heart"></i></button>
+                    </div>
+                </div>
+
+                <!-- Product 10 -->
+                <div class="product-card">
+                    <div class="product-image">📋</div>
+                    <div class="product-info">
+                        <div class="product-name">A4 Clipboard with Pen Holder</div>
+                        <div class="product-rating">
+                            <span class="stars">⭐⭐⭐⭐</span>
+                            <span class="count">(1,678)</span>
+                        </div>
+                        <div class="product-price-section">
+                            <div class="product-price">₹189</div>
+                            <div class="product-mrp">₹349</div>
+                            <div class="product-discount">46% off</div>
+                        </div>
+                    </div>
+                    <div class="product-actions">
+                        <button class="btn-add-cart">Add to Cart</button>
+                        <button class="btn-wishlist"><i class="far fa-heart"></i></button>
+                    </div>
+                </div>
+
+                <!-- Product 11 -->
+                <div class="product-card">
+                    <div class="product-image">✏️</div>
+                    <div class="product-info">
+                        <div class="product-name">HB Pencil Pack (20 pieces)</div>
+                        <div class="product-rating">
+                            <span class="stars">⭐⭐⭐⭐⭐</span>
+                            <span class="count">(4,789)</span>
+                        </div>
+                        <div class="product-price-section">
+                            <div class="product-price">₹49</div>
+                            <div class="product-mrp">₹89</div>
+                            <div class="product-discount">45% off</div>
+                        </div>
+                    </div>
+                    <div class="product-actions">
+                        <button class="btn-add-cart">Add to Cart</button>
+                        <button class="btn-wishlist"><i class="far fa-heart"></i></button>
+                    </div>
+                </div>
+
+                <!-- Product 12 -->
+                <div class="product-card">
+                    <div class="product-image">📏</div>
+                    <div class="product-info">
+                        <div class="product-name">Plastic Ruler Set 15cm & 30cm</div>
+                        <div class="product-rating">
+                            <span class="stars">⭐⭐⭐⭐</span>
+                            <span class="count">(987)</span>
+                        </div>
+                        <div class="product-price-section">
+                            <div class="product-price">₹39</div>
+                            <div class="product-mrp">₹69</div>
+                            <div class="product-discount">43% off</div>
+                        </div>
+                    </div>
+                    <div class="product-actions">
+                        <button class="btn-add-cart">Add to Cart</button>
+                        <button class="btn-wishlist"><i class="far fa-heart"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script>
-        // Notification Toggle
         function toggleNotification() {
             const popup = document.getElementById('notificationPopup');
             popup.classList.toggle('show');
-            setTimeout(() => {
+        }
+
+        // Close notification when clicking outside
+        document.addEventListener('click', function(event) {
+            const popup = document.getElementById('notificationPopup');
+            const icon = document.querySelector('.notification-icon');
+            if (!popup.contains(event.target) && !icon.contains(event.target)) {
                 popup.classList.remove('show');
-            }, 5000);
-        }
-
-        // Update Countdown Timer
-        function updateCountdown() {
-            const saleStart = new Date('2026-05-17').getTime();
-            const saleEnd = new Date('2026-06-02').getTime();
-            const now = new Date().getTime();
-            
-            if (now < saleStart) {
-                const timeUntilSale = saleStart - now;
-                updateTimerDisplay(timeUntilSale, 'days', 'hours', 'minutes', 'seconds');
-            } else if (now < saleEnd) {
-                const timeUntilEnd = saleEnd - now;
-                updateTimerDisplay(timeUntilEnd, 'days', 'hours', 'minutes', 'seconds');
             }
+        });
+
+        // Add to cart functionality
+        document.querySelectorAll('.btn-add-cart').forEach(button => {
+            button.addEventListener('click', function() {
+                alert('Product added to cart!');
+                updateCartCount();
+            });
+        });
+
+        // Wishlist functionality
+        document.querySelectorAll('.btn-wishlist').forEach(button => {
+            button.addEventListener('click', function() {
+                const icon = this.querySelector('i');
+                icon.classList.toggle('far');
+                icon.classList.toggle('fas');
+                if (icon.classList.contains('fas')) {
+                    this.style.color = '#FF4444';
+                } else {
+                    this.style.color = 'inherit';
+                }
+            });
+        });
+
+        function updateCartCount() {
+            const cartCount = document.querySelector('.cart-count');
+            cartCount.textContent = parseInt(cartCount.textContent) + 1;
         }
-
-        function updateTimerDisplay(time, daysId, hoursId, minutesId, secondsId) {
-            const days = Math.floor(time / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((time % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((time % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((time % (1000 * 60)) / 1000);
-
-            document.getElementById(daysId).textContent = String(days).padStart(2, '0');
-            document.getElementById(hoursId).textContent = String(hours).padStart(2, '0');
-            document.getElementById(minutesId).textContent = String(minutes).padStart(2, '0');
-            document.getElementById(secondsId).textContent = String(seconds).padStart(2, '0');
-        }
-
-        // Scroll to products
-        function scrollToProducts() {
-            document.getElementById('productsGrid').scrollIntoView({ behavior: 'smooth' });
-        }
-
-        // Initialize
-        updateCountdown();
-        setInterval(updateCountdown, 1000);
     </script>
 </body>
 </html>
